@@ -290,5 +290,8 @@ Contents
 .. toctree::
 
    architecture
+   configuration
+   mechatronic-layer
+   operational-layer
    installation
    usage

@@ -1,0 +1,6 @@
+.highlight {
+    background: #f0f0f0;
+    overflow-y: auto;
+    max-height: 20em;
+    border-radius: 5px;
+}

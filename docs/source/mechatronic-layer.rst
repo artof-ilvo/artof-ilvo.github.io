@@ -212,3 +212,8 @@ We can calculate:
    \epsilon &= acot\bigg(\sqrt{\frac{\frac{v^2}{\omega^2_z} - a^2}{l^2}}\bigg) \\
    \epsilon_{fr} &= acot(2\cdot cot(\epsilon) - cot(\epsilon_{fl})) \\
    v_{rl} &= \frac{R\,cos(\epsilon) - (b/2)}{R\,cos(\epsilon)} \cdot v \, cos(\epsilon)
+
+Skid steering
+^^^^^^^^^^^^^
+
+TODO

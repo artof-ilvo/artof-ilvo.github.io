@@ -5,7 +5,10 @@ Docker
 ------
 A full docker installation can be used for testing or developing the framework.
 
+TODO
 
 System
 ------
 A system installation is preferred when integrating the framework on a robot platform.
+
+TODO

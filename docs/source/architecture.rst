@@ -26,15 +26,15 @@ Communication
 ARTOF Redis interface
 ^^^^^^^^^^^^^^^^^^^^^
 
-Redis was selected to perform the interprocess communication between the real-time processes in the *operational layer* and inter-network communication between other implements or remote operators.
+The in-memory database `Redis <https://redis.io/>`_ was selected to perform the interprocess communication between the real-time processes in the *operational layer* and inter-network communication between other implements or remote operators.
 
 
 Mechatronic-operational layer interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The **Siemens S7-communication protocol (Snap7)** is currently the only supported interface between the *mechatronic-operational layer interface* that is implemented in the ARTOF framework.
-At the PLC a *higherLevelMonitor* and *higherLevelControl* data block are maintained, from which the content is read and written respectively at every program cycle of the *operational layer* process *Robot PLC*.
+The `Siemens S7-communication protocol (Snap7) <https://snap7.sourceforge.net/>`_ is currently the only supported *mechatronic-operational layer interface* communication protocol.
 
-At the PLC side the checkbox ``Permit Access with PUT/GET Communication from Remote Partner`` need to be set. This can be found back in the `Siemens documentation <https://cache.industry.siemens.com/dl/files/115/82212115/att_108330/v2/82212115_s7_communication_s7-1500_en.pdf>`_.
-
+The robot platforms currently developed at ILVO use Siemens technology to control its industrial components.
+A Siemens PLC maintains a ``higherLevelMonitor`` and ``higherLevelControl`` data block, from which the content is read and written respectively at every program cycle of the *operational layer* process :cpp:class:`RobotPlc`.
+At the PLC it is important for the checkbox ``Permit Access with PUT/GET Communication from Remote Partner`` need to be set. This can be found back in the `Siemens documentation <https://cache.industry.siemens.com/dl/files/115/82212115/att_108330/v2/82212115_s7_communication_s7-1500_en.pdf>`_ to be checked.
 More information on this interface can be found in section :ref:`layer_interface`.

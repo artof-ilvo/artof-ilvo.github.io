@@ -1,4 +1,6 @@
 
+.. _operational_layer:
+
 Operational layer
 =================
 
@@ -35,16 +37,17 @@ Requirements
 
    + The operational layer can run in a docker container, which is usefully for testing and development. This is not recommended for operation as this is not yet validated on inference.
 
+.. _operational_layer_processes:
+
 Processes
 ---------
-
 
 VariableManager
 ^^^^^^^^^^^^^^^
 
-All processes in the operational layer inherit the :cpp:class:`VariableManager`, which performs basically process housekeeping.
+All processes in the *operational layer* inherit the :cpp:class:`VariableManager`, performing the process housekeeping.
 
-During initialization, it loads a :cpp:member:`VariableMap::variableMap` of ``typedef std::map<std::string, VariablePtr> VariableMap``
+During initialization, it loads a :cpp:member:`VariableMap::variableMap` of type ``std::map<std::string, VariablePtr> VariableMap``
 
 
 The pseudocode below illustrates what it does
@@ -69,7 +72,14 @@ The pseudocode below illustrates what it does
       }
 
 #. The :cpp:member:`Clk::clk` member of the :cpp:class:`VariableManager` class supports process execution at a fixed frequency, which is by default configured to ``20 Hz``. When the main loop executes more quickly the additional time is waited at the :cpp:func:`void Clk::stop()` method, otherwise the process is immediately continued.
+
 #. The :cpp:func:`void readRedisVariables()` and :cpp:func:`void writeRedisVariables()` methods perform block read and write the Redis variables described in the redis configuration file at once. For the :cpp:func:`void writeRedisVariables()` only the
+
+#. The :cpp:func:`void serverTick()` is a pure abstract function and is implemented in the child class.
+
+#. The :cpp:func:`void toggleHeartBeatPulse()` toggles a heartbeat boolean at a period ``500ms``. This heartbeat is used for the :cpp:class:`SystemManager` to monitor the health of the different real-time processes. The process is recovered when no pulse is detected for ``5s``. The heartbeat of the navigation controller is also monitored by the PLC. If the heartbeat does not pulse within ``2s``, the robot goes to error mode.
+
+#. :cpp:func:`void publishProcessingTime()` publishes the processing time to monitor if the process target frequency can be maintained.
 
 .. _system_manager:
 

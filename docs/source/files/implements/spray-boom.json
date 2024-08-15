@@ -1,0 +1,30 @@
+{
+  "name": "spray-boom",
+  "on_taskmap": true,
+  "types": [
+    "continuous",
+    "intermittent"
+  ],
+  "sections": [
+    {
+      "id": "",
+      "width": 0.15,
+      "up": 0.05,
+      "down": 0.05,
+      "repeats": 24,
+      "offset": 0.25,
+      "transform": {
+        "T": [
+          3,
+          -0.98,
+          -0.4
+        ],
+        "R": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ]
+}

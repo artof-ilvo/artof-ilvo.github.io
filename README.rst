@@ -1,6 +1,9 @@
 ARTOF documentation project
 ===========================
 
+Getting started
+---------------
+
 This GitHub project provides the documentation for the Agricultural Robot Taskmap Operaiton Framework (ARTOF) using Sphinx docs.
 
 For more information of using Sphinx docs read `the Sphinx documentation <https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html>`_.
@@ -22,3 +25,8 @@ To build this documentation locally:
 
     sphinx-build docs/source/ _build/
 4. The new index page is now available under _build/index.html
+
+Documentation
+-------------
+
++ reStructuredText `sublime-and-sphinx-guide <https://sublime-and-sphinx-guide.readthedocs.io/en/latest/index.html>`_ documentation.

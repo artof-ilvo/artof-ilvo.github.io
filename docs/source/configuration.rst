@@ -7,47 +7,74 @@ Configuration files
 Interface
 ---------
 
-The ``config.json`` configuration file describes the Redis variables in the system as well as the *mechatronic/operational layer interface* configuration
+The ``config.json`` file describes the Redis variables in the system as well as the *mechatronic/operational layer interface* configuration.
 
 .. literalinclude:: files/configuration/config.json
    :language: JSON
-   :caption: The ``config.json`` file of the CIMAT robot
+   :caption: Listing 1. The ``config.json`` file of the CIMAT robot
 
-The ``protocols`` object defines the protocol configuration.
+The fields in the ``config.json`` file are:
 
-#. ``snap7``: provides the *mechatronic/operational layer interface* parameters:
+1. The ``protocols`` object defines the protocol configuration.
 
-   + the IP address of the PLC
-   + the read and write data block (DB), which correspond with the *higherLevelMonitor* and *higherLevelControl*
-   + the rack and slot of these data blocks
+   1.1. ``snap7``: provides the *mechatronic/operational layer interface* parameters:
 
-#. ``redis``: provides the *Redis ARTOF interface* parameters:
+      1.1.1. the ``ip`` address of the PLC
 
-   + the IP address and port of the Redis server
+      1.1.2. the ``read_db`` and ``write_db`` data block (DB), which correspond with the *higherLevelMonitor* and *higherLevelControl*
 
-The ``variables`` object defines the ``plc`` and ``pc`` Redis varialbes on the system.
+      1.1.3. the ``rack`` and ``slot`` of these data blocks
 
-#. ``plc`` variables: the ``monitor`` variables are read and the ``control`` variables are written to the PLC using the *S7-communication protocol (Snap7)* by the :cpp:class:`RobotPLC`. These variables are continuously synced between the *operational and mechatronic layer*.
+   1.2 ``redis``: provides the *Redis ARTOF interface* parameters:
 
-#. ``pc`` variables are solely used by the operational layer and require no synchronisation with the mechatronic layer.
+      1.2.1 ``ip`` and ``port``: the IP address and port of the Redis server
 
+2. The ``variables`` field defines the ``plc`` and ``pc`` Redis variables on the system.
+
+   2.1. ``plc`` variables: these variables are continuously synced between the *operational and mechatronic layer*.
+
+      2.1.1 the ``monitor`` variables are read *S7-communication protocol (Snap7)* by the :cpp:class:`RobotPLC`
+
+      2.1.2 the ``control`` variables are written *S7-communication protocol (Snap7)* by the :cpp:class:`RobotPLC`
+
+   2.2. ``pc`` variables are solely used by the operational layer and require no synchronisation with the mechatronic layer.
 
 The configuration depends on the platform configuration (vehicle configuration, how many hitches, what energy source, ...).
 
-The recurrent, composite types are described in the ``types.json`` file. An extract of the ``types.json`` configuration file is shown below.
-Not shown in the extract is that types also can be nested.
+The recurrent, composite types are described in the ``types.json`` file.
+Thereby it can be seen that these types can be nested.
+
 
 .. literalinclude:: files/configuration/types.json
    :language: JSON
-   :caption: ``types.json`` file
+   :caption: Listing 2. ``types.json`` file
 
-Redis variables that need configuration are listed in the ``redis.init.json`` file, such as shown in the ``variables`` object in the code block below.
-Next to information about the initialization of the Redis variables in contains information related to the processes and jobs that need to run.
-The latter is later discussed in :ref:`system_manager`.
+The names of the Redis variables are the composition of the object names, e.g.
+``plc.monitor.drive_fl.current``, ``plc.monitor.drive_fr.temperature``, ``plc.monitor.hitch_fb.feedback_sections.27``, ``plc.control.navigation.heartbeat``, ``plc.control.hitch_fb.activate_sections.30``, ``pc.navigation.turning_radius``, ``pc.purepursuit.carrot_distance``
+
+Redis variables that need configuration are listed in the ``redis.init.json`` file, such as shown in the ``variables`` object in *Listing 3*.
+
+Besides, the ``redis.init.json`` file contains information related to the processes and jobs that need to run.
+The latter is later discussed in :ref:`jobs`.
 
 .. literalinclude:: files/configuration/redis.init.json
    :language: JSON
-   :caption: ``redis.init.json`` file of the CIMAT robot
+   :caption: Listing 3. ``redis.init.json`` file of the CIMAT robot
+
+.. _jobs:
+
+Jobs
+----
+
+Also in the ``redis.init.json`` file, the jobs are described.
+A :cpp:class:`Job` is the abstraction for a :cpp:class:`Process` and an :cpp:class:`Addon`.
+
+A :cpp:class:`Process` is an entry for the :cpp:class:`SystemManager` process to maintain the processes in the *operational layer*.
+The processes of the *operational layer* are further discussed in the :ref:`operational_layer` section.
+
+A :cpp:class:`Addon` is an entry for the :cpp:class:`SystemManager` process to maintain the add-ons in the system.
+The add-ons configuration uses the `Docker Engine API (1.46) <https://docs.docker.com/engine/api/v1.46/>`_.
+The add-ons are further discussed in the :ref:`addons` section.
 
 Platform
 --------
@@ -56,69 +83,133 @@ The ``settings.json`` file describes the platform configuration of the robot pla
 
 .. literalinclude:: files/configuration/settings.json
    :language: JSON
-   :caption: ``settings.json`` file of the CIMAT robot
+   :caption: Listing 4. ``settings.json`` file of the CIMAT robot
 
-These settings include:
+The fields in the ``settings.json`` file are:
 
-+ ``name``: The name of the robot platform
+1. ``name``: The name of the robot platform
 
-+ ``robot``: The robot platform configuration
+2. ``robot``: The robot platform configuration
 
-   + The dimensions of the robot platform (``width``, ``height``, ``wheel_diameter``)
-   + The ``transform`` (**T**: translation in m, **R**: rotation in euler angles) to the reference of the robot.
+   2.1. The dimensions of the robot platform (``width``, ``height``, ``wheel_diameter``)
+
+   2.2. The ``transform``, including a translation (in meters) and a rotation in euler angles (degrees) to the reference point on the robot. This reference point is always measured from the ground on.
+
       + For a 4WD4WS robot this coincides with the geometric center of the robot.
+
       + For an Ackerman robot this is the center of the rear axle. In that case also the ``transform_center`` needs to be added in the ``robot`` configuration object.
 
-+ ``auto_velocity``: ``min`` and ``max`` velocity of the platform.
-
-+ ``nav_modes``: The navigation modes of the robot. This depends on the vehicle configuration, different navigation modes are possible at the headacre. In the image below the navigation modes are shown with there corresponding id:
-
-   #. 90°: When a corner is reached, the robot turns around its axis for the angle of the corner.
-
-   #. 180°: When a headacre is reached, the robot turns around its axis until it reaches the same orientation of the new trajectory line to follow. Than it navigates sideways until reaching the corner of the next trajectory line.
-
-   #. pure pursuit: When a headacre is reached, the robot drives a circle with the platform turning radius specified in the ``platform.json`` configuration file.
-
-   #. rollback: When a headacre is reached, the robot drives a quarter of a circle with the platform turning radius. It rolls back when the corner with the next trajectory line was passed and turns in again to follow the new trajectory line.
-
-   #. external: An external controllor can take over and perform the navigation, by updating the ``navigation_control`` parameters.
-
-.. image:: images/fig_navigation_modes.png
+.. figure:: images/fig_transformations.png
    :width: 70%
-   :alt: Navigation modes with navigation id
    :align: center
 
+   Figure 1. Robot transformations; consider the antenna reference coordinate system, the ``y`` axis is pointing forwards, ``z`` axis upwards and the ``x`` axis is following the right handed rule.
 
-+ ``nav_modes``: The modes for autonomous navigation.
 
-   #. Full auto: performs autonomous velocity control and steering
-   #. Auto steer: performs only autonomous steering (no velocity control)
-   #. Auto throttle: performs only autonomous velocity control (no steering)
+3. ``auto_velocity``: ``min`` and ``max`` velocity of the platform.
 
-+ ``hitches``: The specifications of the different hitches on the platform
+4. ``nav_modes``: The navigation modes of the robot. This depends on the vehicle configuration, different navigation modes are possible at the headacre. In the *Figure 3* the navigation modes are shown with there corresponding id.
 
-   #. ``id``: hitch id
+   + *90° spinning*: When a corner is reached, the robot turns around its axis for the angle of the corner.
 
-   #. ``name``: name of the hitch
+   + *180° spinning*: When a headacre is reached, the robot turns around its axis until it reaches the same orientation of the new trajectory line to follow. Than it navigates sideways until reaching the corner of the next trajectory line.
 
-   #. ``min``: min height of the hitch (cm)
+   + *pure pursuit*: When a headacre is reached, the robot drives a circle with the platform turning radius specified in the ``platform.json`` configuration file.
 
-   #. ``max``: max height of the hitch (cm)
+   + *rollback*: When a headacre is reached, the robot drives a quarter of a circle with the platform turning radius. It rolls back when the corner with the next trajectory line was passed and turns in again to follow the new trajectory line.
 
-   #. ``transform`` to the hitch pen
+   + *external*: An external controllor can take over and perform the navigation, by updating the ``navigation_control`` parameters.
 
-   #. ``types``: Compatible task types with the hitch.
-
-      #. *hitch*: The hitch is activated (lowered) when the hitch centre is contained by a polygon of the task map.
-
-      #. *continuous*:  The section is activated when it intersects with a polygon of the task map. A special type of this is a *cardan* task, which activates the cardan when intersecting the polygon(s) in the task map.
-
-      #. *intermittent*: The section is activated when it contains a point of the task map.
-
-      #. *discrete*: The discrete action (measurement) is performed when the section is the closest to the point of the task map.
-
-.. image:: images/fig_task_types.png
+.. figure:: images/fig_navigation_modes.png
    :width: 70%
-   :alt: Task types compatible with the hitch
    :align: center
 
+   Figure 2. Navigation modes with navigation id
+
+
+5. ``auto_modes``: The modes for autonomous navigation.
+
+   + *Full auto*: performs autonomous velocity control and steering
+
+   + *Auto steer*: performs only autonomous steering (no velocity control)
+
+   + *Auto throttle*: performs only autonomous velocity control (no steering)
+
+6. ``hitches``: The specifications of the different hitches on the platform
+
+   6.1. ``id``: hitch id
+
+   6.2. ``name``: name of the hitch
+
+   6.3. ``min``: min height of the hitch (cm)
+
+   6.4. ``max``: max height of the hitch (cm)
+
+   6.5. ``transform`` to the hitch hinge (see *Figure 3*)
+
+   6.6. ``types``: Compatible task types with the hitch.
+
+      + *hitch*: The hitch is activated (lowered) when the hitch centre is contained by a polygon of the task map.
+
+      + *continuous*:  The section is activated when it intersects with a polygon of the task map. A special type of this is a *cardan* task, which activates the cardan when intersecting the polygon(s) in the task map.
+
+      + *intermittent*: The section is activated when it contains a point of the task map.
+
+      + *discrete*: The discrete action (measurement) is performed when the section is the closest to the point of the task map.
+
+.. figure:: images/fig_task_types.png
+   :width: 70%
+   :align: center
+
+   Figure 3. Task types compatible with the hitch
+
+
+7. ``gps``: The RTK GNSS configuration.
+
+   7.1. ``device``: can be *serial* for USB devices or *socket* for network devices.
+
+   7.2. ``utm_zone``: EPSG:326xx whereby xx is the UTM zone.
+
+   7.3. ``usb_port`` or ``ìp`` and ``port``: depending on the device, can be the usb device name or the ip and port of the socket.
+
+   7.4. NTRIP configuration ``ntrip_server``, ``ntrip_mountpoint``, ``ntrip_uname``, ``ntrip_pwd``
+
+   7.5. ``antenna_rotation``: additional rotation of the antennas in degrees
+
+      + 0 or 180 if the antennas are in the longitudinal direction of the platform.
+
+      + 90 or -90 if the antennas are in the lateral direction of the platform.
+
+   7.6. ``transform`` to the GNSS reference (see *Figure 3*)
+
+
+Implements
+----------
+
+Implement configuration is performed in ``<implement-name>.json`` files.
+
+The fields in the ``<implement-name>.json`` file are:
+
+1. ``name``: the implement name <implement-name>
+
+2. ``name``: weather the task needs to execute on the task map or not. If not the sections can be operated by an *add-on* or program running on another computer.
+
+3. ``types``: the types compatible with the implement. This are the same types *continous*, *intermittent*, *discrete* as explained in *Figure 3*. An implement can support multiple types (see *Listing 5*).
+
+.. literalinclude:: files/implements/auto-label.json
+   :language: JSON
+   :caption: Listing 5. Implement supporting multiple types
+
+4. ``sections``: this is an array of sections.
+
+   4.1. ``id`` of the section (string)
+
+   4.2. The dimensions ``width``, ``up``, ``down`` in meters.
+
+   4.3. ``transform`` to the hitch pen (see *Figure 3*)
+
+   4.4. A section can be repeated over a certain distance by filling in the ``repeats`` and ``offset`` fields as in *Listing 5*.
+
+.. literalinclude:: files/implements/spray-boom.json
+   :language: JSON
+   :caption: Listing 5. Implement with array of sections configured by the ``repeats`` and ``offset`` fields

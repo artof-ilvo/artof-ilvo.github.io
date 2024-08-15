@@ -1,0 +1,27 @@
+{
+  "name": "penetrometer",
+  "on_taskmap": true,
+  "types": [
+    "discrete"
+  ],
+  "sections": [
+    {
+      "id": "P",
+      "width": 0.25,
+      "up": 0.1,
+      "down": 0.1,
+      "transform": {
+        "T": [
+          -0.35,
+          -0.2,
+          -0.4
+        ],
+        "R": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ]
+}

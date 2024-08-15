@@ -293,5 +293,7 @@ Contents
    configuration
    mechatronic-layer
    operational-layer
+   addons
    installation
    usage
+   license

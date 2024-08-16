@@ -7,13 +7,13 @@ for a wide range of robot configurations and farming applications
 based on Global Navigation Satellite System (GNSS) positioning.
 
 The robot supports the four-wheel-drive four-wheel-steer (4WD4WS), skid- and Ackerman steering vehicle configuration for different agricultural tasks in arable farming and horticulture.
-The framework can be integrated on a robot platform during the development and construction or can be added with a customized after-market kit.
-The ARTOF framework was integrated in several robots until now and is also used for steering guidance on an implement carrier.
+The framework can be integrated into a robot platform during development and construction or added with a customized after-market kit.
+The ARTOF framework has been integrated into several robots until now and is also used for steering guidance on an implement carrier.
 
 
 .. note::
 
-   This ARTOF project started in 2019 at `ILVO <https://ilvo.vlaanderen.be/en>`_ within the `European Interreg-Vlaanderen CIMAT <https://www.cimat.be/>`_ project and is still under active development to support in other EU projects.
+   This ARTOF project started in 2019 at `ILVO <https://ilvo.vlaanderen.be/en>`_ within the `European Interreg-Vlaanderen CIMAT <https://www.cimat.be/>`_ project and is still under active development to support other EU projects.
 
 
 ARTOF integrations
@@ -88,13 +88,13 @@ The main characteristics of the CIMAT robot are listed below.
 DjustE robot
 ^^^^^^^^^^^^
 The DjustE is an in-house converted electrified hydrostatic compact tractor (CNH Boomer 50).
-It can be used as a robot or as a tractor for different field operations requiring, for example a Power Take Off (PTO).
+It can be used as a robot or as a tractor for different field operations, some of which require a Power take-off (PTO).
 
 |fig_djuste_rotary_tillage_driving| |fig_djuste_rotary_tillage_turning|
 
 .. |fig_djuste_rotary_tillage_driving| image:: images/fig_djuste_rotary_tillage_driving.jpg
    :width: 45%
-   :alt: Rotarry tillage
+   :alt: Rotary tillage
 
 .. |fig_djuste_rotary_tillage_turning| image:: images/fig_djuste_rotary_tillage_turning.jpg
    :width: 45%
@@ -139,12 +139,12 @@ The main characteristics of the DjustE robot are listed below.
 +-----------------------+-------------------------------------------------------------------+
 | Electric connectors   | 12V , 24V, 48V                                                    |
 +-----------------------+-------------------------------------------------------------------+
-| Power take off (PTO)  | 3 gears                                                           |
+| Power take-off (PTO)  | 3 gears                                                           |
 +-----------------------+-------------------------------------------------------------------+
 
 Treebot robot
 ^^^^^^^^^^^^^
-The Treebot robot is an in-house-developed robot to perform horticulture applications.
+The Treebot robot is an in-house-developed robot that performs horticulture applications.
 
 |fig_treebot_blueberry| |fig_treebot_lane_trees|
 
@@ -188,7 +188,7 @@ The main characteristics of the Treebot robot are listed below.
 
 Implement carrier
 ^^^^^^^^^^^^^^^^^
-The implement carrier is developed by the machine manufacturer `Lambers LMB <https://lambers-lmb.be/>`_ and is mainly used for seeding field trails.
+The machine manufacturer `Lambers LMB <https://lambers-lmb.be/>`_ developed the implement carrier, mainly used for seeding field trails.
 The ARTOF framework was implemented as an after-market kit to support steering guidance while seeding.
 
 |fig_lambers_seeding| |fig_lambers_static|
@@ -238,12 +238,12 @@ The main characteristics of the Implement carrier are listed below.
 +-----------------------+-------------------------------------------------------------------+
 | Electric connectors   | 12V (lead acid battery)                                           |
 +-----------------------+-------------------------------------------------------------------+
-| Power take off (PTO)  | powered by electro motor to actuate the seeding module            |
+| Power take-off (PTO)  | powered by electro motor to actuate the seeding module            |
 +-----------------------+-------------------------------------------------------------------+
 
 Videos
 ------
-To see these robots at work in different applications, checkout the youtube videos below:
+To see these robots at work in different applications, check the youtube videos below:
 
 |vid_field_robots_general| |vid_cimat_ridging| |vid_cimat_flame_weeding|
 
@@ -276,7 +276,7 @@ To see these robots at work in different applications, checkout the youtube vide
 
 .. |vid_treebot_precision_spraying| image:: https://img.youtube.com/vi/Ujj8gkYzaAs/0.jpg
    :width: 30%
-   :alt: Alternative weed control in blue berries with a small scale robot and precision sprayer
+   :alt: Alternative weed control in blueberries with a small-scale robot and precision sprayer
    :target: https://www.youtube.com/watch?v=Ujj8gkYzaAs
 
 
@@ -290,7 +290,7 @@ Contents
 .. toctree::
 
    architecture
-   configuration
+   basic-concepts
    mechatronic-layer
    operational-layer
    addons

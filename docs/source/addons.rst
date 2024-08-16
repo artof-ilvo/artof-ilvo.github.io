@@ -4,6 +4,8 @@
 Add-ons
 =======
 
+.. _addon_system:
+
 system add-on
 ^^^^^^^^^^^^^
 

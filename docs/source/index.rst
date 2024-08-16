@@ -283,6 +283,7 @@ To see these robots at work in different applications, check the youtube videos 
 Scientific publications
 -----------------------
 
+*<Coming soon>*
 
 Contents
 --------

@@ -57,8 +57,8 @@ Additional requirements to operate a robot platform:
 
 .. note::
 
-   All safety measures must be implemented within the mechatronic layer by national legislation.
-   The operational layer does not include safety features and should only be used on products approved for autonomous operation by national legislation.
+   All safety measures must be implemented within the mechatronic layer.
+   The operational layer does not include safety features and should only be used on products approved for autonomous operation in accordance with national legislation.
 
 
 Safety state diagram

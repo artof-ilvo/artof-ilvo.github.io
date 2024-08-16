@@ -1,10 +1,13 @@
+
+.. _basic_concepts:
+
 Basic concepts
 ==============
 
 Field
 -----
 
-A field describes the entire field operation in the :ref:`system add-on web application <addon_system>`.
+A field describes the entire field operation in the :ref:`system add-on web app <addon_system>`.
 It exists out of a set of shapefiles with the Coordinate Reference system (CRS) WGS84 or UTM.
 
 And includes:
@@ -27,10 +30,12 @@ And includes:
 
    **Figure 3.** Task types compatible with the hitch
 
+.. _basic_concepts_platform:
+
 Platform
 --------
 The platform abstracts the robot's capabilities and includes information such as dimensions, the number and position of the hitches, the vehicle configuration, etc.
-The platform configuration is described in the ``settings.json`` file and can be edited in the :ref:`system add-on web application <addon_system>` JSON editor.
+The platform configuration is described in the ``settings.json`` file and can be edited in the :ref:`system add-on web app <addon_system>` JSON editor.
 
 .. literalinclude:: files/configuration/settings.json
    :language: JSON
@@ -122,7 +127,7 @@ The fields in the ``settings.json`` file are:
 Implements
 ----------
 
-The implement configuration is described in ``<implement-name>.json`` files and can be edited in the :ref:`system add-on web application <addon_system>` JSON editor.
+The implement configuration is described in ``<implement-name>.json`` files and can be edited in the :ref:`system add-on web app <addon_system>` JSON editor.
 
 The fields in the ``<implement-name>.json`` file are:
 
@@ -152,13 +157,13 @@ The fields in the ``<implement-name>.json`` file are:
 
 
 
-.. _layer_interface:
+.. _basic_concepts_interfaces:
 
 Interfaces
 ----------
 
 The `config.json` file describes the system's Redis variables and the *mechatronic/operational layer interface configuration*.
-The configuration files can be edited in the :ref:`system add-on web application <addon_system>` JSON editor.
+The configuration files can be edited in the :ref:`system add-on web app <addon_system>` JSON editor.
 
 .. literalinclude:: files/configuration/config.json
    :language: JSON

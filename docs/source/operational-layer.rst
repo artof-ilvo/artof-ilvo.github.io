@@ -124,7 +124,7 @@ RobotPlc
 ^^^^^^^^
 
 The :cpp:class:`RobotPlc` process is the interface between the Redis variables in the *operational layer* and the robot PLC in the *mechatronic layer*.
-The ``redis.json`` configuration file describes the interface, where the Redis variables that must be read and written to the PLC are listed. Communication was performed every process cycle by a read and write snap7 operation (Siemens\textsuperscript{\textregistered} S7-communication protocol).
+The ``redis.json`` configuration file describes the interface, also listing the Redis variables that must be read and written to the PLC. Communication was performed every process cycle by a read and write snap7 operation (Siemens S7-communication protocol).
 For more information on the configuration, we refer to the :ref:`basic_concepts`.
 
 Simulation

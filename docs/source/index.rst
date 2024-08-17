@@ -296,5 +296,4 @@ Contents
    operational-layer
    addons
    installation
-   usage
    license

@@ -8,8 +8,10 @@ For both installations you need to have docker installed.
 Install `docker <https://docs.docker.com/engine/install/ubuntu/>`_ with `root-level privileges <https://docs.docker.com/engine/install/linux-postinstall/>`_.
 You may have to reboot after install.
 
-A full docker installation can be used for testing or developing the framework.
-A system installation is preferred when integrating the framework on a robot platform.
+A full :ref:`installation_docker` installation can be used for testing or developing the framework.
+A :ref:`installation_system` installation is preferred when integrating the framework on a robot platform.
+
+.. _installation_docker:
 
 Docker
 ------
@@ -60,6 +62,7 @@ The Docker installation is tested on:
 | macOS Sonoma 14.2     | x86_64    | 26.0.0, build 2ae903e     |
 +-----------------------+-----------+---------------------------+
 
+.. _installation_system:
 
 System
 ------
@@ -156,7 +159,7 @@ To enable ssh execute the following commands:
 Remote connection
 ^^^^^^^^^^^^^^^^^
 
-To access the robot framework remotely, you can configure a VPN connection (e.g. `tailscale <https://tailscale.com/kb/1031/install-linux>`_.
+To access the robot framework remotely, you can configure a VPN connection (e.g. `tailscale <https://tailscale.com/kb/1031/install-linux>`_).
 
 
 Common issues

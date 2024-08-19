@@ -19,6 +19,7 @@ To build this documentation locally:
 .. code-block:: bash
 
    pip install -r docs/requirements.txt
+
 3. Execute the build command
 
 .. code-block:: bash

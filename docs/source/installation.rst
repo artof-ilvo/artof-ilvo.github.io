@@ -44,7 +44,7 @@ Docker
 
 3. Open the ```data/redis.init.json``` file and change ```/d/ilvo-artof-docker/ilvo/data``` to the absolute path of the datafolder in this directory. Note that for windows the ```D:``` drive has to be referred to as ```/d/```.
 
-4. Start the containers by executing the :code-block:bash:`docker compose up` command.
+4. Start the containers by executing the ```docker compose up``` command.
 
 + *Note:* It may take some time for the system and node-red node to get downloaded and started, but after a while everything should be up and running. You can connect to the system application at `http://localhost:8080` and the node-red application at `http://localhost:1880`.
 
@@ -98,7 +98,7 @@ The binary installation is tested on:
 
 +-----------------------+-----------+---------------------------+
 | Operating System      | Arch      | Docker Version            |
-+=======================+===========+============================+
++=======================+===========+===========================+
 | Ubuntu 22.04          | x86_64    | 26.0.0, build 2ae903e     |
 +-----------------------+-----------+---------------------------+
 
@@ -130,7 +130,7 @@ SimpleRTK3b GPS
 
 3. In tab ```NMEA/SBF Out``` add ```New NMEA stream``` set ```USB1``` to ```GGA+VTG+HDT+HRP``` and specify your interval.
 
-4. On your computer you need to add yourself to the dialout group :code-block:bash:`sudo usermod -a -G dialout <your-username>` and reboot.
+4. On your computer you need to add yourself to the dialout group ```sudo usermod -a -G dialout <your-username>``` and reboot.
 
 5. Configure automatic hyperlink creation for a ```/dev/ttACMx``` to ```/dev/septentrio0```. Therefore paste the following in the file ```/etc/udev/rules.d/99-septentrio.rules```:
 
@@ -168,7 +168,7 @@ Common issues
 Ethernet over USB of the SimpleRTK3b module on a NUC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Septentrio chip of the SimpleRTK3b GPS modules provides ethernet over USB. This can cause problems on boot time as this USB network device may be selected in favor of the PCI network device. This guide provides a step-by-step approach to create a `systemd` service file that ensures the specified PCI network device is automatically connected at boot time using `nmcli`. The provided instructions use `systemd`, a system and service manager for Linux operating systems, to execute the NetworkManager command line interface (:code-block:bash:`nmcli`) once the network is online.
+The Septentrio chip of the SimpleRTK3b GPS modules provides ethernet over USB. This can cause problems on boot time as this USB network device may be selected in favor of the PCI network device. This guide provides a step-by-step approach to create a `systemd` service file that ensures the specified PCI network device is automatically connected at boot time using `nmcli`. The provided instructions use `systemd`, a system and service manager for Linux operating systems, to execute the NetworkManager command line interface (```nmcli```) once the network is online.
 
 1. Open a Terminal: ```Cntrl-Alt-t```
 

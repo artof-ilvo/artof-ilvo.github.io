@@ -22,14 +22,14 @@ Docker
 
 .. code-block:: bash
 
-	wget https://minio.ilvo.be:9000/tv115-ilvo-robotics/ilvo-artof-docker.zip
+	wget https://minio.ilvo.be:9000/tv115-ilvo-robotics/artof-docker.zip
 
 
 + On **windows** and **macOS** you can use curl to download the file:
 
 .. code-block:: bash
 
-	curl -o ilvo-artof-docker.zip https://minio.ilvo.be:9000/tv115-ilvo-robotics/ilvo-artof-docker.zip
+	curl -o artof-docker.zip https://minio.ilvo.be:9000/tv115-ilvo-robotics/artof-docker.zip
 
 2. Unzip the folder and navigate into the folder `ilvo`.
 
@@ -37,16 +37,19 @@ Docker
 
 .. code-block:: bash
 
-	unzip ilvo-artof-docker.zip
+	unzip artof-docker.zip
 	cd ilvo
 
 + On **windows** you can right click on the zip file and unzip it.
 
-3. Open the ```data/redis.init.json``` file and change ```/d/ilvo-artof-docker/ilvo/data``` to the absolute path of the datafolder in this directory. Note that for windows the ```D:``` drive has to be referred to as ```/d/```.
+3. Open the ```data/redis.init.json``` file and change ```/d/artof-docker/docker/data``` to the absolute path of the datafolder in this directory. Note that for windows the ```D:``` drive has to be referred to as ```/d/```.
 
-4. Start the containers by executing the ```docker compose up``` command.
+4. Start the containers by executing the ```docker compose up``` command. You will see the output of the ```artof-core``` and ```redis-stack-server``` containers.
+The first time, it take some time for the ```artof-core``` to pull and install the *system and node-red add-on*.
+The output of the ```artof-core``` will provide information of how the add-ons are launching.
+You can check the status of the different containers in docker Desktop or using the Docker cli.
 
-+ *Note:* It may take some time for the system and node-red node to get downloaded and started, but after a while everything should be up and running. You can connect to the system application at `http://localhost:8080` and the node-red application at `http://localhost:1880`.
++ *Note*: When updating to a new version, it is important to clear the redis cache. This can be done by removing the ```redis_data``` volume or perform ```redis-cli FLUSHALL``` when Redis is still running.
 
 The Docker installation is tested on:
 
@@ -105,9 +108,13 @@ The binary installation is tested on:
 Check your installation (Binary and Docker)
 -------------------------------------------
 
-You can now browse for the first time to the *system add-on web page* at `http://<ip-robot> <http://localhost>`_.
+Now, you can now browse for the first time to the *system add-on web page*.
 
-Browse to the *Tab Map* and toggle the ```Sim``` button twice. You should now see the robot as shown in *Figure 1*.
++ For the system installation, browse to `http://<ip-robot> <http://localhost>`_.
+
++ For the docker installation, browse to `http://<ip-robot>:8080 <http://localhost:8080>`_.
+
+Next, browse to the *Tab Map* and toggle the ```Sim``` button twice. You should now see the robot as shown in *Figure 1*.
 
 .. figure:: images/fig_robotframework_first_view.png
 	:width: 90%

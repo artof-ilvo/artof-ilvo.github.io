@@ -7,8 +7,8 @@ for a wide range of robot configurations and farming applications
 based on Global Navigation Satellite System (GNSS) positioning.
 
 The robot supports the four-wheel-drive four-wheel-steer (4WD4WS), skid- and Ackerman steering vehicle configuration for different agricultural tasks in arable farming and horticulture.
-The framework can be integrated into a robot platform during development and construction or added with a customized after-market kit.
-The ARTOF framework has been integrated into several robots until now and is also used for steering guidance on an implement carrier.
+The framework can be integrated into a robot platform during development or can be added afterwards with a customized after-market installation.
+The ARTOF framework has been integrated into several robot platforms and existing farming equipment as robot- or auto-guidance software.
 
 
 .. note::
@@ -20,7 +20,8 @@ ARTOF integrations
 ------------------
 CIMAT robot
 ^^^^^^^^^^^
-The CIMAT robot is an in-house-developed 4WD4WS robot used for crop care applications, e.g. hoeing, ridging and flame weeding, and soil pressure sampling.
+The CIMAT robot is an in-house-developed 4WD4WS robot used for crop care applications, e.g. hoeing, ridging, flame weeding, etc.
+The robot is also used to perform automated soil-pressure sampling doing stop&go measurements.
 
 |fig_cimat_flame_weeding| |fig_cimat_soil_compaction|
 |fig_cimat_hoeing|
@@ -88,7 +89,7 @@ The main characteristics of the CIMAT robot are listed below.
 DjustE robot
 ^^^^^^^^^^^^
 The DjustE is an in-house converted electrified hydrostatic compact tractor (CNH Boomer 50).
-It can be used as a robot or as a tractor for different field operations, some of which require a Power take-off (PTO).
+It can be used as a robot or as a tractor for different field operations that require a mechanical Power take-off (PTO), like rotary harrowing, flail mowing, etc.
 
 |fig_djuste_rotary_tillage_driving| |fig_djuste_rotary_tillage_turning|
 
@@ -145,6 +146,7 @@ The main characteristics of the DjustE robot are listed below.
 Treebot robot
 ^^^^^^^^^^^^^
 The Treebot robot is an in-house-developed robot that performs horticulture applications.
+Implements can be mounted on top of the platform using Item® fixings.
 
 |fig_treebot_blueberry| |fig_treebot_lane_trees|
 
@@ -188,8 +190,8 @@ The main characteristics of the Treebot robot are listed below.
 
 Implement carrier
 ^^^^^^^^^^^^^^^^^
-The machine manufacturer `Lambers LMB <https://lambers-lmb.be/>`_ developed the implement carrier, mainly used for seeding field trails.
-The ARTOF framework was implemented as an after-market kit to support steering guidance while seeding.
+The ARTOF framework was integrated on an implement carrier of the machine manufacturer `Lambers LMB® <https://lambers-lmb.be/>`_.
+The platform is mainly used for seeding field trails. The after-market installation of ARTOF supports auto guidance while seeding.
 
 |fig_lambers_seeding| |fig_lambers_static|
 

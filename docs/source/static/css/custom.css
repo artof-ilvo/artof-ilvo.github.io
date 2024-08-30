@@ -4,3 +4,10 @@
     max-height: 20em;
     border-radius: 5px;
 }
+
+.math {
+    text-align: left;
+}
+.eqno {
+    float: right;
+}

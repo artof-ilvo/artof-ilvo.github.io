@@ -5,53 +5,52 @@ Mechatronic layer
 Introduction
 ------------
 
-The mechatronic layer requires a custom implementation.
-It depends on the vehicle configuration, the selected components, and the platform's safety concept.
+The ARTOF framework is ideally integrated during the development of a new robot platform, but can also be integrated afterwards.
+The mechatronic layer requires a custom implementation tailored to the specific vehicle configuration, selected components, and the platform's safety requirements.
+
 
 Requirements
 ------------
 
-The ARTOF framework can be integrated after or during the development of a new robot platform.
-
 The minimal hardware requirements to perform steering guidance are:
 
-#. **Safety** The implementation of the mechatronic layer is responsible for all the platform's safety features in accordance with national legislation.
-#. **Programmable Logic Controller** A PLC interacts with all the actuators and sensors on the platform. The functionality that needs to be implemented are:
+#. **Safety**: The implementation of the mechatronic layer is responsible for all the platform's safety features in accordance with national legislation. This implementation is machine dependent and is not provided by the ARTOF framework.
+#. **Programmable Logic Controller**: A PLC interfaces with all the actuators and sensors on the platform. At a minimum, it must implement the inverse and direct kinematic models to ensure correct control of the steering and driving actuators.
 
-   + Executing the *inverse and direct kinematic model* and operating the steering and driving actuators accordingly.
-   + Example components: Siemens S7-1200 and Siemens S7-1500 series
+   + *Example components*: Siemens S7-1200 and Siemens S7-1500 series
 
 #. **Steering angle control**: The steering angle needs to be controlled by the PLC.
 
-   + For *hydraulic steering* this was done using a hydraulic steering block.
-   + For *electric steering*, this was done by controlling the motor drive.
-   + *Example components*: `Raven RS1 <https://nl.ravenind.com/ag-products/guidance/rs1>`_
+   + For *hydraulic steering*, this can be done using a hydraulic steering block.
+   + For *electric steering*, this can be done by controlling the motor drive.
+   + *Example components*: `Raven® RS1 <https://nl.ravenind.com/ag-products/guidance/rs1>`_
 
 #. **Steering angle feedback**: The PLC needs to monitor the steering angle to enable closed-loop steering control.
 
-   + For *Ackerman steering* robots, this was done with an inductive angle sensor on the steering rack.
-   + For *4WD4WS steering* robots, all the wheel angles need to be measured. This was also done using inductive angle sensors.
-   + *Example components*: `Multiprox RI360P1-QR20-LU4X2-H1141 <https://www.turck.nl/nl/product/100000186>`_
+   + For *Ackerman steering* robots, this can be done with an inductive angle sensor on the steering rack.
+   + For *4WD4WS steering* robots, all the wheel angles need to be measured, which can also done using inductive angle sensors.
+   + *Example components*: `Multiprox® RI360P1-QR20-LU4X2-H1141 <https://www.turck.nl/nl/product/100000186>`_
 
 #. **Velocity control**: The driving velocity needs to be controlled by the PLC.
 
-   + For *hydraulic traction* this was done by controlling the swash plate with an electric actuator.
-   + For *electric traction*, this was done by setting the motor drives to velocity control.
-   + An electronic analogue paddle was used for robots that enabled paddle velocity control for the driver.
+   + For *hydraulic traction*, this can be done by controlling the swash plate with an electric actuator.
+   + For *electric traction*, this can be done by setting the motor drives to velocity control.
+   + An electronic analogue paddle can be used for robots that enabled paddle velocity control for the driver.
 
 #. **Velocity feedback**: The PLC needs to monitor the driving velocity to enable closed-loop velocity control.
 
-   + For robots with *hydraulic transmission* this was done by a rotary encoder and two interlocking cogs.
-   + For robots with *electrical transmission*, this was done by reading the hall sensor, sin/cos encoder, etc.
+   + For robots with *hydraulic transmission*, this can be done by a rotary encoder and two interlocking cogs.
+   + For robots with *electrical transmission*, this can be done by reading the hall sensor, sin/cos encoder, etc.
 
 Additional requirements to operate a robot platform:
 
 #. **Hitch control**: The hitches need to be controlled by the PLC.
 
-   + For *hydraulic hitches* this was done using electric valves.
+   + For *hydraulic hitches* this can be done using electric valves.
 
 #. **Hitch angle feedback**: The PLC needs to monitor the hitch angles to enable closed-loop hitch height control.
 
+   + If no actuator feedback is available, this can be done using inductive angle sensors.
    + *Example components*: `Multiprox RI360P1-QR20-LU4X2-H1141 <https://www.turck.nl/nl/product/100000186>`_
 
 
@@ -80,14 +79,18 @@ Introduction
       #. front (f), rear (r), so fr (front-right)
       #. angular velocity (:math:`\omega`), steering angle (:math:`\epsilon`)
 
-The *direct kinematic model* describes the platform's motion by the velocity vector :math:`\vec{V}_r = (v_{lng}, v_{lat}, \omega_z)` based on the actuators feedback e.g. :math:`\omega_{wheel,rr}`, :math:`\omega_{wheel,rl}`, :math:`\epsilon_{f}`, :math:`\epsilon_{fl}`, depending on the vehicle configuration.
+The *direct kinematic model* describes the actual platform's motion by the velocity vector :math:`\boldsymbol{v_a} = (v_x, v_y, \omega_z)` based on the actuators feedback e.g. :math:`\omega_{wheel,rr}`, :math:`\omega_{wheel,rl}`, :math:`\epsilon_{f}`, :math:`\epsilon_{fl}`, etc., depending on the vehicle configuration.
 
-The *inverse kinematic model* does the opposite and starts from the required motion or velocity vector :math:`\vec{V}_r = (v_{lng}, v_{lat}, \omega_z)` to calculate the position or velocities of the actuators.
+The *inverse kinematic model* does the opposite and starts from the required motion or velocity vector :math:`\boldsymbol{v_r} = (v_{lng}, v_{lat}, \omega_z)` to calculate the position or velocities of the actuators.
 
 Kinematic means no external forces are incorporated in this model to come to this motion. A model where the external forces are incorporated is called a dynamic model.
 
 The kinematic model is integrated into the mechatronic layer, making the operational layer independent of the vehicle configuration.
-An essential part of the *mechatronic-operational layer interface* is the velocity vector :math:`\vec{V}_r = (v_{lng}, v_{lat}, \omega_z)`, which are described in the Redis variables ``plc.control.navigation.velocity.longitudinal``,  ``plc.control.navigation.velocity.lateral``, ``plc.control.navigation.velocity.angular``.
+An essential part of the *mechatronic-operational layer interface* is the infterface with the actual and required velocity vector.
+
++ The interface with the actual velocity vector :math:`\boldsymbol{v_a}` is described in the Redis variables ``plc.monitor.navigation.velocity.longitudinal``,  ``plc.monitor.navigation.velocity.lateral``, ``plc.monitor.navigation.velocity.angular``.
+
++ The interface with the required velocity vector :math:`\boldsymbol{v_r}` is described in the Redis variables ``plc.control.navigation.velocity.longitudinal``,  ``plc.control.navigation.velocity.lateral``, ``plc.control.navigation.velocity.angular``.
 
 The book Vehicle Dynamics by Reza N. Nazar contains much information about *vehicle kinematics and dynamics*.
 
@@ -163,9 +166,7 @@ Using the radius :math:`\mathrm{R}_{xx}` given the equations above, :math:`\omeg
 Ackerman steering
 ^^^^^^^^^^^^^^^^^
 
-Ackerman steering is a simplified version of a 4WD4WS robot.
-The ICR moves the centre of mass M in *Figure 2*.
-Consequently, points E and F coincide with points C and D, and :math:`\left|\mathrm{EC}\right| = \left|\mathrm{FD}\right| = 0` equation :math:`\epsilon_{rr} = \epsilon_{rl} = 0` apply.
+**Figure 2** is used to derive the kinematic model of an Ackerman vehicle.
 
 .. figure:: images/fig_kinematics_ackerman.png
    :width: 70%
@@ -173,43 +174,72 @@ Consequently, points E and F coincide with points C and D, and :math:`\left|\mat
 
    **Figure 2.** Kinematics Ackerman vehicle configuration, with M as the center of mass.
 
-The bicycle model is used to derive the Ackerman steering kinematics, which are represented in *Figure 2* by the dashed green lines.
-Thereby applies :math:`cot(\epsilon) = \frac{cot(\epsilon_{fl}) + cot(\epsilon_{fr})}{2}` and  :math:`R = \sqrt{a^2 + l^2\, cot^2(\epsilon)}`.
+The four-wheel vehicle model can be reduced to the bicycle model, indicated by the green dot lines in *Figure 2*.
+The mass centre (M) will turn on the green circle around the Instanious Center of Rotation (ICR) (point O in *Figure 2*) with the radius in :ref:`Equation 1 <eq:kinematics_ackerman_radius>`.
 
-Assume that only the front-right steering angle and velocity of the rear-left wheel were measured for this example.
+.. math:: R = \sqrt{a^2 + l^2 \, \mathrm{cot}^2(\epsilon)}
+   :name: eq:kinematics_ackerman_radius
+
+The cot-average :ref:`Equation 2 <eq:kinematics_ackerman_cot_avg>` and the Ackerman condition in :ref:`Equation 3 <eq:kinematics_ackerman_condition>` apply in the geometry of the steering rack.
+
+.. math:: \mathrm{cot}(\epsilon) = \frac{\mathrm{cot}(\epsilon_{fl}) + \mathrm{cot}(\epsilon_{fr})}{2}
+   :name: eq:kinematics_ackerman_cot_avg
+
+.. math:: \frac{b}{l} = \mathrm{cot}(\epsilon_{fr}) - \mathrm{cot}(\epsilon_{fl})
+   :name: eq:kinematics_ackerman_condition
+
+In *Figure 2* we can see that the Equations :math:`\mathrm{tan}(\epsilon) = \frac{l}{R_B}` and :math:`\mathrm{tan}(\alpha) = \frac{a}{R_B}` apply.
+We can calculate :math:`\alpha` in :ref:`Equation 4 <eq:kinematics_ackerman_alpha>`.
+
+
+.. math:: \alpha = \mathrm{atan} \big(\frac{a}{l}\, \mathrm{tan}(\epsilon) \big)
+    :name: eq:kinematics_ackerman_alpha
+
+
+Assume that we only measure the front-left steering angle :math:`\epsilon_{fl}` and the angular velocity of the rear-right wheel :math:`\epsilon_{rr}`.
+For small angles in :math:`\epsilon`, we can assume :math:`\omega_A = \omega_B = \omega_C`. Consequently :ref:`Equation 5 <eq:kinematics_ackerman_omega_equal>` applies.
+
+.. math:: \frac{v_{rr}}{R_{rr}} = \frac{v_{y}}{R_{B}}
+    :name: eq:kinematics_ackerman_omega_equal
 
 The *direct kinematic model*
 
 .. math::
-   f(v_{rl}, \epsilon_{fr}) = (v_x, v_y, \omega_z)
+   f(v_{rr}, \epsilon_{fl}) = (v_x, v_y, \omega_z)
 
+We can find the relation :math:`\epsilon = q(\epsilon_{fl})` by substituting the ackerman condition :ref:`(Equation 3) <eq:kinematics_ackerman_condition>` into the :ref:`(Equation 2) <eq:kinematics_ackerman_cot_avg>`.
+
+.. math:: \epsilon = \mathrm{acot} \big( \mathrm{cot}(\epsilon_{fl}) + \frac{b}{2\,l} \big)
+    :name: eq:kinematics_ackerman_epsilon_direct
+
+By substituting :ref:`Equation 6 <eq:kinematics_ackerman_epsilon_direct>` into :ref:`Equation 4 <eq:kinematics_ackerman_alpha>`,
+we got the relation :math:`\alpha = q(\epsilon_{fl})`, which can be used to integrate into the equations of the direct kinematic model below.
 
 .. math::
-   v_{rl} &= R_{w} \cdot \omega_{w,rl} \\
-   v_{y} &= \frac{R\,cos(\epsilon)}{R\,cos(\epsilon) - (b/2)}  \cdot v_{rl}\\
-   v_{x} &= v_{y} \cdot tan(\epsilon) \\
-   v &= \sqrt{v^2_x + v^2_y} \\
-   \omega_{z} & =  \frac{v}{R}
+    v_y &= \frac{R_B}{R_{rr}}\,v_{rr} = \frac{R\, \mathrm{cos}(\alpha)}{R\, \mathrm{cos}(\alpha) + \big(\frac{b}{2}\big)}\,v_{rr} \\
+    v_x &= v_y \, \mathrm{tan}(\alpha)  \\
+    v &= \sqrt{v^2_x + v^2_y}  \\
+    \omega_z &= \frac{v}{R}
+
 
 The *inverse kinematic model*
 
 .. math::
-   g(v, \omega_z) = (v_{rl}, \epsilon_{fr})
+   g(v_x, v_y, \omega_z) = (v_{rl}, \epsilon_{fr})
 
-Using formulas:
+We can determine :math:`\epsilon` using the green circle's radius in :ref:`Equation 1 <eq:kinematics_ackerman_radius>`.
 
-.. math::
-   v &= \sqrt{v^2_x + v^2_y} \\
-   v &= \omega_z \, R \\
-   R &= \sqrt{a^2 + l^2\, cot^2(\epsilon)} \\
-   cot(\epsilon) &= \frac{cot(\epsilon_{fl}) + cot(\epsilon_{fr})}{2} \\
+.. math:: \epsilon = \mathrm{acot}\bigg(  \frac{\sqrt{\big( \frac{v}{\omega} \big)^2 - a^2}}{l^2} \bigg)
+   :name: eq:kinematics_ackerman_epsilon_inverse
 
-We can calculate:
+When substituting the equation of the cot-avg :ref:`(Equation 2) <eq:kinematics_ackerman_cot_avg>` in the ackerman condition :ref:`(Equation 3) <eq:kinematics_ackerman_condition>`
+and by assuming the angular velocity equality :ref:`(Equation 5) <eq:kinematics_ackerman_omega_equal>` we can determine the inverse kinematic model.
 
 .. math::
-   \epsilon &= acot\bigg(\sqrt{\frac{\frac{v^2}{\omega^2_z} - a^2}{l^2}}\bigg) \\
-   \epsilon_{fr} &= acot(2\cdot cot(\epsilon) - cot(\epsilon_{fl})) \\
-   v_{rl} &= \frac{R\,cos(\epsilon) - (b/2)}{R\,cos(\epsilon)} \cdot v \, cos(\epsilon)
+
+   \epsilon_{fl} &= \mathrm{acot}\bigg( \frac{2\,cot(\epsilon) - \frac{b}{l}}{2} \bigg)  \\
+   v_{rr} &= \frac{R_{rr}}{R_B} \, v_y = \frac{R + \big(\frac{b}{2}\big)}{R}\,v \, \mathrm{cos}(\alpha)
+
 
 Skid steering
 ^^^^^^^^^^^^^
@@ -229,8 +259,6 @@ The *direct kinematic model*
 .. math::
    f(v_{l}, v_{r}) = (v_x, v_y, \omega_z)
 
-From *Figure 3* we can derive
-
 .. math::
    v_x &= 0 \\
    v_y &= \frac{v_r + v_l}{2} \\
@@ -243,7 +271,7 @@ The *inverse kinematic model*
    g(v_x, v_y, \omega_z) = (v_{l}, v_{r})
 
 
-Imagine the robot driving in a circle. All parts of the robot move with the same rotational velocity around the Instanious Center of Rotation (ICR) (point O in *Figure 3*), consequently the equality :math:`\omega = \omega_r = \omega_l`.
+Imagine the robot driving in a circle. All parts of the robot move with the same rotational velocity around the ICR (point O in *Figure 3*), consequently the equality :math:`\omega = \omega_r = \omega_l`.
 
 .. math::
    \omega_z &= \frac{v}{R} = \frac{v_l}{R-a} = \frac{v_r}{R+a}  \\

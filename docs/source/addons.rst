@@ -8,7 +8,7 @@ Introduction
 ------------
 
 Add-ons are Docker containers that run on the same system as the *operational layer*.
-The :cpp:class:`SystemManager` process maintains the add-ons and can start, stop, and update the add-on image at request.
+The :cpp:class:`SystemManager` process maintains the add-ons and can start, stop, and update the add-on at request.
 The add-ons in the system are configured using the :ref:`system add-on web app <addon_system>` in a JSON editor, using the `Docker Engine API (1.46) <https://docs.docker.com/engine/api/v1.46/>`_ syntax.
 
 Python package
@@ -20,6 +20,7 @@ A python package supports new python-addons. The package provides the interactio
    2. Field manipulation
    3. Platform configuration access
 
+You can find the source code of the python package in the `artof-utils <https://github.com/artof-ilvo/artof-utils>`_ project.
 
 .. _addon_system:
 
@@ -27,7 +28,7 @@ System add-on
 -------------
 
 The system add-on is implemented in python-Django and provides a web application to configure the robot.
-The web application is hosted at port 80 on the computer running the add-on by default.
+By default, the web application is hosted at port 80 on the computer running the add-on.
 Switch the *App and Admin area* in the upper right corner.
 
 
@@ -64,26 +65,28 @@ This tab gives an overview of the available *Fields* in the system.
 New field
 """""""""
 
-To create a trajectory, geofence or task, you can always choose among the following:
+To create a trajectory, geofence or task, you can select the following:
 
 + ``original`` you maintain the trajectory allocated to this field (only applicable when editing a field)
-+ ``file`` you can upload the shapefile of a line string.
-+ ``draw`` you can draw the line string using the tools on the map.
-+ ``drive`` you can drive in the line in the *Tab Map*.
++ ``file`` you can upload the shapefile of a Linestring.
++ ``draw`` you can draw the Linestring using the tools on the map.
++ ``drive`` you can drive in the AB line in the *Tab Map*.
 
 .. note::
 
    When you upload a shape file, you must upload the files with the extensions ``cpg``, ``dbf``, ``prj``, ``shp`` and ``shx``.
-   So, five files were selected in total.
+   So, five files are selected in total.
 
-Also, always click on the |icon_check| button when performing a change. When the change is successful, the section folds in and highlights green; otherwise, the results are not saved.
-When you're done, click the ``Done`` button to return to the Tab Field.
+.. note::
+
+   Always click on the |icon_check| button when performing a change. When the change is successful, the section folds in and highlights green; otherwise, the results are not saved.
+   When you're done, click the ``Done`` button to return to the Tab Field.
 
 
-1. Change the field name ``New`` to your desired field name and press the check icon button (*Figure 2*).
-2. Create a trajectory.
+1. Change the field name ``New`` to your desired field name and press the check icon button (*Figure 2*)
+2. Create a trajectory
 3. Create geofence
-4. Add one or more tasks (*Figure 3*).
+4. Add one or more tasks (*Figure 3*)
 
 .. figure:: images/fig_robotframework_app_editfield_name.jpeg
    :width: 70%
@@ -105,23 +108,23 @@ The *Map* gives an overview of the robot during operation.
 
 On the map you can see:
 
-+ robot: blue rectangle
++ The robot: blue rectangle
 
-+ Hitch hinges and pen: white dots
++ The hitch hinges and hitch pens: white dots
 
    + Hitch hinges become red when a *hitch task*  activates the hitch.
 
-+ Sections: white rectangles
++ The sections: white rectangles
 
    + The sections become red when activated by a *continuous, discrete or intermittent task*.
 
 + The green dots are visualizations of the navigation algorithm, including the robot reference, the closest point on the trajectory, and the look-ahead point.
 
-+ geofence: red polygon
++ The geofence: red polygon
 
-+ Traject: red line with direction arrows
++ The traject: red line with direction arrows
 
-+ Tasks: green, blue, ..., depending on the task type
++ The tasks: green, blue, ..., depending on the task type
 
 
 .. figure:: images/fig_robotframework_app_map.jpeg
@@ -146,11 +149,11 @@ The right sidebar contains additional tools.
 
       + Rows can be added at the beginning or end of the trajectory.
 
-      + With the ``Drive in`` button you can drive in a new ``AB`` line. Not that this overwrites the previous trajectory.
+      + With the ``Drive in`` button you can drive in a new AB line. Not that this overwrites the previous trajectory.
 
-   + For a polygon line shape such as a ``geofence`` or continuous ``task`` the polygon can be buffered
+   + For a polygon line shape such as a geofence or continuous task the polygon can be buffered
 
-+ The ``Sim`` button activates *simulation mode*. When the *operational layer* communicates *mechatronic layer*, the robots go in *Hardware In The Loop (HWIL) testing*; if not, you perform an *integration test* in the *operational layer*.
++ The ``Sim`` button activates *simulation mode*. When the *operational layer* communicates *mechatronic layer*, the robots go in *Hardware In The Loop (HIL) testing*; if not, you perform an *integration test* in the *operational layer*.
 
    + With the simulation ``Factor``, you can multiply the simulation speed.
 
@@ -159,7 +162,7 @@ The right sidebar contains additional tools.
 
 .. note::
 
-   When performing changes with the icon_pen tools, a preview of the changes is visualized in black on the map.
+   When performing changes with the |icon_pen| tools, a preview of the changes is visualized in black on the map.
    Press the |icon_check| button to confirm your change and the |icon_upload| button to upload it to the robot.
 
 
@@ -199,7 +202,7 @@ Admin area
 Settings
 """"""""
 
-In the admin *Settings*, the :ref:`configuration files <basic_concepts>` can edited with a JSON editor by pressing the |icon_pen| button.
+In the admin *Settings*, the :ref:`configuration files <basic_concepts>` can be edited with a JSON editor by pressing the |icon_pen| button.
 After editing, press the Format |icon_json| button to check syntax errors and submit the changes with the |icon_upload_box| button.
 
 .. note::
@@ -222,14 +225,15 @@ You can add, remove or alter implements with the JSON editor.
 
    **Figure 6.** Tab Admin: Implements
 
-You can add a new implement using the |icon_plus| ``Add`` button or alter an existing one.
+
++ Add a new implement using the |icon_plus| button.
 
 + Remove an implement by pressing the |icon_trash| button.
 
 + Alter an implement by pressing the |icon_pen| button.
 
 .. note::
-   When an implement enabled in the selected field is modified, toggle another field for the changes to occur.
+   When you are modifying an enabled implement in the selected field, you first need to toggle another field for the changes to occur.
 
 Processes
 """""""""
@@ -260,7 +264,7 @@ The *Add-on Tab* lists basic information about add-ons in the system, such as th
 
    **Figure 8.** Tab Admin: Add-ons
 
-You can add a new add-on using the |icon_plus| ``Add`` button or alter an existing one.
++ Add a new add-on using the |icon_plus| button.
 
 + Start the add-on by pressing the |icon_play| button.
 
@@ -292,7 +296,7 @@ Modify values by editing the new value in the ``Edit`` text field and press the 
 Node-red add-on
 ---------------
 
-The node-red add-on can be reached at the URL http://robotframework:1880/. Change "robotframework " to the robot's IP address.
+The node-red add-on can be reached at the URL http://robotframework:1880/. Change "robotframework" to the robot's IP address.
 
 You can install the submodules for extracting the Redis variables and logging them to an InfluxDB instance by
 

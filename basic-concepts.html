@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic concepts &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mechatronic layer" href="mechatronic-layer.html" />
+    <link rel="prev" title="Architecture" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#field">Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#platform">Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interfaces">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jobs">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#states">States</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basic concepts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/basic-concepts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basic-concepts">
+<span id="id1"></span><h1>Basic concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading"></a></h1>
+<section id="field">
+<h2>Field<a class="headerlink" href="#field" title="Permalink to this heading"></a></h2>
+<p>A field describes the entire field operation in the <a class="reference internal" href="addons.html#addon-system-admin-settings"><span class="std std-ref">system add-on web app</span></a>.
+It exists out of shapefiles with the Coordinate Reference system (CRS) WGS84 or UTM.</p>
+<p>A field includes:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">traject</span></code>: A trajectory is mandatory when executing a field operation. The shapefile is of the shape type Linestring.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geofence</span></code>: A geofence is also mandatory when executing a field operation. The shapefile is of the shape type polygon.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tasks</span></code>: Tasks are optional and describe the robot’s actions at specific locations. The following <em>task types</em> exist</p>
+<ul class="simple">
+<li><p><em>hitch</em>: The hitch is activated (lowered) when a polygon of the task map contains the hitch centre.</p></li>
+<li><p><em>continuous</em>:  The section is activated when it intersects with a polygon of the task map. A particular type of this is a <em>cardan</em> task, which activates the Power Take Off (PTO) when intersecting the polygon (s) in the task map.</p></li>
+<li><p><em>intermittent</em>: The section is activated when it contains a point on the task map.</p></li>
+<li><p><em>discrete</em>: The discrete action (mostly a measurement) is performed when the section is the closest to the point of action on the task map.</p></li>
+</ul>
+</li>
+</ol>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/fig_task_types.png"><img alt="_images/fig_task_types.png" src="_images/fig_task_types.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1.</strong> Task types</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="platform">
+<span id="basic-concepts-platform"></span><h2>Platform<a class="headerlink" href="#platform" title="Permalink to this heading"></a></h2>
+<p>The platform abstracts the robot’s capabilities and includes information such as dimensions, the number and position of the hitches, the vehicle configuration, etc.
+The <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file describes the platform configuration and can be edited in the <a class="reference internal" href="addons.html#addon-system-admin-settings"><span class="std std-ref">system add-on web app</span></a> JSON editor.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text"><strong>Listing 1.</strong> <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file of the CIMAT robot</span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cimat&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;robot&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;length&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.8</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;wheel_diameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;T&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="mf">-1.0029</span><span class="p">,</span>
+<span class="w">                </span><span class="mf">-1.93</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;R&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">0</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;auto_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.7</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;nav_modes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp 90\u00b0 turn&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp 180\u00b0 turn&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pure pp&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp rollback&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;external&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;auto_modes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;hitches&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FB&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;hitch&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;continuous&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;discrete&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;intermittent&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;T&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mf">0.3314</span><span class="p">,</span>
+<span class="w">                    </span><span class="mf">-1.3831</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;R&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mi">0</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;link_length&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.601</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RB&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;hitch&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;continuous&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;discrete&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;intermittent&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;T&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mf">-2.45</span><span class="p">,</span>
+<span class="w">                    </span><span class="mf">-1.2</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;R&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mi">0</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;link_length&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.55</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;gps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;device&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;serial&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;utm_zone&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;usb_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/dev/septentrio0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ntrip_server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flepos.vlaanderen.be&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ntrip_mountpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;mountpoint&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ntrip_uname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;username&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ntrip_pwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;password&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;antenna_rotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-90</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;T&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="mf">-0.68064</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">0</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;R&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">0</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The fields in the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file are:</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: The name of the robot platform</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">robot</span></code>: The robot platform configuration</p>
+<p>2.1. The dimensions of the robot platform (<code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>, <code class="docutils literal notranslate"><span class="pre">wheel_diameter</span></code>)</p>
+<p>2.2. <code class="docutils literal notranslate"><span class="pre">transform</span></code>: The translation (in meters) and rotation in Euler angles (degrees) of the different robot components to the antenna reference point on the robot. The robot reference point is measured from the ground on and is used by the navigation algorithms, to calculate the robots position in respect to the trajectory.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For a 4WD4WS robot vehicle configuration, the robot reference coincides with its geometric center.</p></li>
+<li><p>For an Ackerman robot, the robot reference coincides with the centre of mass. In the case this does not equal the robot center, this transformation is written under the <code class="docutils literal notranslate"><span class="pre">transform_center</span></code> field of the <code class="docutils literal notranslate"><span class="pre">robot</span></code> configuration object.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/fig_robot_transformations.png"><img alt="_images/fig_robot_transformations.png" src="_images/fig_robot_transformations.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 2.</strong> Robot component transformations, expressed relative to the antenna reference</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">auto_velocity</span></code>: <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> velocity of the platform.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nav_modes</span></code>: The allowed navigation modes. Depending on the robot platforms’ vehicle configuration, different headland turns are possible. The navigation modes determine these headland turns and are shown in <em>Figure 3</em> with their corresponding ID.</p>
+<ul class="simple">
+<li><p><em>90° spinning</em>: When the robot reaches a corner, it rotates around its axis until its orientation matches the direction of the next trajectory line it needs to follow. This basic turning process applies to both regular corners and headland turns.</p></li>
+<li><p><em>180° spinning</em>: When the robot reaches a headland turn, it first rotates around its axis until it aligns with the direction of the next row it needs to follow. After aligning with the new row’s trajectory, the robot moves sideways toward the corner where this new row begins. Once it reaches the corner, the robot continues driving along the trajectory line of the new row. The navigation mode <em>90° spinning</em> is used when the turns are regular corners.</p></li>
+<li><p><em>pure pursuit</em>: When the robot encounters a corner, it will navigate the turn by driving in a circular path. The radius of this circle is determined by the turning radius specified in the platform.json configuration file. If the corner is part of a headland turn (where the two rows of the field are closer together than twice the minimum turning radius), the robot will instead drive along a circular arc that connects the two rows. This arc will have the minimum turning radius, allowing the robot to smoothly transition from one row to the next within the limited space.</p></li>
+<li><p><em>rollback</em>: When the robot reaches a headland turn, it initially turns by driving in a quarter-circle, using the minimum turning radius specified for the platform. If the robot doesn’t have enough space to align with the next trajectory line, it will move backward to create the necessary space. Once there is enough room, the robot makes another quarter-circle turn with the minimum turning radius, aligning itself with the new trajectory line and continuing on its path.</p></li>
+<li><p><em>external</em>: An external controller can take control of the robot’s navigation by updating the navigation_control parameters. This allows the external controller to direct the robot’s movements, overriding the robot’s default navigation system.</p></li>
+</ul>
+</li>
+</ol>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/fig_navigation_modes.png"><img alt="_images/fig_navigation_modes.png" src="_images/fig_navigation_modes.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 3.</strong> Navigation modes with their navigation id</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic" start="5">
+<li><p><code class="docutils literal notranslate"><span class="pre">auto_modes</span></code>: The different modes for autonomous navigation.</p>
+<ul class="simple">
+<li><p><em>Full auto</em>: The robot operates fully autonomous, with autonomous velocity- and steering control.</p></li>
+<li><p><em>Auto steer</em>: The robot only performs autonomous steering, and no autonomous velocity control. This mode provides “steering guidance” functionality.</p></li>
+<li><p><em>Auto throttle</em>: The robot only performs autonomous velocity control, and no autonomous steering control. This mode provides “cruise control” functionality.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hitches</span></code>: The specifications of the different hitches on the platform.</p>
+<p>6.1. <code class="docutils literal notranslate"><span class="pre">id</span></code>: hitch id</p>
+<p>6.2. <code class="docutils literal notranslate"><span class="pre">name</span></code>: name of the hitch</p>
+<p>6.3. <code class="docutils literal notranslate"><span class="pre">min</span></code>: min height of the hitch (cm)</p>
+<p>6.4. <code class="docutils literal notranslate"><span class="pre">max</span></code>: max height of the hitch (cm)</p>
+<p>6.5. <code class="docutils literal notranslate"><span class="pre">transform</span></code> to the hitch hinge (see <em>Figure 2</em>)</p>
+<p>6.6. <code class="docutils literal notranslate"><span class="pre">types</span></code>: compatible task types with the hitch</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gps</span></code>: The RTK GNSS configuration.</p>
+<p>7.1. <code class="docutils literal notranslate"><span class="pre">device</span></code>: The device field is set <em>serial</em> for USB devices and <em>socket</em> for network devices.</p>
+<p>7.2. <code class="docutils literal notranslate"><span class="pre">utm_zone</span></code>: The Universal Transverse Mercator (UTM) projection zone to complete the EPSG:326xx code whereby xx is the UTM zone.</p>
+<p>7.3. <code class="docutils literal notranslate"><span class="pre">usb_port</span></code> or <code class="docutils literal notranslate"><span class="pre">ìp</span></code> and <code class="docutils literal notranslate"><span class="pre">port</span></code>: These parameters are device interface dependent. For a USB device the device name needs to be provided, and for a socket device the network- ip and port.</p>
+<p>7.4. NTRIP configuration <code class="docutils literal notranslate"><span class="pre">ntrip_server</span></code>, <code class="docutils literal notranslate"><span class="pre">ntrip_mountpoint</span></code>, <code class="docutils literal notranslate"><span class="pre">ntrip_uname</span></code>, <code class="docutils literal notranslate"><span class="pre">ntrip_pwd</span></code></p>
+<p>7.5. <code class="docutils literal notranslate"><span class="pre">antenna_rotation</span></code>: The antenna rotation describes an additional rotation of the antennas around the z-axis (in degrees).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>0 or 180 if the antennas are in the longitudinal direction of the platform.</p></li>
+<li><p>90 or -90 if the antennas are in the lateral direction of the platform.</p></li>
+</ul>
+</div></blockquote>
+<p>7.6. <code class="docutils literal notranslate"><span class="pre">transform</span></code>: The transform field describes the transformation to the antenna reference (see <em>Figure 2</em>).</p>
+</li>
+</ol>
+</section>
+<section id="implements">
+<h2>Implements<a class="headerlink" href="#implements" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;implement-name&gt;.json</span></code> files describe the implement configuration and can be edited in the <a class="reference internal" href="addons.html#addon-system-admin-settings"><span class="std std-ref">system add-on web app</span></a> JSON editor.</p>
+<p>The fields in the <code class="docutils literal notranslate"><span class="pre">&lt;implement-name&gt;.json</span></code> file are:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: The name of the implement.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">on_taskmap</span></code>: This variable determines whether the task needs to be executed on the task map. If not, the sections can be operated by an add-on or program on another computer. If yes, the sections are operated according to the field configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">types</span></code>: The implement supports several types of operations: <em>continuous</em>, <em>intermittent</em>, and <em>discrete</em>, as illustrated in <em>Figure 2</em>. Some implements can handle multiple types of operations simultaneously. For example, the <em>auto-label</em> implement shown in <em>Listing 2</em> is designed for data collection using two cameras. The sections are defined by the cameras’ fields of view. A camera can be activated in two scenarios: when the sections overlap with a specified polygon (a continuous task) or when a crop plant enters the field of view (an intermittent task).</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text"><strong>Listing 2.</strong> Implement supporting multiple types</span><a class="headerlink" href="#id7" title="Permalink to this code"></a></div>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto-label&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;on_taskmap&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;continuous&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;intermittent&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;sections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;L&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;up&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.075</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;down&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.075</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;T&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mf">0.35</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">-0.98</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">-0.4</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;R&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;up&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.075</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;down&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.075</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;T&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mf">-0.35</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">-0.98</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">-0.4</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;R&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic" start="4">
+<li><p><code class="docutils literal notranslate"><span class="pre">sections</span></code>: The sections are an array of the geometries and transformations of the implement sections.</p>
+<p>4.1. <code class="docutils literal notranslate"><span class="pre">id</span></code>: The id of the section (string).</p>
+<p>4.2. The dimensions <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">up</span></code>, <code class="docutils literal notranslate"><span class="pre">down</span></code> in meters.</p>
+<p>4.3. <code class="docutils literal notranslate"><span class="pre">transform</span></code>: The transformation of the center of the section to the hitch pen, visualized <em>Figure 2</em>.</p>
+<p>4.4. A section can be repeated over a specified distance by using the <code class="docutils literal notranslate"><span class="pre">repeats</span></code> and <code class="docutils literal notranslate"><span class="pre">offset</span></code> fields. This functionality allows for the configuration of implements with repetitive sections, such as the spray boom described in Listing 3. The spray boom consists of 24 sections, but only the transformation for the first section needs to be defined. The <code class="docutils literal notranslate"><span class="pre">repeats</span></code> and <code class="docutils literal notranslate"><span class="pre">offset</span></code> fields define how these sections are repeated along the boom.</p>
+</li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text"><strong>Listing 3.</strong> Implement with an array of sections configured by the <code class="docutils literal notranslate"><span class="pre">repeats</span></code> and <code class="docutils literal notranslate"><span class="pre">offset</span></code> fields</span><a class="headerlink" href="#id8" title="Permalink to this code"></a></div>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;spray-boom&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;on_taskmap&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;continuous&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;intermittent&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;sections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;up&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;down&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;repeats&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;T&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">-0.98</span><span class="p">,</span>
+<span class="w">          </span><span class="mf">-0.4</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;R&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="interfaces">
+<span id="basic-concepts-interfaces"></span><h2>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file describes the system’s Redis variables and the <em>mechatronic/operational layer interface configuration</em>.
+You can edit the configuration file in the <a class="reference internal" href="addons.html#addon-system-admin-settings"><span class="std std-ref">system add-on web app</span></a> JSON editor.</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text"><strong>Listing 4.</strong> The <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file of the CIMAT robot</span><a class="headerlink" href="#id9" title="Permalink to this code"></a></div>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;protocols&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;snap7&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.2&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;rack&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;read_db&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;slot&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;write_db&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;redis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6379</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;variables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;plc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;control&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;navigation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;navigation_control&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;hitch_fb&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hitch_control&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;hitch_rb&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hitch_control&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;substate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;substate&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;drive_fl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;drive_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;wheel_fl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wheel_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;drive_fr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;drive_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;wheel_fr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wheel_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;drive_rl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;drive_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;wheel_rl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wheel_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;drive_rr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;drive_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;wheel_rr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wheel_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;imu&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;imu_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;hitch_fb&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hitch_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;hitch_rb&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hitch_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;navigation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;navigation_monitor&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;state&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;substate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;substate&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;pc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;gps&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gps&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;simulation&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;navigation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;navigation&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;purepursuit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;purepursuit&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;pid_steady_state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pid&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;pid_rough&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pid&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;field&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;implement&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;implement&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;execution&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execution&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The fields in the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file are:</p>
+<ol class="arabic">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">protocols</span></code> object defines the protocol configuration.</p>
+<p>1.1. The <code class="docutils literal notranslate"><span class="pre">snap7</span></code> object provides the <em>mechatronic/operational layer interface</em> parameters:</p>
+<blockquote>
+<div><p>1.1.1. the <code class="docutils literal notranslate"><span class="pre">ip</span></code> address of the PLC</p>
+<p>1.1.2. the <code class="docutils literal notranslate"><span class="pre">read_db</span></code> and <code class="docutils literal notranslate"><span class="pre">write_db</span></code> data block (DB), which correspond with the <em>higherLevelMonitor</em> and <em>higherLevelControl</em></p>
+<p>1.1.3. the <code class="docutils literal notranslate"><span class="pre">rack</span></code> and <code class="docutils literal notranslate"><span class="pre">slot</span></code> of these data blocks</p>
+</div></blockquote>
+<p>1.2 The <code class="docutils literal notranslate"><span class="pre">redis</span></code> object provides the <em>Redis ARTOF interface</em> parameters:</p>
+<blockquote>
+<div><p>1.2.1 <code class="docutils literal notranslate"><span class="pre">ip</span></code> and <code class="docutils literal notranslate"><span class="pre">port</span></code>: the IP address and port of the Redis server</p>
+</div></blockquote>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">variables</span></code> object defines the <code class="docutils literal notranslate"><span class="pre">plc</span></code> and <code class="docutils literal notranslate"><span class="pre">pc</span></code> Redis variables on the system.</p>
+<p>2.1. <code class="docutils literal notranslate"><span class="pre">plc</span></code> variables: These variables are continuously synced between the <em>operational and mechatronic layer</em>.</p>
+<blockquote>
+<div><p>2.1.1 the <code class="docutils literal notranslate"><span class="pre">monitor</span></code> variables are read <em>S7-communication protocol (Snap7)</em> by the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RobotPLC</span></code></p>
+<p>2.1.2 the <code class="docutils literal notranslate"><span class="pre">control</span></code> variables are written <em>S7-communication protocol (Snap7)</em> by the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RobotPLC</span></code></p>
+</div></blockquote>
+<p>2.2. <code class="docutils literal notranslate"><span class="pre">pc</span></code> variables are solely used by the operational layer and require no synchronization with the mechatronic layer.</p>
+</li>
+</ol>
+<p>The configuration depends on the platform configuration (vehicle configuration, number of hitches, energy source, etc.).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">types.json</span></code> file describes recurrent composite types in the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file.
+These types can be nested as can be seen in <em>Listing 5</em>.</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text"><strong>Listing 5.</strong> <code class="docutils literal notranslate"><span class="pre">types.json</span></code> file</span><a class="headerlink" href="#id10" title="Permalink to this code"></a></div>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;xyz&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;longitudinal&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;angular&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;lateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;drive_monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;power&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;voltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;current&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;rpm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;torque&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;wheel_monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;rpm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;angle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;battery_monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;soc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;current&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;voltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;power&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;fuel_monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;volume&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;generator_monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;rpm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;fuel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fuel_monitor&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;imu_monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;acceleration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xyz&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;rotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xyz&quot;</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;hitch_monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;busy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;angle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;feedback_sections&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array[32] of uint8&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;safe&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;normal&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;auto&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;aware&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;steer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;throttle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;substate&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;programming&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;dummy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;hitch_control&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;activate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;activate_discrete&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;activate_continuous&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;activate_cardan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;setpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int16&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;activate_sections&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array[32] of uint8&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;navigation_control&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;direction&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;sideways&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;end_reached&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;navigation_monitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;direction&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;gps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;fix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;hrp_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ground_speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;fix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;auto&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;factor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;navigation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;non_operational_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;operational_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;sideways_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;spinning_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;max_angular_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;spin_angle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;turning_radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;purepursuit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;carrot_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;inter_point_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;weight_factor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;pid&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;p&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;i&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;d&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;integral&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;derivative&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;proportional&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;orientation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;deviation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;implement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;slow_down&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;disable&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;execution&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;notification&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The names of the Redis variables or keys are the composition of the nested object keys. Some examples of how these Redis keys look like are:
+<code class="docutils literal notranslate"><span class="pre">plc.monitor.drive_fl.current</span></code>, <code class="docutils literal notranslate"><span class="pre">plc.monitor.drive_fr.temperature</span></code>, <code class="docutils literal notranslate"><span class="pre">plc.monitor.hitch_fb.feedback_sections.27</span></code>, <code class="docutils literal notranslate"><span class="pre">plc.control.navigation.heartbeat</span></code>, <code class="docutils literal notranslate"><span class="pre">plc.control.hitch_fb.activate_sections.30</span></code>, <code class="docutils literal notranslate"><span class="pre">pc.navigation.turning_radius</span></code>, <code class="docutils literal notranslate"><span class="pre">pc.purepursuit.carrot_distance</span></code></p>
+<p>Redis variables that need configuration are listed in the <code class="docutils literal notranslate"><span class="pre">redis.init.json</span></code> file, as shown in the <code class="docutils literal notranslate"><span class="pre">variables</span></code> object in <em>Listing 4</em>.
+The initialization is only done at system installation. Redis variables are persistent. So these values are preserved on system reboot.</p>
+<p>Besides, the <code class="docutils literal notranslate"><span class="pre">redis.init.json</span></code> file contains information related to the processes and jobs that need to run.
+The latter is discussed in the <a class="reference internal" href="#jobs"><span class="std std-ref">Jobs</span></a> section.</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text"><strong>Listing 6.</strong> <code class="docutils literal notranslate"><span class="pre">redis.init.json</span></code> file of the CIMAT robot</span><a class="headerlink" href="#id11" title="Permalink to this code"></a></div>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;ilvoProcesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ilvo-navigation&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Running&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SoftwareUpdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;CheckHeartbeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ilvo-operation&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Running&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SoftwareUpdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;CheckHeartbeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ilvo-simulation&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Running&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SoftwareUpdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;CheckHeartbeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ilvo-robot-plc&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Running&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SoftwareUpdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;CheckHeartbeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ilvo-gps&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Running&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SoftwareUpdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;CheckHeartbeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;ilvoAddons&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Running&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SoftwareUpdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;DockerRegistry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;artof-ilvo&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;glpat-ZZs4PkN86nbopeXdeGpy&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;serveraddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://gitlab.ilvo.be:5050/v2/&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;DockerConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gitlab.ilvo.be:5050/artof-ilvo/addons/system&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;HostConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;Binds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="s2">&quot;/var/lib/ilvo:/var/lib/ilvo&quot;</span>
+<span class="w">                        </span><span class="p">],</span>
+<span class="w">                        </span><span class="nt">&quot;NetworkMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;host&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;RestartPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on-failure&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;MaximumRetryCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;node-red&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Running&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SoftwareUpdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;DockerRegistry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;serveraddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.hub.docker.com/v2/&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;DockerConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nodered/node-red&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;HostConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;Binds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="s2">&quot;/var/lib/ilvo/node-red:/data&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="s2">&quot;/var/lib/ilvo/field:/var/lib/ilvo/field&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="s2">&quot;/var/lib/ilvo/implement:/var/lib/ilvo/implement&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="s2">&quot;/var/lib/ilvo/config.json:/var/lib/ilvo/config.json&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="s2">&quot;/var/lib/ilvo/settings.json:/var/lib/ilvo/settings.json&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="s2">&quot;/var/lib/ilvo/types.json:/var/lib/ilvo/types.json&quot;</span>
+<span class="w">                        </span><span class="p">],</span>
+<span class="w">                        </span><span class="nt">&quot;NetworkMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;host&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;RestartPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on-failure&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;MaximumRetryCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;variables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;pc.simulation.fix&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.simulation.factor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.navigation.non_operational_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.navigation.operational_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.navigation.sideways_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.navigation.spinning_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.navigation.max_angular_velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.navigation.mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.navigation.spin_angle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.navigation.turning_radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.purepursuit.carrot_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.purepursuit.inter_point_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.purepursuit.weight_factor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pc.field.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="jobs">
+<span id="id2"></span><h2>Jobs<a class="headerlink" href="#jobs" title="Permalink to this heading"></a></h2>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SystemManager</span></code> class is responsible for managing all other processes (<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Process</span></code>) and the add-ons (<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Addon</span></code>) in the operational layer.
+A <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Job</span></code> is a higher-level abstraction that implements the common functionality of the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Process</span></code> and <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Addon</span></code> class.</p>
+<p>A <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Process</span></code> is a component managed by the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SystemManager</span></code> within the operational layer.
+These processes are further discussed in the <a class="reference internal" href="operational-layer.html#operational-layer"><span class="std std-ref">Operational layer</span></a> section.</p>
+<p>An <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Addon</span></code> is an entry for the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SystemManager</span></code> process, which maintains the system’s add-ons.
+The add-on configuration uses the <a class="reference external" href="https://docs.docker.com/engine/api/v1.46/">Docker Engine API (1.46)</a> syntax.
+These add-ons are further discussed in the <a class="reference internal" href="addons.html#addons"><span class="std std-ref">Add-ons</span></a> section.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">redis.init.json</span></code> file describes the job configurations at installation.
+After installation, the add-on configuration can be adjusted using the <a class="reference internal" href="addons.html#addon-system-admin-settings"><span class="std std-ref">system add-on web app</span></a>.</p>
+</section>
+<section id="states">
+<span id="basic-concepts-states"></span><h2>States<a class="headerlink" href="#states" title="Permalink to this heading"></a></h2>
+<p>The ARTOF framework continuously updates the state of various platform components in Redis JSON variables, using the GNSS coordinates along with the robot and implement geometry. Each state consists of a position in UTM coordinates and an orientation. Internally, this information is represented as a 4x4 affine transformation matrix, as affines allow for efficient calculations.
+For easier human readability, the affine matrix is converted into a translation vector (in meters) and an orientation vector (in degrees). This translation vector provides the position, while the orientation vector details the component’s alignment in space.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gps.raw.state</span></code>: The GPS raw state provides the UTM position, heading, and roll as measured by the GNSS receiver. This is the state of the dominant GNSS antenna.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gps.ref.state</span></code>: The GPS raw state is transformed to the center point between the two antennas. This adjusted coordinate is referred to as the GPS reference state.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Configuration of <code class="docutils literal notranslate"><span class="pre">gps</span></code> <code class="docutils literal notranslate"><span class="pre">transform</span></code> in the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">robot.ref.state</span></code>: The robot reference state, typically located at the robot’s center of mass, serves as the reference point for calculating its relative position to the trajectory. This information is used for the navigation controller.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Configuration of <code class="docutils literal notranslate"><span class="pre">robot</span></code> <code class="docutils literal notranslate"><span class="pre">transform</span></code> in the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">robot.center.state</span></code>: The geometric centre of the robot is used for visualization.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Configuration of <code class="docutils literal notranslate"><span class="pre">robot</span></code> <code class="docutils literal notranslate"><span class="pre">center</span></code> in the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">robot.head.state</span></code>: The front of the robot, or the “head,” is utilized by certain navigation controllers that require deviation measurements from a point at the robot’s front.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Configuration of <code class="docutils literal notranslate"><span class="pre">robot</span></code> <code class="docutils literal notranslate"><span class="pre">head</span></code> in the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hitch.states</span></code>: The hitch states describe the states of the hitches. This is the state of the hitch hinge.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Configuration of <code class="docutils literal notranslate"><span class="pre">hitches</span></code> <code class="docutils literal notranslate"><span class="pre">hitch_&lt;name&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">transform</span></code> in the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">implement.states</span></code>: The implement states describe the states of the different implements and their sections.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Configuration of the <code class="docutils literal notranslate"><span class="pre">&lt;implement-name&gt;.json</span></code> file.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture.html" class="btn btn-neutral float-left" title="Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mechatronic-layer.html" class="btn btn-neutral float-right" title="Mechatronic layer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mechatronic layer &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Operational layer" href="operational-layer.html" />
+    <link rel="prev" title="Basic concepts" href="basic-concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mechatronic layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#safety-state-diagram">Safety state diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kinematic-model">Kinematic model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#four-wheel-drive-four-wheel-steer-4wd4ws">Four-wheel-drive four-wheel-steer (4WD4WS)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ackerman-steering">Ackerman steering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#skid-steering">Skid steering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Mechatronic layer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mechatronic-layer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mechatronic-layer">
+<h1>Mechatronic layer<a class="headerlink" href="#mechatronic-layer" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The ARTOF framework is ideally integrated during the development of a new robot platform, but can also be integrated afterwards.
+The mechatronic layer requires a custom implementation tailored to the specific vehicle configuration, selected components, and the platform’s safety requirements.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<p>The minimal hardware requirements to perform steering guidance are:</p>
+<ol class="arabic simple">
+<li><p><strong>Safety</strong>: The implementation of the mechatronic layer is responsible for all the platform’s safety features in accordance with national legislation. This implementation is machine dependent and is not provided by the ARTOF framework.</p></li>
+<li><p><strong>Programmable Logic Controller</strong>: A PLC interfaces with all the actuators and sensors on the platform. At a minimum, it must implement the inverse and direct kinematic models to ensure correct control of the steering and driving actuators.</p>
+<ul class="simple">
+<li><p><em>Example components</em>: Siemens S7-1200 and Siemens S7-1500 series</p></li>
+</ul>
+</li>
+<li><p><strong>Steering angle control</strong>: The steering angle needs to be controlled by the PLC.</p>
+<ul class="simple">
+<li><p>For <em>hydraulic steering</em>, this can be done using a hydraulic steering block.</p></li>
+<li><p>For <em>electric steering</em>, this can be done by controlling the motor drive.</p></li>
+<li><p><em>Example components</em>: <a class="reference external" href="https://nl.ravenind.com/ag-products/guidance/rs1">Raven® RS1</a></p></li>
+</ul>
+</li>
+<li><p><strong>Steering angle feedback</strong>: The PLC needs to monitor the steering angle to enable closed-loop steering control.</p>
+<ul class="simple">
+<li><p>For <em>Ackerman steering</em> robots, this can be done with an inductive angle sensor on the steering rack.</p></li>
+<li><p>For <em>4WD4WS steering</em> robots, all the wheel angles need to be measured, which can also done using inductive angle sensors.</p></li>
+<li><p><em>Example components</em>: <a class="reference external" href="https://www.turck.nl/nl/product/100000186">Multiprox® RI360P1-QR20-LU4X2-H1141</a></p></li>
+</ul>
+</li>
+<li><p><strong>Velocity control</strong>: The driving velocity needs to be controlled by the PLC.</p>
+<ul class="simple">
+<li><p>For <em>hydraulic traction</em>, this can be done by controlling the swash plate with an electric actuator.</p></li>
+<li><p>For <em>electric traction</em>, this can be done by setting the motor drives to velocity control.</p></li>
+<li><p>An electronic analogue paddle can be used for robots that enabled paddle velocity control for the driver.</p></li>
+</ul>
+</li>
+<li><p><strong>Velocity feedback</strong>: The PLC needs to monitor the driving velocity to enable closed-loop velocity control.</p>
+<ul class="simple">
+<li><p>For robots with <em>hydraulic transmission</em>, this can be done by a rotary encoder and two interlocking cogs.</p></li>
+<li><p>For robots with <em>electrical transmission</em>, this can be done by reading the hall sensor, sin/cos encoder, etc.</p></li>
+</ul>
+</li>
+</ol>
+<p>Additional requirements to operate a robot platform:</p>
+<ol class="arabic simple">
+<li><p><strong>Hitch control</strong>: The hitches need to be controlled by the PLC.</p>
+<ul class="simple">
+<li><p>For <em>hydraulic hitches</em> this can be done using electric valves.</p></li>
+</ul>
+</li>
+<li><p><strong>Hitch angle feedback</strong>: The PLC needs to monitor the hitch angles to enable closed-loop hitch height control.</p>
+<ul class="simple">
+<li><p>If no actuator feedback is available, this can be done using inductive angle sensors.</p></li>
+<li><p><em>Example components</em>: <a class="reference external" href="https://www.turck.nl/nl/product/100000186">Multiprox RI360P1-QR20-LU4X2-H1141</a></p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All safety measures must be implemented within the mechatronic layer.
+The operational layer does not include safety features and should only be used on products approved for autonomous operation in accordance with national legislation.</p>
+</div>
+</section>
+<section id="safety-state-diagram">
+<h2>Safety state diagram<a class="headerlink" href="#safety-state-diagram" title="Permalink to this heading"></a></h2>
+<p>For more information on the safety state diagram, we refer to the paper <em>&lt;Coming soon&gt;</em>.</p>
+</section>
+<section id="kinematic-model">
+<h2>Kinematic model<a class="headerlink" href="#kinematic-model" title="Permalink to this heading"></a></h2>
+<section id="id2">
+<h3>Introduction<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Abbreviation used:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>longitude (lng), latitude (lat)</p></li>
+<li><p>front (f), rear (r), so fr (front-right)</p></li>
+<li><p>angular velocity (<span class="math notranslate nohighlight">\(\omega\)</span>), steering angle (<span class="math notranslate nohighlight">\(\epsilon\)</span>)</p></li>
+</ol>
+</div></blockquote>
+</div>
+<p>The <em>direct kinematic model</em> describes the actual platform’s motion by the velocity vector <span class="math notranslate nohighlight">\(\boldsymbol{v_a} = (v_x, v_y, \omega_z)\)</span> based on the actuators feedback e.g. <span class="math notranslate nohighlight">\(\omega_{wheel,rr}\)</span>, <span class="math notranslate nohighlight">\(\omega_{wheel,rl}\)</span>, <span class="math notranslate nohighlight">\(\epsilon_{f}\)</span>, <span class="math notranslate nohighlight">\(\epsilon_{fl}\)</span>, etc., depending on the vehicle configuration.</p>
+<p>The <em>inverse kinematic model</em> does the opposite and starts from the required motion or velocity vector <span class="math notranslate nohighlight">\(\boldsymbol{v_r} = (v_{lng}, v_{lat}, \omega_z)\)</span> to calculate the position or velocities of the actuators.</p>
+<p>Kinematic means no external forces are incorporated in this model to come to this motion. A model where the external forces are incorporated is called a dynamic model.</p>
+<p>The kinematic model is integrated into the mechatronic layer, making the operational layer independent of the vehicle configuration.
+An essential part of the <em>mechatronic-operational layer interface</em> is the infterface with the actual and required velocity vector.</p>
+<ul class="simple">
+<li><p>The interface with the actual velocity vector <span class="math notranslate nohighlight">\(\boldsymbol{v_a}\)</span> is described in the Redis variables <code class="docutils literal notranslate"><span class="pre">plc.monitor.navigation.velocity.longitudinal</span></code>,  <code class="docutils literal notranslate"><span class="pre">plc.monitor.navigation.velocity.lateral</span></code>, <code class="docutils literal notranslate"><span class="pre">plc.monitor.navigation.velocity.angular</span></code>.</p></li>
+<li><p>The interface with the required velocity vector <span class="math notranslate nohighlight">\(\boldsymbol{v_r}\)</span> is described in the Redis variables <code class="docutils literal notranslate"><span class="pre">plc.control.navigation.velocity.longitudinal</span></code>,  <code class="docutils literal notranslate"><span class="pre">plc.control.navigation.velocity.lateral</span></code>, <code class="docutils literal notranslate"><span class="pre">plc.control.navigation.velocity.angular</span></code>.</p></li>
+</ul>
+<p>The book Vehicle Dynamics by Reza N. Nazar contains much information about <em>vehicle kinematics and dynamics</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Jazar</span><span class="p">,</span> <span class="n">R</span><span class="o">.</span> <span class="n">N</span><span class="o">.</span> <span class="p">(</span><span class="mi">2008</span><span class="p">)</span><span class="o">.</span> <span class="n">Vehicle</span> <span class="n">dynamics</span> <span class="p">(</span><span class="n">Vol</span><span class="o">.</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span> <span class="n">Berlin</span><span class="o">/</span><span class="n">Heidelberg</span><span class="p">,</span>
+<span class="n">Germany</span><span class="p">:</span> <span class="n">Springer</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="four-wheel-drive-four-wheel-steer-4wd4ws">
+<h3>Four-wheel-drive four-wheel-steer (4WD4WS)<a class="headerlink" href="#four-wheel-drive-four-wheel-steer-4wd4ws" title="Permalink to this heading"></a></h3>
+<p>Figure 1 was used to derive the kinematic model of a four-wheel-drive, four-wheel-steer (4WD4WS) robot.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/fig_kinematics_4ws4wd.png"><img alt="_images/fig_kinematics_4ws4wd.png" src="_images/fig_kinematics_4ws4wd.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1.</strong> Kinematics 4WD4WS vehicle configuration</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>For the <em>direct kinematic model</em></p>
+<div class="math notranslate nohighlight">
+\[f(v_{fl}, v_{fr}, v_{rl}, v_{rr}, \epsilon_{fl}, \epsilon_{fr}, \epsilon_{rl}, \epsilon_{rr}) = (v_x, v_y, \omega_z)\]</div>
+<p>The following formulas can be extracted using <em>Figure 1</em>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}v_{fl} &amp;= R_{w} \cdot \omega_{w,fl} \\
+v_{fr} &amp;= R_{w} \cdot \omega_{w,fr} \\
+v_{rl} &amp;= R_{w} \cdot \omega_{w,rl} \\
+v_{rr} &amp;= R_{w} \cdot \omega_{w,rr} \\
+v_{y} &amp;= \frac{1}{4} \left[ v_{fl} \cdot cos(\epsilon_{fl}) + v_{fr} \cdot cos(\epsilon_{fr}) + v_{rl} \cdot cos(\epsilon_{rl}) + v_{rr} \cdot cos(\epsilon_{rr}) \right] \\
+v_{x} &amp;= \frac{1}{4} \left[ v_{fl} \cdot sin(\epsilon_{fl}) + v_{fr} \cdot sin(\epsilon_{fr}) + v_{rl} \cdot sin(\epsilon_{rl}) + v_{rr} \cdot sin(\epsilon_{rr}) \right] \\
+\omega_{z} &amp; =  \frac{l}{2}  \left( \left[ v_{rl} \cdot sin(\epsilon_{rl}) + v_{rr} \cdot sin(\epsilon_{rr}) \right] - \left[  v_{fl} \cdot sin(\epsilon_{fl}) + v_{fr} \cdot sin(\epsilon_{fr})  \right] \right)\end{split}\]</div>
+<p>The <em>inverse kinematic model</em></p>
+<div class="math notranslate nohighlight">
+\[g(v_x, v_y, \omega_z) = (v_{fl}, v_{fr}, v_{rl}, v_{rr}, \epsilon_{fl}, \epsilon_{fr}, \epsilon_{rl}, \epsilon_{rr})\]</div>
+<p>First, the points <span class="math notranslate nohighlight">\(\mathrm{A}\)</span> up to <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> indicated in <em>Figure 1</em>, <span class="math notranslate nohighlight">\(\mathrm{R}_{xx}\)</span> were determined.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;\left|\mathrm{AE}\right| = \left|\mathrm{BF}\right| = \frac{\mathrm{l}}{2} + \mathrm{R} \sin(\gamma) \\
+&amp;\left|\mathrm{EC}\right| = \left|\mathrm{FD}\right| = \frac{\mathrm{l}}{2} - \mathrm{R} \sin(\gamma) \\
+&amp;\left|\mathrm{OE}\right| = \mathrm{R} \cos(\gamma) - \frac{\mathrm{b}}{2} \\
+&amp;\left|\mathrm{OF}\right| = \mathrm{R} \cos(\gamma) + \frac{\mathrm{b}}{2} \\
+&amp;\mathrm{R}_{fl} = \left(\left|\mathrm{AE}\right|^2 + \left|\mathrm{OE}\right|^2 \right)^{\frac{1}{2}} \\
+&amp;\mathrm{R}_{fr} = \left(\left|\mathrm{OF}\right|^2 + \left|\mathrm{BF}\right|^2 \right)^{\frac{1}{2}} \\
+&amp;\mathrm{R}_{rl} = \left(\left|\mathrm{OE}\right|^2 + \left|\mathrm{EC}\right|^2 \right)^{\frac{1}{2}} \\
+&amp;\mathrm{R}_{rr} = \left(\left|\mathrm{OF}\right|^2 + \left|\mathrm{FD}\right|^2 \right)^{\frac{1}{2}}\end{split}\]</div>
+<p>Also, we know:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;\mathrm{\Delta v}_f = \big| (\mathrm{R}_{fl}  -  \mathrm{R}_{fr}) \cdot \dot{\mathrm{\theta}}  \big| \\
+&amp;\mathrm{\Delta v}_r = \big| (\mathrm{R}_{rl}  -  \mathrm{R}_{rr}) \cdot \dot{\mathrm{\theta}}  \big|\end{split}\]</div>
+<p>Using the radius <span class="math notranslate nohighlight">\(\mathrm{R}_{xx}\)</span> given the equations above, <span class="math notranslate nohighlight">\(\omega_{w,xx}\)</span> and <span class="math notranslate nohighlight">\(\epsilon_{xx}\)</span> were calculated.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp; \mathrm{\omega}_{w,fl} = \mathrm{sgn}(\dot{\mathrm{y}})\cdot \big(- \mathrm{sgn}(\dot{\mathrm{\theta}})\,\frac{\mathrm{\Delta v}_f}{2} + v\big) \cdot \frac{2}{\mathrm{D}_w}\\
+&amp; \mathrm{\omega}_{w,fr} = \mathrm{sgn}(\dot{\mathrm{y}})\cdot \big( \mathrm{sgn}(\dot{\mathrm{\theta}})\,\frac{\mathrm{\Delta v}_f}{2} + v \big) \cdot \frac{2}{\mathrm{D}_w}\\
+&amp; \mathrm{\omega}_{w,rl} = \mathrm{sgn}(\dot{\mathrm{y}})\cdot \big(- \mathrm{sgn}(\dot{\mathrm{\theta}})\,\frac{\mathrm{\Delta v}_r}{2} + v \big) \cdot \frac{2}{\mathrm{D}_w}\\
+&amp; \mathrm{\omega}_{w,rr} = \mathrm{sgn}(\dot{\mathrm{y}})\cdot \big( \mathrm{sgn}(\dot{\mathrm{\theta}})\,\frac{\mathrm{\Delta v}_r}{2} + v \big) \cdot \frac{2}{\mathrm{D}_w} \\
+&amp; \mathrm{\epsilon}_{fl} = \arctan \left( \frac{\left|\mathrm{AE}\right|}{\left|\mathrm{OE}\right|} \right) \\
+&amp; \mathrm{\epsilon}_{fr} = \arctan \left( \frac{\left|\mathrm{BF}\right|}{\left|\mathrm{OF}\right|} \right) \\
+&amp; \mathrm{\epsilon}_{rl} = \arctan \left( - \frac{\left|\mathrm{EC}\right|}{\left|\mathrm{OE}\right|} \right) \\
+&amp; \mathrm{\epsilon}_{rr} = \arctan \left( - \frac{\left|\mathrm{FD}\right|}{\left|\mathrm{OF}\right|} \right)\end{split}\]</div>
+</section>
+<section id="ackerman-steering">
+<h3>Ackerman steering<a class="headerlink" href="#ackerman-steering" title="Permalink to this heading"></a></h3>
+<p><strong>Figure 2</strong> is used to derive the kinematic model of an Ackerman vehicle.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/fig_kinematics_ackerman.png"><img alt="_images/fig_kinematics_ackerman.png" src="_images/fig_kinematics_ackerman.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 2.</strong> Kinematics Ackerman vehicle configuration, with M as the center of mass.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The four-wheel vehicle model can be reduced to the bicycle model, indicated by the green dot lines in <em>Figure 2</em>.
+The mass centre (M) will turn on the green circle around the Instanious Center of Rotation (ICR) (point O in <em>Figure 2</em>) with the radius in <a class="reference internal" href="#eq-kinematics-ackerman-radius"><span class="std std-ref">Equation 1</span></a>.</p>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-radius">
+<span id="equation-eq-kinematics-ackerman-radius"></span><span class="eqno">(1)<a class="headerlink" href="#eq-kinematics-ackerman-radius" title="Permalink to this equation"></a></span>\[R = \sqrt{a^2 + l^2 \, \mathrm{cot}^2(\epsilon)}\]</div>
+<p>The cot-average <a class="reference internal" href="#eq-kinematics-ackerman-cot-avg"><span class="std std-ref">Equation 2</span></a> and the Ackerman condition in <a class="reference internal" href="#eq-kinematics-ackerman-condition"><span class="std std-ref">Equation 3</span></a> apply in the geometry of the steering rack.</p>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-cot-avg">
+<span id="equation-eq-kinematics-ackerman-cot-avg"></span><span class="eqno">(2)<a class="headerlink" href="#eq-kinematics-ackerman-cot-avg" title="Permalink to this equation"></a></span>\[\mathrm{cot}(\epsilon) = \frac{\mathrm{cot}(\epsilon_{fl}) + \mathrm{cot}(\epsilon_{fr})}{2}\]</div>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-condition">
+<span id="equation-eq-kinematics-ackerman-condition"></span><span class="eqno">(3)<a class="headerlink" href="#eq-kinematics-ackerman-condition" title="Permalink to this equation"></a></span>\[\frac{b}{l} = \mathrm{cot}(\epsilon_{fr}) - \mathrm{cot}(\epsilon_{fl})\]</div>
+<p>We can find the relation <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(\epsilon_{fl}\)</span> and between <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(\epsilon_{fr}\)</span> by substituting the ackerman condition <a class="reference internal" href="#eq-kinematics-ackerman-condition"><span class="std std-ref">(Equation 3)</span></a> into the <a class="reference internal" href="#eq-kinematics-ackerman-cot-avg"><span class="std std-ref">(Equation 2)</span></a>.</p>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-epsilon-ifv-eps-fl">
+<span id="equation-eq-kinematics-ackerman-epsilon-ifv-eps-fl"></span><span class="eqno">(4)<a class="headerlink" href="#eq-kinematics-ackerman-epsilon-ifv-eps-fl" title="Permalink to this equation"></a></span>\[\frac{b}{2\,l} = \mathrm{cot}(\epsilon) - \mathrm{cot}(\epsilon_{fl})\]</div>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-epsilon-ifv-eps-fr">
+<span id="equation-eq-kinematics-ackerman-epsilon-ifv-eps-fr"></span><span class="eqno">(5)<a class="headerlink" href="#eq-kinematics-ackerman-epsilon-ifv-eps-fr" title="Permalink to this equation"></a></span>\[-\frac{b}{2\,l} = \mathrm{cot}(\epsilon) - \mathrm{cot}(\epsilon_{fr})\]</div>
+<p>In <em>Figure 2</em> we can see that the Equations <span class="math notranslate nohighlight">\(\mathrm{tan}(\epsilon) = \frac{l}{R_B}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{tan}(\alpha) = \frac{a}{R_B}\)</span> apply.
+We can calculate <span class="math notranslate nohighlight">\(\alpha\)</span> in <a class="reference internal" href="#eq-kinematics-ackerman-alpha"><span class="std std-ref">Equation 6</span></a>.</p>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-alpha">
+<span id="equation-eq-kinematics-ackerman-alpha"></span><span class="eqno">(6)<a class="headerlink" href="#eq-kinematics-ackerman-alpha" title="Permalink to this equation"></a></span>\[\alpha = \mathrm{atan} \big(\frac{a}{l}\, \mathrm{tan}(\epsilon) \big)\]</div>
+<p>By substituting <a class="reference internal" href="#eq-kinematics-ackerman-epsilon-direct"><span class="std std-ref">Equation 4</span></a> into <a class="reference internal" href="#eq-kinematics-ackerman-alpha"><span class="std std-ref">Equation 6</span></a>,
+we find the relation <span class="math notranslate nohighlight">\(\alpha = q(\epsilon_{fl})\)</span> in equation <a class="reference internal" href="#eq-kinematics-ackerman-alpha-ifv-eps-fl"><span class="std std-ref">Equation 9</span></a>.</p>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-alpha-ifv-eps-fl">
+<span id="equation-eq-kinematics-ackerman-alpha-ifv-eps-fl"></span><span class="eqno">(7)<a class="headerlink" href="#eq-kinematics-ackerman-alpha-ifv-eps-fl" title="Permalink to this equation"></a></span>\[\alpha = \mathrm{atan} \big( \frac{a}{\frac{b}{2} + l\, \mathrm{cot}(\epsilon_{fl})} \big)\]</div>
+<p>Assume that we only measure the front-left steering angle <span class="math notranslate nohighlight">\(\epsilon_{fl}\)</span> and the angular velocity of the rear-right wheel <span class="math notranslate nohighlight">\(\epsilon_{rr}\)</span>.
+For small angles in <span class="math notranslate nohighlight">\(\epsilon\)</span>, we can assume <span class="math notranslate nohighlight">\(\omega_A = \omega_B = \omega_C\)</span>. Consequently <a class="reference internal" href="#eq-kinematics-ackerman-omega-equal"><span class="std std-ref">Equation 8</span></a> applies.</p>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-omega-equal">
+<span id="equation-eq-kinematics-ackerman-omega-equal"></span><span class="eqno">(8)<a class="headerlink" href="#eq-kinematics-ackerman-omega-equal" title="Permalink to this equation"></a></span>\[\frac{v_{rr}}{R_{rr}} = \frac{v_{y}}{R_{B}}\]</div>
+<p>The <em>direct kinematic model</em></p>
+<div class="math notranslate nohighlight">
+\[f(v_{rr}, \epsilon_{fl}) = (v_x, v_y, \omega_z)\]</div>
+<p>We can find the relation <span class="math notranslate nohighlight">\(\epsilon = q(\epsilon_{fl})\)</span> by rearranging <a class="reference internal" href="#eq-kinematics-ackerman-epsilon-ifv-eps-fl"><span class="std std-ref">Equation 4</span></a>.</p>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-epsilon-direct">
+<span id="equation-eq-kinematics-ackerman-epsilon-direct"></span><span class="eqno">(9)<a class="headerlink" href="#eq-kinematics-ackerman-epsilon-direct" title="Permalink to this equation"></a></span>\[\epsilon = \mathrm{acot} \big( \frac{b}{2\,l} + \mathrm{cot}(\epsilon_{fl}) \big)\]</div>
+<p><a class="reference internal" href="#eq-kinematics-ackerman-alpha-ifv-eps-fl"><span class="std std-ref">Equation 7</span></a> can be used to integrate into the equations of the direct kinematic model below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}v_y &amp;= \frac{R_B}{R_{rr}}\,v_{rr} = \frac{R\, \mathrm{cos}(\alpha)}{R\, \mathrm{cos}(\alpha) + \big(\frac{b}{2}\big)}\,v_{rr} \\
+v_x &amp;= v_y \, \mathrm{tan}(\alpha)  \\
+v &amp;= \sqrt{v^2_x + v^2_y}  \\
+\omega_z &amp;= \frac{v}{R}\end{split}\]</div>
+<p>The <em>inverse kinematic model</em></p>
+<div class="math notranslate nohighlight">
+\[g(v_x, v_y, \omega_z) = (v_{rl}, \epsilon_{fr})\]</div>
+<p>We can determine <span class="math notranslate nohighlight">\(\epsilon\)</span> using the green circle’s radius in <a class="reference internal" href="#eq-kinematics-ackerman-radius"><span class="std std-ref">Equation 1</span></a>.</p>
+<div class="math notranslate nohighlight" id="eq-kinematics-ackerman-epsilon-inverse">
+<span id="equation-eq-kinematics-ackerman-epsilon-inverse"></span><span class="eqno">(10)<a class="headerlink" href="#eq-kinematics-ackerman-epsilon-inverse" title="Permalink to this equation"></a></span>\[\epsilon = \mathrm{acot}\bigg(  \frac{\sqrt{\big( \frac{v}{\omega} \big)^2 - a^2}}{l^2} \bigg)\]</div>
+<p>By rearranging <a class="reference internal" href="#eq-kinematics-ackerman-epsilon-ifv-eps-fl"><span class="std std-ref">Equation 4</span></a>
+and by assuming the angular velocity equality <a class="reference internal" href="#eq-kinematics-ackerman-omega-equal"><span class="std std-ref">(Equation 5)</span></a> we can determine the inverse kinematic model.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\epsilon_{fl} &amp;= \mathrm{acot}\bigg( cot(\epsilon) - \frac{b}{2\,l}\bigg)  \\
+v_{rr} &amp;= \frac{R_{rr}}{R_B} \, v_y = \frac{R + \big(\frac{b}{2}\big)}{R}\,v \, \mathrm{cos}(\alpha)\end{split}\]</div>
+</section>
+<section id="skid-steering">
+<h3>Skid steering<a class="headerlink" href="#skid-steering" title="Permalink to this heading"></a></h3>
+<p>Figure 3 was used to derive the kinematic model of a skid steering robot.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/fig_kinematics_skid_steering.png"><img alt="_images/fig_kinematics_skid_steering.png" src="_images/fig_kinematics_skid_steering.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 3.</strong> Kinematics skid steering vehicle configuration</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>direct kinematic model</em></p>
+<div class="math notranslate nohighlight">
+\[f(v_{l}, v_{r}) = (v_x, v_y, \omega_z)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}v_x &amp;= 0 \\
+v_y &amp;= \frac{v_r + v_l}{2} \\
+\omega_z &amp;= \frac{v_r - v_l}{b}\end{split}\]</div>
+<p>The <em>inverse kinematic model</em></p>
+<div class="math notranslate nohighlight">
+\[g(v_x, v_y, \omega_z) = (v_{l}, v_{r})\]</div>
+<p>Imagine the robot driving in a circle. All parts of the robot move with the same rotational velocity around the ICR (point O in <em>Figure 3</em>), consequently the equality <span class="math notranslate nohighlight">\(\omega = \omega_r = \omega_l\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\omega_z &amp;= \frac{v}{R} = \frac{v_l}{R-a} = \frac{v_r}{R+a}  \\
+\Leftrightarrow v_l &amp;= \frac{v}{\frac{R}{R-a}} = \frac{2v}{\frac{R+a}{R-a} + 1} \,\,\, , \,\,\,
+v_r = \frac{v}{\frac{R}{R+a}} = \frac{2v}{\frac{R-a}{R+a} + 1}\end{split}\]</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="basic-concepts.html" class="btn btn-neutral float-left" title="Basic concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="operational-layer.html" class="btn btn-neutral float-right" title="Operational layer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

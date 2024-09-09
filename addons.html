@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add-ons &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Operational layer" href="operational-layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Add-ons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-package">Python package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-add-on">System add-on</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app-area">App area</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#navigation-bar">Navigation bar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#field">Field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-field">New field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#map">Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#settings">Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#admin-area">Admin area</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#addon-system-admin-settings">Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#processes">Processes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Add-ons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#monitor">Monitor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#node-red-add-on">Node-red add-on</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Add-ons</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/addons.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="add-ons">
+<span id="addons"></span><h1>Add-ons<a class="headerlink" href="#add-ons" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Add-ons are Docker containers that run on the same system as the <em>operational layer</em>.
+The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SystemManager</span></code> process maintains the add-ons and can start, stop, and update the add-on at request.
+The add-ons in the system are configured using the <a class="reference internal" href="#addon-system"><span class="std std-ref">system add-on web app</span></a> in a JSON editor, using the <a class="reference external" href="https://docs.docker.com/engine/api/v1.46/">Docker Engine API (1.46)</a> syntax.</p>
+</section>
+<section id="python-package">
+<h2>Python package<a class="headerlink" href="#python-package" title="Permalink to this heading"></a></h2>
+<p>A python package supports new python-addons. The package provides the interaction with the <em>operational layer</em> including:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><em>ARTOF Redis interface</em> interaction</p></li>
+<li><p>Field manipulation</p></li>
+<li><p>Platform configuration access</p></li>
+</ol>
+</div></blockquote>
+<p>You can find the source code of the python package in the <a class="reference external" href="https://github.com/artof-ilvo/artof-utils">artof-utils</a> project.</p>
+</section>
+<section id="system-add-on">
+<span id="addon-system"></span><h2>System add-on<a class="headerlink" href="#system-add-on" title="Permalink to this heading"></a></h2>
+<p>The system add-on is implemented in python-Django and provides a web application to configure the robot.
+By default, the web application is hosted at port 80 on the computer running the add-on.
+Switch the <em>App and Admin area</em> in the upper right corner.</p>
+<section id="app-area">
+<h3>App area<a class="headerlink" href="#app-area" title="Permalink to this heading"></a></h3>
+<section id="navigation-bar">
+<h4>Navigation bar<a class="headerlink" href="#navigation-bar" title="Permalink to this heading"></a></h4>
+<p>The top navigation bar in the <em>App area</em> visualizes</p>
+<ul class="simple">
+<li><p>the error bar, indicating the navigation error of the robot during navigation;</p></li>
+<li><p>the navigation state (normal, auto, steer, throttle);</p></li>
+<li><p>the GNSS fix state <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+    <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+    <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+</svg> (Not valid, Float, Fix);</p></li>
+<li><p>the heartbeat <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+</svg> (Pulses at 2Hz).</p></li>
+</ul>
+</section>
+<section id="field">
+<h4>Field<a class="headerlink" href="#field" title="Permalink to this heading"></a></h4>
+<p>The <em>Field Tab</em> is the first tab you see when browsing the web application.
+This tab gives an overview of the available <em>Fields</em> in the system.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/fig_robotframework_app_field.jpeg"><img alt="_images/fig_robotframework_app_field.jpeg" src="_images/fig_robotframework_app_field.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1.</strong> Tab App: Field</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Select another field by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+    <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+    <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+  </svg> button.</p></li>
+<li><p>Duplicate a field using the grey <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+</svg> button.</p></li>
+<li><p>Edit a field by clicking on the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button.</p></li>
+<li><p>Download a field by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+</svg> button.</p></li>
+<li><p>Delete a field by clicking on the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+</svg> button.</p></li>
+</ul>
+</section>
+<section id="new-field">
+<h4>New field<a class="headerlink" href="#new-field" title="Permalink to this heading"></a></h4>
+<p>To create a trajectory, geofence or task, you can select the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">original</span></code> you maintain the trajectory allocated to this field (only applicable when editing a field)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code> you can upload the shapefile of a Linestring.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">draw</span></code> you can draw the Linestring using the tools on the map.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drive</span></code> you can drive in the AB line in the <em>Tab Map</em>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you upload a shape file, you must upload the files with the extensions <code class="docutils literal notranslate"><span class="pre">cpg</span></code>, <code class="docutils literal notranslate"><span class="pre">dbf</span></code>, <code class="docutils literal notranslate"><span class="pre">prj</span></code>, <code class="docutils literal notranslate"><span class="pre">shp</span></code> and <code class="docutils literal notranslate"><span class="pre">shx</span></code>.
+So, five files are selected in total.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Always click on the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+    <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+    <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+  </svg> button when performing a change. When the change is successful, the section folds in and highlights green; otherwise, the results are not saved.
+When you’re done, click the <code class="docutils literal notranslate"><span class="pre">Done</span></code> button to return to the Tab Field.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Change the field name <code class="docutils literal notranslate"><span class="pre">New</span></code> to your desired field name and press the check icon button (<em>Figure 2</em>)</p></li>
+<li><p>Create a trajectory</p></li>
+<li><p>Create geofence</p></li>
+<li><p>Add one or more tasks (<em>Figure 3</em>)</p></li>
+</ol>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/fig_robotframework_app_editfield_name.jpeg"><img alt="_images/fig_robotframework_app_editfield_name.jpeg" src="_images/fig_robotframework_app_editfield_name.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 2.</strong> Tab App: Edit Field (alter the name)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/fig_robotframework_app_editfield_task.jpeg"><img alt="_images/fig_robotframework_app_editfield_task.jpeg" src="_images/fig_robotframework_app_editfield_task.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 3.</strong> Tab App: Edit Field (optionally add a task)</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="map">
+<h4>Map<a class="headerlink" href="#map" title="Permalink to this heading"></a></h4>
+<p>The <em>Map</em> gives an overview of the robot during operation.</p>
+<p>On the map you can see:</p>
+<ul>
+<li><p>The robot: blue rectangle</p></li>
+<li><p>The hitch hinges and hitch pens: white dots</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Hitch hinges become red when a <em>hitch task</em>  activates the hitch.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The sections: white rectangles</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The sections become red when activated by a <em>continuous, discrete or intermittent task</em>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The green dots are visualizations of the navigation algorithm, including the robot reference, the closest point on the trajectory, and the look-ahead point.</p></li>
+<li><p>The geofence: red polygon</p></li>
+<li><p>The traject: red line with direction arrows</p></li>
+<li><p>The tasks: green, blue, …, depending on the task type</p></li>
+</ul>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="_images/fig_robotframework_app_map.jpeg"><img alt="_images/fig_robotframework_app_map.jpeg" src="_images/fig_robotframework_app_map.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 4.</strong> Tab App: Map</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The right sidebar contains additional tools.</p>
+<ul>
+<li><p>The <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-crosshair" viewBox="0 0 16 16">
+    <path d="M8.5.5a.5.5 0 0 0-1 0v.518A7 7 0 0 0 1.018 7.5H.5a.5.5 0 0 0 0 1h.518A7 7 0 0 0 7.5 14.982v.518a.5.5 0 0 0 1 0v-.518A7 7 0 0 0 14.982 8.5h.518a.5.5 0 0 0 0-1h-.518A7 7 0 0 0 8.5 1.018zm-6.48 7A6 6 0 0 1 7.5 2.02v.48a.5.5 0 0 0 1 0v-.48a6 6 0 0 1 5.48 5.48h-.48a.5.5 0 0 0 0 1h.48a6 6 0 0 1-5.48 5.48v-.48a.5.5 0 0 0-1 0v.48A6 6 0 0 1 2.02 8.5h.48a.5.5 0 0 0 0-1zM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+</svg> button always places the robot in the center of the map.</p></li>
+<li><p>The <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor" viewBox="0 0 16 16">
+  <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52z"/>
+</svg> button toggles the north direction of the map.</p></li>
+<li><p>The <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button opens the field edit tools (<em>Figure 5</em>).</p>
+<blockquote>
+<div><ul>
+<li><p>With the first item selector, you can select every field layer (traject, geofence, task 1, task 2, etc.).</p></li>
+<li><p>For a <code class="docutils literal notranslate"><span class="pre">traject</span></code> the</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Row selected in the <code class="docutils literal notranslate"><span class="pre">Rows</span></code> text field can be extended, shifted or deleted.</p></li>
+<li><p>Rows can be added at the beginning or end of the trajectory.</p></li>
+<li><p>With the <code class="docutils literal notranslate"><span class="pre">Drive</span> <span class="pre">in</span></code> button you can drive in a new AB line. Not that this overwrites the previous trajectory.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>For a polygon line shape such as a geofence or continuous task the polygon can be buffered</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Sim</span></code> button activates <em>simulation mode</em>. When the <em>operational layer</em> communicates <em>mechatronic layer</em>, the robots go in <em>Hardware In The Loop (HIL) testing</em>; if not, you perform an <em>integration test</em> in the <em>operational layer</em>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>With the simulation <code class="docutils literal notranslate"><span class="pre">Factor</span></code>, you can multiply the simulation speed.</p></li>
+<li><p>The <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-command" viewBox="0 0 16 16">
+  <path d="M3.5 2A1.5 1.5 0 0 1 5 3.5V5H3.5a1.5 1.5 0 1 1 0-3M6 5V3.5A2.5 2.5 0 1 0 3.5 6H5v4H3.5A2.5 2.5 0 1 0 6 12.5V11h4v1.5a2.5 2.5 0 1 0 2.5-2.5H11V6h1.5A2.5 2.5 0 1 0 10 3.5V5zm4 1v4H6V6zm1-1V3.5A1.5 1.5 0 1 1 12.5 5zm0 6h1.5a1.5 1.5 0 1 1-1.5 1.5zm-6 0v1.5A1.5 1.5 0 1 1 3.5 11z"/>
+</svg> button at the bottom allows you to position the robot with a left mouse click. After that, you can also navigate the robot in simulation mode using the arrows on the keyboard. This is, of course, independent of the mechatronic layer and the behaviour of the attached physical robot.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When performing changes with the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> tools, a preview of the changes is visualized in black on the map.
+Press the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+    <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+    <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+  </svg> button to confirm your change and the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+  <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
+</svg> button to upload it to the robot.</p>
+</div>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="_images/fig_robotframework_app_map_add_rows.jpeg"><img alt="_images/fig_robotframework_app_map_add_rows.jpeg" src="_images/fig_robotframework_app_map_add_rows.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 5.</strong> Tab App: Map Edit</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="settings">
+<h4>Settings<a class="headerlink" href="#settings" title="Permalink to this heading"></a></h4>
+<p>The <em>Settings</em> are used to configure the operational functionality of the robot platform. You can configure</p>
+<ul class="simple">
+<li><p>the navigation mode, as explained in <a class="reference internal" href="basic-concepts.html#basic-concepts-platform"><span class="std std-ref">Platform</span></a>.</p></li>
+<li><p>the operational and non-operational velocity. The robot uses the operational velocity when it is in a task polygon; otherwise, it uses the non-operational velocity.</p></li>
+<li><p>the hitch height, and if provided by the robot’s hardware, the <code class="docutils literal notranslate"><span class="pre">float</span></code> mode.</p></li>
+<li><p>Navigation controller parameters.</p></li>
+</ul>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="_images/fig_robotframework_app_settings.jpeg"><img alt="_images/fig_robotframework_app_settings.jpeg" src="_images/fig_robotframework_app_settings.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 6.</strong> Tab App: Settings</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="admin-area">
+<h3>Admin area<a class="headerlink" href="#admin-area" title="Permalink to this heading"></a></h3>
+<section id="addon-system-admin-settings">
+<span id="id1"></span><h4>Settings<a class="headerlink" href="#addon-system-admin-settings" title="Permalink to this heading"></a></h4>
+<p>In the admin <em>Settings</em>, the <a class="reference internal" href="basic-concepts.html#basic-concepts"><span class="std std-ref">configuration files</span></a> can be edited with a JSON editor by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button.
+After editing, press the Format <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-json" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM4.151 15.29a1.176 1.176 0 0 1-.111-.449h.764a.578.578 0 0 0 .255.384c.07.049.154.087.25.114.095.028.201.041.319.041.164 0 .301-.023.413-.07a.559.559 0 0 0 .255-.193.507.507 0 0 0 .084-.29.387.387 0 0 0-.152-.326c-.101-.08-.256-.144-.463-.193l-.618-.143a1.72 1.72 0 0 1-.539-.214 1.001 1.001 0 0 1-.352-.367 1.068 1.068 0 0 1-.123-.524c0-.244.064-.457.19-.639.128-.181.304-.322.528-.422.225-.1.484-.149.777-.149.304 0 .564.05.779.152.217.102.384.239.5.41.12.17.186.359.2.566h-.75a.56.56 0 0 0-.12-.258.624.624 0 0 0-.246-.181.923.923 0 0 0-.37-.068c-.216 0-.387.05-.512.152a.472.472 0 0 0-.185.384c0 .121.048.22.144.3a.97.97 0 0 0 .404.175l.621.143c.217.05.406.12.566.211a1 1 0 0 1 .375.358c.09.148.135.335.135.56 0 .247-.063.466-.188.656a1.216 1.216 0 0 1-.539.439c-.234.105-.52.158-.858.158-.254 0-.476-.03-.665-.09a1.404 1.404 0 0 1-.478-.252 1.13 1.13 0 0 1-.29-.375Zm-3.104-.033a1.32 1.32 0 0 1-.082-.466h.764a.576.576 0 0 0 .074.27.499.499 0 0 0 .454.246c.19 0 .33-.055.422-.164.091-.11.137-.265.137-.466v-2.745h.791v2.725c0 .44-.119.774-.357 1.005-.237.23-.565.345-.985.345a1.59 1.59 0 0 1-.568-.094 1.145 1.145 0 0 1-.407-.266 1.14 1.14 0 0 1-.243-.39Zm9.091-1.585v.522c0 .256-.039.47-.117.641a.862.862 0 0 1-.322.387.877.877 0 0 1-.47.126.883.883 0 0 1-.47-.126.87.87 0 0 1-.32-.387 1.55 1.55 0 0 1-.117-.641v-.522c0-.258.039-.471.117-.641a.87.87 0 0 1 .32-.387.868.868 0 0 1 .47-.129c.177 0 .333.043.47.129a.862.862 0 0 1 .322.387c.078.17.117.383.117.641m.803.519v-.513c0-.377-.069-.701-.205-.973a1.46 1.46 0 0 0-.59-.63c-.253-.146-.559-.22-.916-.22-.356 0-.662.074-.92.22a1.441 1.441 0 0 0-.589.628c-.137.271-.205.596-.205.975v.513c0 .375.068.699.205.973.137.271.333.48.589.626.258.145.564.217.92.217.357 0 .663-.072.917-.217.256-.146.452-.355.589-.626.136-.274.205-.598.205-.973Zm1.29-.935v2.675h-.746v-3.999h.662l1.752 2.66h.032v-2.66h.75v4h-.656l-1.761-2.676h-.032Z"/>
+</svg> button to check syntax errors and submit the changes with the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1z"/>
+  <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z"/>
+</svg> button.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changes in the admin <em>Settings</em> require a restart of the robot (computer).</p>
+</div>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="_images/fig_robotframework_admin_settings.jpeg"><img alt="_images/fig_robotframework_admin_settings.jpeg" src="_images/fig_robotframework_admin_settings.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 6.</strong> Tab Admin: Settings</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="implements">
+<h4>Implements<a class="headerlink" href="#implements" title="Permalink to this heading"></a></h4>
+<p>You can add, remove or alter implements with the JSON editor.</p>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="_images/fig_robotframework_admin_implements.jpeg"><img alt="_images/fig_robotframework_admin_implements.jpeg" src="_images/fig_robotframework_admin_implements.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 6.</strong> Tab Admin: Implements</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Add a new implement using the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+  </svg> button.</p></li>
+<li><p>Remove an implement by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+</svg> button.</p></li>
+<li><p>Alter an implement by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you are modifying an enabled implement in the selected field, you first need to toggle another field for the changes to occur.</p>
+</div>
+</section>
+<section id="processes">
+<h4>Processes<a class="headerlink" href="#processes" title="Permalink to this heading"></a></h4>
+<p>The <em>Process Tab</em> lists information on the processes like starting time, state, etc.</p>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="_images/fig_robotframework_admin_implements.jpeg"><img alt="_images/fig_robotframework_admin_implements.jpeg" src="_images/fig_robotframework_admin_implements.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 7.</strong> Tab Admin: Implements</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Start the process by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+  <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+</svg> button.</p></li>
+<li><p>Stop the process by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stop" viewBox="0 0 16 16">
+  <path d="M3.5 5A1.5 1.5 0 0 1 5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11zM5 4.5a.5.5 0 0 0-.5.5v6a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5V5a.5.5 0 0 0-.5-.5z"/>
+</svg> button.</p></li>
+<li><p>You can see the process configuration by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button (you cannot edit a process, so the submit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1z"/>
+  <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z"/>
+</svg> button is disabled).</p></li>
+</ul>
+</section>
+<section id="id2">
+<h4>Add-ons<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<p>The <em>Add-on Tab</em> lists basic information about add-ons in the system, such as their starting time and status.</p>
+<figure class="align-center" id="id13">
+<a class="reference internal image-reference" href="_images/fig_robotframework_admin_addons.jpeg"><img alt="_images/fig_robotframework_admin_addons.jpeg" src="_images/fig_robotframework_admin_addons.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 8.</strong> Tab Admin: Add-ons</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Add a new add-on using the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+  </svg> button.</p></li>
+<li><p>Start the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+  <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+</svg> button.</p></li>
+<li><p>Stop the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stop" viewBox="0 0 16 16">
+  <path d="M3.5 5A1.5 1.5 0 0 1 5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11zM5 4.5a.5.5 0 0 0-.5.5v6a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5V5a.5.5 0 0 0-.5-.5z"/>
+</svg> button.</p></li>
+<li><p>Update the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+</svg> button. The latest docker version of the add-on online available is pulled and installed.</p></li>
+<li><p>Edit the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button.</p></li>
+<li><p>Delete the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+</svg> button.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The add-on configuration uses the <a class="reference external" href="https://docs.docker.com/engine/api/v1.46/">Docker Engine API (1.46)</a> syntax.</p>
+</div>
+</section>
+<section id="monitor">
+<h4>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading"></a></h4>
+<p>Except for JSON variables, you can monitor all <a class="reference internal" href="basic-concepts.html#basic-concepts-interfaces"><span class="std std-ref">Redis variables</span></a> in the <em>Monitor Tab</em> on the system.
+Use the search bar to find a specific variable.
+Modify values by editing the new value in the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> text field and press the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/>
+    <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z"/>
+</svg> for the change to occur.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Altering <code class="docutils literal notranslate"><span class="pre">plc.monitor</span></code> does not have any effect, as it is immediately updated again by the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">PlcVariableManager</span></code>.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="node-red-add-on">
+<span id="addon-node-red"></span><h2>Node-red add-on<a class="headerlink" href="#node-red-add-on" title="Permalink to this heading"></a></h2>
+<p>The node-red add-on can be reached at the URL <a class="reference external" href="http://robotframework:1880/">http://robotframework:1880/</a>. Change “robotframework” to the robot’s IP address.</p>
+<p>You can install the submodules for extracting the Redis variables and logging them to an InfluxDB instance by</p>
+<p><em>&lt;Coming soon&gt;</em></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="operational-layer.html" class="btn btn-neutral float-left" title="Operational layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

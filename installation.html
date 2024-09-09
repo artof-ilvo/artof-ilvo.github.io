@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Licence" href="license.html" />
+    <link rel="prev" title="Add-ons" href="addons.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Add-ons</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-docker">Install Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system">System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check-your-installation-binary-and-docker">Check your installation (Binary and Docker)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-hardware-configuration">Additional hardware configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simplertk3b-gps">SimpleRTK3b GPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-ssh">Enable ssh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-connection">Remote connection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#common-issues">Common issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ethernet-over-usb-of-the-simplertk3b-module-on-a-nuc">Ethernet over USB of the SimpleRTK3b module on a NUC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<section id="install-docker">
+<h2>Install Docker<a class="headerlink" href="#install-docker" title="Permalink to this heading"></a></h2>
+<p>For both installations you need to have docker installed.
+Install <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">docker</a> with <a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/">root-level privileges</a>.
+You may have to reboot after installation.</p>
+<p>A full <a class="reference internal" href="#installation-docker"><span class="std std-ref">Docker</span></a> installation can be used for testing or developing the framework.
+A <a class="reference internal" href="#installation-system"><span class="std std-ref">System</span></a> installation is preferred when integrating the framework on a robot platform.</p>
+</section>
+<section id="installation-docker">
+<span id="id1"></span><h2>Docker<a class="headerlink" href="#installation-docker" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Download the file below and unzip.</p></li>
+</ol>
+<ul class="simple">
+<li><p>On <strong>linux</strong> you can use <code class="docutils literal notranslate"><span class="pre">wget</span></code> command to download the file:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://minio.ilvo.be:9000/tv115-ilvo-robotics/artof-docker.zip
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>On <strong>windows</strong> and <strong>macOS</strong> you can use <code class="docutils literal notranslate"><span class="pre">curl</span></code> command to download the file:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-o<span class="w"> </span>artof-docker.zip<span class="w"> </span>https://minio.ilvo.be:9000/tv115-ilvo-robotics/artof-docker.zip
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Unzip the folder and navigate into the folder <code class="docutils literal notranslate"><span class="pre">ilvo</span></code>.</p></li>
+</ol>
+<ul class="simple">
+<li><p>On <strong>linux</strong> and <strong>macOS</strong> you can use unzip:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>artof-docker.zip
+<span class="nb">cd</span><span class="w"> </span>ilvo
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>On <strong>windows</strong> you can right click on the zip file and unzip it.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">data/redis.init.json</span></code> file and change <code class="docutils literal notranslate"><span class="pre">/d/artof-docker/docker/data</span></code> to the absolute path of the datafolder in this directory. Note that for windows the <code class="docutils literal notranslate"><span class="pre">D:</span></code> drive has to be referred to as <code class="docutils literal notranslate"><span class="pre">/d/</span></code>.</p></li>
+</ol>
+<p>4. Start the containers by executing the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">up</span></code> command. You will see the output of the <code class="docutils literal notranslate"><span class="pre">artof-core</span></code> and <code class="docutils literal notranslate"><span class="pre">redis-stack-server</span></code> containers.
+The first time, it can take some time for the <code class="docutils literal notranslate"><span class="pre">artof-core</span></code> to pull and install the system and node-red add-on.
+The output of the <code class="docutils literal notranslate"><span class="pre">artof-core</span></code> will provide information of how the add-ons are launching.
+You can check the status of the different containers in docker Docker or using the Docker cli.</p>
+<ul class="simple">
+<li><p><em>Note</em>: When updating to a new version, it is important to clear the redis cache. This can be done by removing the <code class="docutils literal notranslate"><span class="pre">redis_data</span></code> volume or perform the <code class="docutils literal notranslate"><span class="pre">redis-cli</span> <span class="pre">FLUSHALL</span></code> command.</p></li>
+</ul>
+<p>The Docker installation is tested on:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operating System</p></th>
+<th class="head"><p>Arch</p></th>
+<th class="head"><p>Docker Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ubuntu 22.04</p></td>
+<td><p>x86_64</p></td>
+<td><p>26.0.0, build 2ae903e</p></td>
+</tr>
+<tr class="row-odd"><td><p>Windows 11</p></td>
+<td><p>x86_64</p></td>
+<td><p>26.0.0, build 2ae903e</p></td>
+</tr>
+<tr class="row-even"><td><p>Windows 10</p></td>
+<td><p>x86_64</p></td>
+<td><p>26.0.0, build 2ae903e</p></td>
+</tr>
+<tr class="row-odd"><td><p>macOS Sonoma 14.2</p></td>
+<td><p>x86_64</p></td>
+<td><p>26.0.0, build 2ae903e</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="system">
+<span id="installation-system"></span><h2>System<a class="headerlink" href="#system" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Download and run the script to install the ARTOF dependencies.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://minio.ilvo.be:9000/tv115-ilvo-robotics/install.sh
+chmod<span class="w"> </span>+x<span class="w"> </span>install.sh
+./install.sh
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>The update script can be used for installing the ARTOF binaries for the first time, but also to update to a later or specific version.</p></li>
+</ol>
+<p>For the installation perform the bash commands below and wait until <code class="docutils literal notranslate"><span class="pre">`Done!`</span></code> appears.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://minio.ilvo.be:9000/tv115-ilvo-robotics/update.sh
+chmod<span class="w"> </span>+x<span class="w"> </span>install.sh
+./update.sh
+</pre></div>
+</div>
+<p>For updating to the latest version perform the bash commands below and wait until <code class="docutils literal notranslate"><span class="pre">`Done!`</span></code> appears.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./update.sh
+</pre></div>
+</div>
+<p>The binary installation is currently only supported on <strong>Ubuntu 22.04 (arch: x86_64)</strong>.</p>
+<p>The binary installation is tested on:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operating System</p></th>
+<th class="head"><p>Arch</p></th>
+<th class="head"><p>Docker Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ubuntu 22.04</p></td>
+<td><p>x86_64</p></td>
+<td><p>26.0.0, build 2ae903e</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-installation-binary-and-docker">
+<h2>Check your installation (Binary and Docker)<a class="headerlink" href="#check-your-installation-binary-and-docker" title="Permalink to this heading"></a></h2>
+<p>Now, you can browse for the first time to the <em>system add-on web page</em>.</p>
+<ul class="simple">
+<li><p>For the system installation, browse to <a class="reference external" href="http://localhost">http://&lt;ip-robot&gt;</a>.</p></li>
+<li><p>For the docker installation, browse to <a class="reference external" href="http://localhost:8080">http://&lt;ip-robot&gt;:8080</a>.</p></li>
+</ul>
+<p>Next, browse to the <em>Tab Map</em> and toggle the <code class="docutils literal notranslate"><span class="pre">`Sim`</span></code> button twice. You should see the robot appear as shown in <em>Figure 1</em>.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/fig_robotframework_first_view.png"><img alt="_images/fig_robotframework_first_view.png" src="_images/fig_robotframework_first_view.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1.</strong> Tab Map: First view of the robot in the system add-on</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Thereafter, check the <em>node-red add-on</em> installation at <a class="reference external" href="http://localhost:1880">http://&lt;ip-robot&gt;:1880</a>.</p>
+</section>
+<section id="additional-hardware-configuration">
+<h2>Additional hardware configuration<a class="headerlink" href="#additional-hardware-configuration" title="Permalink to this heading"></a></h2>
+<section id="simplertk3b-gps">
+<h3>SimpleRTK3b GPS<a class="headerlink" href="#simplertk3b-gps" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Connect to USB ethernet (dhcp) and write the ip <a class="reference external" href="http://192.168.3.1">192.168.3.1</a> in your brower.</p></li>
+<li><p>In tab <code class="docutils literal notranslate"><span class="pre">`Corrections`</span></code> <code class="docutils literal notranslate"><span class="pre">`Correntions</span> <span class="pre">Input`</span></code>, set <code class="docutils literal notranslate"><span class="pre">`USB1`</span></code> to <code class="docutils literal notranslate"><span class="pre">`RTCMv3`</span></code></p></li>
+<li><p>In tab <code class="docutils literal notranslate"><span class="pre">`NMEA/SBF</span> <span class="pre">Out`</span></code> add <code class="docutils literal notranslate"><span class="pre">`New</span> <span class="pre">NMEA</span> <span class="pre">stream`</span></code> set <code class="docutils literal notranslate"><span class="pre">`USB1`</span></code> to <code class="docutils literal notranslate"><span class="pre">`GGA+VTG+HDT+HRP`</span></code> and specify your interval.</p></li>
+<li><p>On your computer you need to add yourself to the dialout group <code class="docutils literal notranslate"><span class="pre">`sudo</span> <span class="pre">usermod</span> <span class="pre">-a</span> <span class="pre">-G</span> <span class="pre">dialout</span> <span class="pre">&lt;your-username&gt;`</span></code> and reboot.</p></li>
+<li><p>Configure automatic hyperlink creation for a <code class="docutils literal notranslate"><span class="pre">`/dev/ttACMx`</span></code> to <code class="docutils literal notranslate"><span class="pre">`/dev/septentrio0`</span></code>. Therefore paste the following in the file <code class="docutils literal notranslate"><span class="pre">`/etc/udev/rules.d/99-septentrio.rules`</span></code>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/udev/rules.d/99-septentrio.rules
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># SEPTENTRIO (names are not loaded in lsusb, use ENV variables of udevadm)</span>
+<span class="nv">SUBSYSTEM</span><span class="o">==</span><span class="s2">&quot;tty&quot;</span>,<span class="w"> </span><span class="nv">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_VENDOR_ID<span class="o">}==</span><span class="s2">&quot;152a&quot;</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_MODEL_ID<span class="o">}==</span><span class="s2">&quot;85c0&quot;</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_USB_INTERFACE_NUM<span class="o">}==</span><span class="s2">&quot;02&quot;</span>,<span class="w"> </span><span class="nv">SYMLINK</span><span class="o">+=</span><span class="s2">&quot;septentrio0&quot;</span>
+<span class="nv">SUBSYSTEM</span><span class="o">==</span><span class="s2">&quot;tty&quot;</span>,<span class="w"> </span><span class="nv">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_VENDOR_ID<span class="o">}==</span><span class="s2">&quot;152a&quot;</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_MODEL_ID<span class="o">}==</span><span class="s2">&quot;85c0&quot;</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_USB_INTERFACE_NUM<span class="o">}==</span><span class="s2">&quot;04&quot;</span>,<span class="w"> </span><span class="nv">SYMLINK</span><span class="o">+=</span><span class="s2">&quot;septentrio1&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="enable-ssh">
+<h3>Enable ssh<a class="headerlink" href="#enable-ssh" title="Permalink to this heading"></a></h3>
+<p>To enable ssh execute the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">status</span> <span class="n">ssh</span>
+</pre></div>
+</div>
+</section>
+<section id="remote-connection">
+<h3>Remote connection<a class="headerlink" href="#remote-connection" title="Permalink to this heading"></a></h3>
+<p>To access the robot framework remotely, you can configure a VPN connection (e.g. <a class="reference external" href="https://tailscale.com/kb/1031/install-linux">tailscale</a>).</p>
+</section>
+</section>
+<section id="common-issues">
+<h2>Common issues<a class="headerlink" href="#common-issues" title="Permalink to this heading"></a></h2>
+<section id="ethernet-over-usb-of-the-simplertk3b-module-on-a-nuc">
+<h3>Ethernet over USB of the SimpleRTK3b module on a NUC<a class="headerlink" href="#ethernet-over-usb-of-the-simplertk3b-module-on-a-nuc" title="Permalink to this heading"></a></h3>
+<p>The Septentrio chip of the SimpleRTK3b GPS modules provides ethernet over USB. This can cause problems on boot time as this USB network device may be selected in favor of the PCI network device. This guide provides a step-by-step approach to create a <cite>systemd</cite> service file that ensures the specified PCI network device is automatically connected at boot time using <cite>nmcli</cite>. The provided instructions use <cite>systemd</cite>, a system and service manager for Linux operating systems, to execute the NetworkManager command line interface (<code class="docutils literal notranslate"><span class="pre">`nmcli`</span></code>) once the network is online.</p>
+<ol class="arabic simple">
+<li><p>Open a Terminal: <code class="docutils literal notranslate"><span class="pre">`Cntrl-Alt-t`</span></code></p></li>
+<li><p>Create Service File: Use a text editor with root permissions to create a new systemd service file. You can use <code class="docutils literal notranslate"><span class="pre">`nano`</span></code> or <code class="docutils literal notranslate"><span class="pre">`vim`</span></code> or any other text editor.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/systemd/system/connect-network.service
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add Service Configuration: Copy the following content into the newly created service file. Replace <cite>&lt;network device&gt;</cite> with the network device identifier you intend to connect.</p></li>
+</ol>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Connect to a specific network device at boot</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network-online.target</span>
+<span class="na">Wants</span><span class="o">=</span><span class="s">network-online.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">oneshot</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/nmcli dev connect &lt;network device&gt;</span>
+<span class="na">RemainAfterExit</span><span class="o">=</span><span class="s">yes</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Enable and start the service</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>connect-network.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>connect-network.service
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="addons.html" class="btn btn-neutral float-left" title="Add-ons" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="license.html" class="btn btn-neutral float-right" title="Licence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

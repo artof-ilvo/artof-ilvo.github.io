@@ -188,16 +188,29 @@ The cot-average :ref:`Equation 2 <eq:kinematics_ackerman_cot_avg>` and the Acker
 .. math:: \frac{b}{l} = \mathrm{cot}(\epsilon_{fr}) - \mathrm{cot}(\epsilon_{fl})
    :name: eq:kinematics_ackerman_condition
 
+We can find the relation :math:`\epsilon` and :math:`\epsilon_{fl}` and between :math:`\epsilon` and :math:`\epsilon_{fr}` by substituting the ackerman condition :ref:`(Equation 3) <eq:kinematics_ackerman_condition>` into the :ref:`(Equation 2) <eq:kinematics_ackerman_cot_avg>`.
+
+.. math:: \frac{b}{2\,l} = \mathrm{cot}(\epsilon) - \mathrm{cot}(\epsilon_{fl})
+    :name: eq:kinematics_ackerman_epsilon_ifv_eps_fl
+
+.. math:: -\frac{b}{2\,l} = \mathrm{cot}(\epsilon) - \mathrm{cot}(\epsilon_{fr})
+    :name: eq:kinematics_ackerman_epsilon_ifv_eps_fr
+
 In *Figure 2* we can see that the Equations :math:`\mathrm{tan}(\epsilon) = \frac{l}{R_B}` and :math:`\mathrm{tan}(\alpha) = \frac{a}{R_B}` apply.
-We can calculate :math:`\alpha` in :ref:`Equation 4 <eq:kinematics_ackerman_alpha>`.
+We can calculate :math:`\alpha` in :ref:`Equation 6 <eq:kinematics_ackerman_alpha>`.
 
 
 .. math:: \alpha = \mathrm{atan} \big(\frac{a}{l}\, \mathrm{tan}(\epsilon) \big)
     :name: eq:kinematics_ackerman_alpha
 
+By substituting :ref:`Equation 4 <eq:kinematics_ackerman_epsilon_direct>` into :ref:`Equation 6 <eq:kinematics_ackerman_alpha>`,
+we find the relation :math:`\alpha = q(\epsilon_{fl})` in equation :ref:`Equation 9 <eq:kinematics_ackerman_alpha_ifv_eps_fl>`.
+
+.. math:: \alpha = \mathrm{atan} \big( \frac{a}{\frac{b}{2} + l\, \mathrm{cot}(\epsilon_{fl})} \big)
+    :name: eq:kinematics_ackerman_alpha_ifv_eps_fl
 
 Assume that we only measure the front-left steering angle :math:`\epsilon_{fl}` and the angular velocity of the rear-right wheel :math:`\epsilon_{rr}`.
-For small angles in :math:`\epsilon`, we can assume :math:`\omega_A = \omega_B = \omega_C`. Consequently :ref:`Equation 5 <eq:kinematics_ackerman_omega_equal>` applies.
+For small angles in :math:`\epsilon`, we can assume :math:`\omega_A = \omega_B = \omega_C`. Consequently :ref:`Equation 8 <eq:kinematics_ackerman_omega_equal>` applies.
 
 .. math:: \frac{v_{rr}}{R_{rr}} = \frac{v_{y}}{R_{B}}
     :name: eq:kinematics_ackerman_omega_equal
@@ -207,13 +220,12 @@ The *direct kinematic model*
 .. math::
    f(v_{rr}, \epsilon_{fl}) = (v_x, v_y, \omega_z)
 
-We can find the relation :math:`\epsilon = q(\epsilon_{fl})` by substituting the ackerman condition :ref:`(Equation 3) <eq:kinematics_ackerman_condition>` into the :ref:`(Equation 2) <eq:kinematics_ackerman_cot_avg>`.
+We can find the relation :math:`\epsilon = q(\epsilon_{fl})` by rearranging :ref:`Equation 4 <eq:kinematics_ackerman_epsilon_ifv_eps_fl>`.
 
-.. math:: \epsilon = \mathrm{acot} \big( \mathrm{cot}(\epsilon_{fl}) + \frac{b}{2\,l} \big)
+.. math:: \epsilon = \mathrm{acot} \big( \frac{b}{2\,l} + \mathrm{cot}(\epsilon_{fl}) \big)
     :name: eq:kinematics_ackerman_epsilon_direct
 
-By substituting :ref:`Equation 6 <eq:kinematics_ackerman_epsilon_direct>` into :ref:`Equation 4 <eq:kinematics_ackerman_alpha>`,
-we got the relation :math:`\alpha = q(\epsilon_{fl})`, which can be used to integrate into the equations of the direct kinematic model below.
+:ref:`Equation 7 <eq:kinematics_ackerman_alpha_ifv_eps_fl>` can be used to integrate into the equations of the direct kinematic model below.
 
 .. math::
     v_y &= \frac{R_B}{R_{rr}}\,v_{rr} = \frac{R\, \mathrm{cos}(\alpha)}{R\, \mathrm{cos}(\alpha) + \big(\frac{b}{2}\big)}\,v_{rr} \\
@@ -232,12 +244,12 @@ We can determine :math:`\epsilon` using the green circle's radius in :ref:`Equat
 .. math:: \epsilon = \mathrm{acot}\bigg(  \frac{\sqrt{\big( \frac{v}{\omega} \big)^2 - a^2}}{l^2} \bigg)
    :name: eq:kinematics_ackerman_epsilon_inverse
 
-When substituting the equation of the cot-avg :ref:`(Equation 2) <eq:kinematics_ackerman_cot_avg>` in the ackerman condition :ref:`(Equation 3) <eq:kinematics_ackerman_condition>`
+By rearranging :ref:`Equation 4 <eq:kinematics_ackerman_epsilon_ifv_eps_fl>`
 and by assuming the angular velocity equality :ref:`(Equation 5) <eq:kinematics_ackerman_omega_equal>` we can determine the inverse kinematic model.
 
 .. math::
 
-   \epsilon_{fl} &= \mathrm{acot}\bigg( \frac{2\,cot(\epsilon) - \frac{b}{l}}{2} \bigg)  \\
+   \epsilon_{fl} &= \mathrm{acot}\bigg( cot(\epsilon) - \frac{b}{2\,l}\bigg)  \\
    v_{rr} &= \frac{R_{rr}}{R_B} \, v_y = \frac{R + \big(\frac{b}{2}\big)}{R}\,v \, \mathrm{cos}(\alpha)
 
 

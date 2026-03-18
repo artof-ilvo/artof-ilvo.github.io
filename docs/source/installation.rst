@@ -86,7 +86,7 @@ For the installation perform the bash commands below and wait until ```Done!``` 
 .. code-block:: bash
 
 	wget https://minio.ilvo.be:9000/tv115-ilvo-robotics/update.sh
-	chmod +x install.sh
+	chmod +x update.sh
 	./update.sh
 
 For updating to the latest version perform the bash commands below and wait until ```Done!``` appears.

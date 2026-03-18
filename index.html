@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to ARTOF’s documentation! &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Architecture" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to ARTOF’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-artof-s-documentation">
+<h1>Welcome to ARTOF’s documentation!<a class="headerlink" href="#welcome-to-artof-s-documentation" title="Permalink to this heading"></a></h1>
+<p>The <strong>Agricultural Robot Taskmap Operation Framework (ARTOF)</strong>
+provides the common functionality of task map execution
+for a wide range of robot configurations and farming applications
+based on Global Navigation Satellite System (GNSS) positioning.</p>
+<p>The robot supports the four-wheel-drive four-wheel-steer (4WD4WS), skid- and Ackerman steering vehicle configuration for different agricultural tasks in arable farming and horticulture.
+The framework can be integrated into a robot platform during development or can be added afterwards with a customized after-market installation.
+The ARTOF framework has been integrated into several robot platforms and existing farming equipment as robot- or auto-guidance software.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This ARTOF project started in 2019 at <a class="reference external" href="https://ilvo.vlaanderen.be/en">ILVO</a> within the <a class="reference external" href="https://www.cimat.be/">European Interreg-Vlaanderen CIMAT</a> project and is still under active development to support other EU projects.</p>
+</div>
+<section id="artof-integrations">
+<h2>ARTOF integrations<a class="headerlink" href="#artof-integrations" title="Permalink to this heading"></a></h2>
+<section id="cimat-robot">
+<h3>CIMAT robot<a class="headerlink" href="#cimat-robot" title="Permalink to this heading"></a></h3>
+<p>The CIMAT robot is an in-house-developed 4WD4WS robot used for crop care applications, e.g. hoeing, ridging, flame weeding, etc.
+The robot is also used to perform automated soil-pressure sampling doing stop&amp;go measurements.</p>
+<p><a class="reference internal" href="_images/fig_cimat_flame_weeding.jpg"><img alt="Flame weeding in potatoes" src="_images/fig_cimat_flame_weeding.jpg" style="width: 45%;" /></a> <a class="reference internal" href="_images/fig_cimat_soil_compaction.jpg"><img alt="Soil compaction measurements" src="_images/fig_cimat_soil_compaction.jpg" style="width: 45%;" /></a>
+<a class="reference internal" href="_images/fig_cimat_hoeing.jpg"><img alt="Hoeing in kidney beans" src="_images/fig_cimat_hoeing.jpg" style="width: 90.7%;" /></a></p>
+<p>The main characteristics of the CIMAT robot are listed below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>CIMAT robot</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Vehicle configuration</p></td>
+<td><p>4WD4WS</p></td>
+</tr>
+<tr class="row-odd"><td><p>Weight</p></td>
+<td><p>1200 kg</p></td>
+</tr>
+<tr class="row-even"><td><p>Max velocity</p></td>
+<td><p>15 km/h</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Energy source (LiFePO4 battery)</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Voltage</p></td>
+<td><p>52 V</p></td>
+</tr>
+<tr class="row-odd"><td><p>Capacity</p></td>
+<td><p>20 kWh</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Transmission (electric)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Nominal power</p></td>
+<td><p>4 x 6 kW</p></td>
+</tr>
+<tr class="row-even"><td><p>Gear ratio</p></td>
+<td><p>40</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Steering (electric)</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Nominal power (Steer)</p></td>
+<td><p>4 x 440 W</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gear ratio (Steer)</p></td>
+<td><p>208</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Hydraulics</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Nominal power</p></td>
+<td><p>2.4 kW</p></td>
+</tr>
+<tr class="row-even"><td><p>RPM</p></td>
+<td><p>3000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pump size</p></td>
+<td><p>3cc</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Implement interface</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Mounting</p></td>
+<td><p>Center three-point hitch cat.1, rear three-point hitch cat. 2</p></td>
+</tr>
+<tr class="row-even"><td><p>Hydraulic couplers</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Electric connectors</p></td>
+<td><p>24V, 48V</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="djuste-robot">
+<h3>DjustE robot<a class="headerlink" href="#djuste-robot" title="Permalink to this heading"></a></h3>
+<p>The DjustE is an in-house converted electrified hydrostatic compact tractor (CNH Boomer 50).
+It can be used as a robot or as a tractor for different field operations that require a mechanical Power take-off (PTO), like rotary harrowing, flail mowing, etc.</p>
+<p><a class="reference internal" href="_images/fig_djuste_rotary_tillage_driving.jpg"><img alt="Rotary tillage" src="_images/fig_djuste_rotary_tillage_driving.jpg" style="width: 45%;" /></a> <a class="reference internal" href="_images/fig_djuste_rotary_tillage_turning.jpg"><img alt="Headacre turn" src="_images/fig_djuste_rotary_tillage_turning.jpg" style="width: 45%;" /></a></p>
+<p>The main characteristics of the DjustE robot are listed below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Djuste robot</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Vehicle configuration</p></td>
+<td><p>Ackerman steering</p></td>
+</tr>
+<tr class="row-odd"><td><p>Weight</p></td>
+<td><p>kg</p></td>
+</tr>
+<tr class="row-even"><td><p>Max velocity</p></td>
+<td><p>30 km/h</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Energy source (LiFePO4 nose battery, lead acid front battery)</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Voltage</p></td>
+<td><p>102 V, 92 V</p></td>
+</tr>
+<tr class="row-odd"><td><p>Capacity</p></td>
+<td><p>6 kWh (nose battery), 13 kWh (front battery)</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Transmission (electric/hydraulic)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Nominal power</p></td>
+<td><p>27 kW</p></td>
+</tr>
+<tr class="row-even"><td><p>Gear ratio</p></td>
+<td><p>Directly connected to the clutch plane</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Hydraulics</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Nominal power</p></td>
+<td><p>1.5 kW</p></td>
+</tr>
+<tr class="row-odd"><td><p>RPM</p></td>
+<td><p>1800-3000</p></td>
+</tr>
+<tr class="row-even"><td><p>Pump size</p></td>
+<td><p>Dual 10cc pump for independent steering and hitch control</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Implement interface</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Mounting</p></td>
+<td><p>Rear three-point hitch cat. 2 (front hitch used for battery pack)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hydraulic couplers</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Electric connectors</p></td>
+<td><p>12V , 24V, 48V</p></td>
+</tr>
+<tr class="row-odd"><td><p>Power take-off (PTO)</p></td>
+<td><p>3 gears</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="treebot-robot">
+<h3>Treebot robot<a class="headerlink" href="#treebot-robot" title="Permalink to this heading"></a></h3>
+<p>The Treebot robot is an in-house-developed robot that performs horticulture applications.
+Implements can be mounted on top of the platform using Item® fixings.</p>
+<p><a class="reference internal" href="_images/fig_treebot_blueberry.jpg"><img alt="Precision spray application on the black strip" src="_images/fig_treebot_blueberry.jpg" style="width: 45%;" /></a> <a class="reference internal" href="_images/fig_treebot_lane_trees.jpg"><img alt="Platform upgraded in 2024" src="_images/fig_treebot_lane_trees.jpg" style="width: 45%;" /></a></p>
+<p>The main characteristics of the Treebot robot are listed below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Treebot robot</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Vehicle configuration</p></td>
+<td><p>Track skid steering</p></td>
+</tr>
+<tr class="row-odd"><td><p>Weight</p></td>
+<td><p>80 kg</p></td>
+</tr>
+<tr class="row-even"><td><p>Max velocity</p></td>
+<td><p>3 km/h</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Energy source (LiFePO4 battery)</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Voltage</p></td>
+<td><p>52 V</p></td>
+</tr>
+<tr class="row-odd"><td><p>Capacity</p></td>
+<td><p>kWh</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Transmission (electric)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Nominal power</p></td>
+<td><p>2x 400 W</p></td>
+</tr>
+<tr class="row-even"><td><p>Gear ratio</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Implement interface</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Mounting</p></td>
+<td><p>Item mounting plate</p></td>
+</tr>
+<tr class="row-odd"><td><p>Electric connectors</p></td>
+<td><p>24V, 48V</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="implement-carrier">
+<h3>Implement carrier<a class="headerlink" href="#implement-carrier" title="Permalink to this heading"></a></h3>
+<p>The ARTOF framework was integrated on an implement carrier of the machine manufacturer <a class="reference external" href="https://lambers-lmb.be/">Lambers LMB®</a>.
+The platform is mainly used for seeding field trails. The after-market installation of ARTOF supports auto guidance while seeding.</p>
+<p><a class="reference internal" href="_images/fig_lambers_seeding.jpg"><img alt="Implement carrier with steering guidance" src="_images/fig_lambers_seeding.jpg" style="width: 45%;" /></a> <a class="reference internal" href="_images/fig_lambers_static.jpg"><img alt="Implemnet carrier platform" src="_images/fig_lambers_static.jpg" style="width: 45%;" /></a></p>
+<p>The main characteristics of the Implement carrier are listed below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Lambers implement carrier</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Vehicle configuration</p></td>
+<td><p>Ackerman steering</p></td>
+</tr>
+<tr class="row-odd"><td><p>Weight</p></td>
+<td><p>kg</p></td>
+</tr>
+<tr class="row-even"><td><p>Max velocity</p></td>
+<td><p>7 km/h</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Energy source (combustion engine)</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Voltage</p></td>
+<td><p>gasoline</p></td>
+</tr>
+<tr class="row-odd"><td><p>Capacity</p></td>
+<td><p>30 l tank</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Transmission (electric/hydraulic)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Nominal power</p></td>
+<td><p>27 kW</p></td>
+</tr>
+<tr class="row-even"><td><p>Gear ratio</p></td>
+<td><p>Directly connected to the clutch plane</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Hydraulics</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Nominal power</p></td>
+<td><p>1.5 kW</p></td>
+</tr>
+<tr class="row-odd"><td><p>RPM</p></td>
+<td><p>1800-3000</p></td>
+</tr>
+<tr class="row-even"><td><p>Pump size</p></td>
+<td><p>4 cc</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Implement interface</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Mounting</p></td>
+<td><p>3x three-point hitch cat. 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Electric connectors</p></td>
+<td><p>12V (lead acid battery)</p></td>
+</tr>
+<tr class="row-even"><td><p>Power take-off (PTO)</p></td>
+<td><p>powered by electro motor to actuate the seeding module</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="videos">
+<h2>Videos<a class="headerlink" href="#videos" title="Permalink to this heading"></a></h2>
+<p>To see these robots at work in different applications, check the youtube videos below:</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=JEKxRF19jJs"><img alt="Axel Willekens on the ILVO field robots 2023" src="https://img.youtube.com/vi/JEKxRF19jJs/0.jpg" style="width: 30%;" /></a> <a class="reference external" href="https://www.youtube.com/watch?v=kYXqshhpFiM&amp;t"><img alt="Ridging in leek with the CIMAT robot" src="_images/fig_cimat_ridging_thumbnail.jpg" style="width: 30%;" /></a> <a class="reference external" href="https://www.youtube.com/watch?v=2mEPxm51ICk"><img alt="Self-driving robot with flame weeder" src="https://img.youtube.com/vi/2mEPxm51ICk/0.jpg" style="width: 30%;" /></a></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=q0XQCb_Gn4Y"><img alt="Autonomous tractor at ILVO" src="https://img.youtube.com/vi/q0XQCb_Gn4Y/0.jpg" style="width: 30%;" /></a> <a class="reference external" href="https://www.youtube.com/watch?v=_6-2Ud9xHFI"><img alt="Autonomous tractor at ILVO" src="https://img.youtube.com/vi/_6-2Ud9xHFI/0.jpg" style="width: 30%;" /></a>  <a class="reference external" href="https://www.youtube.com/watch?v=Ujj8gkYzaAs"><img alt="Alternative weed control in blueberries with a small-scale robot and precision sprayer" src="https://img.youtube.com/vi/Ujj8gkYzaAs/0.jpg" style="width: 30%;" /></a></p>
+</section>
+<section id="scientific-publications">
+<h2>Scientific publications<a class="headerlink" href="#scientific-publications" title="Permalink to this heading"></a></h2>
+<p><em>&lt;Coming soon&gt;</em></p>
+</section>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#communication">Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#artof-redis-interface">ARTOF Redis interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#mechatronic-operational-layer-interface">Mechatronic-operational layer interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic-concepts.html#field">Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic-concepts.html#platform">Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic-concepts.html#implements">Implements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic-concepts.html#interfaces">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic-concepts.html#jobs">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic-concepts.html#states">States</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mechatronic-layer.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mechatronic-layer.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mechatronic-layer.html#safety-state-diagram">Safety state diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mechatronic-layer.html#kinematic-model">Kinematic model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mechatronic-layer.html#id2">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mechatronic-layer.html#four-wheel-drive-four-wheel-steer-4wd4ws">Four-wheel-drive four-wheel-steer (4WD4WS)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mechatronic-layer.html#ackerman-steering">Ackerman steering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mechatronic-layer.html#skid-steering">Skid steering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operational-layer.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operational-layer.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operational-layer.html#processes">Processes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#variablemanager">VariableManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#systemmanager">SystemManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#navigation">Navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#operation">Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#gps">Gps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#robotplc">RobotPlc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#simulation">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operational-layer.html#navigation-algorithms">Navigation algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#pure-pursuit-heading-control">Pure pursuit heading control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operational-layer.html#pure-pursuit-heading-and-pi-lateral-control-4wd4ws-only">Pure pursuit heading and PI lateral control (4WD4WS only)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Add-ons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="addons.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html#python-package">Python package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html#system-add-on">System add-on</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#app-area">App area</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#navigation-bar">Navigation bar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#field">Field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#new-field">New field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#map">Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#settings">Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html#admin-area">Admin area</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#addon-system-admin-settings">Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#implements">Implements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#processes">Processes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#id2">Add-ons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addons.html#monitor">Monitor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="addons.html#node-red-add-on">Node-red add-on</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-docker">Install Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#system">System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#check-your-installation-binary-and-docker">Check your installation (Binary and Docker)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#additional-hardware-configuration">Additional hardware configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#simplertk3b-gps">SimpleRTK3b GPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#enable-ssh">Enable ssh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#remote-connection">Remote connection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#common-issues">Common issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ethernet-over-usb-of-the-simplertk3b-module-on-a-nuc">Ethernet over USB of the SimpleRTK3b module on a NUC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

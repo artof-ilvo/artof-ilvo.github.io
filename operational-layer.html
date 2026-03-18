@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operational layer &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Add-ons" href="addons.html" />
+    <link rel="prev" title="Mechatronic layer" href="mechatronic-layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Operational layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processes">Processes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variablemanager">VariableManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systemmanager">SystemManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#navigation">Navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operation">Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gps">Gps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#robotplc">RobotPlc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simulation">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#navigation-algorithms">Navigation algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pure-pursuit-heading-control">Pure pursuit heading control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pure-pursuit-heading-and-pi-lateral-control-4wd4ws-only">Pure pursuit heading and PI lateral control (4WD4WS only)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Operational layer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/operational-layer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="operational-layer">
+<span id="id1"></span><h1>Operational layer<a class="headerlink" href="#operational-layer" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>All processes in the operational layer are implemented in Cplusplus (C++).
+You can find the source code of the operational layer in the <a class="reference external" href="https://github.com/artof-ilvo/artof-core">artof-core</a> project.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>RTK GNSS localisation (with heading)</strong>  : The framework includes a driver for the <a class="reference external" href="https://www.septentrio.com/en/products/gnss-receivers/gnss-receiver-modules/mosaic-h">Septentrio Mosaic-H</a> module.</p>
+<ul class="simple">
+<li><p><em>Example components</em>: <a class="reference external" href="https://www.ardusimple.com/product/simplertk3b-heading/">SimpleRTK3B Heading</a></p></li>
+</ul>
+</li>
+<li><p><strong>Computer</strong>: The computer runs the operational layer and the add-ons.</p>
+<ul class="simple">
+<li><p><em>Tested on</em>:</p></li>
+</ul>
+</li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Brand</p></th>
+<th class="head"><p>Model</p></th>
+<th class="head"><p>CPU</p></th>
+<th class="head"><p>Memory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Asus®</p></td>
+<td><p>BRi5(H)-10210E</p></td>
+<td><p>Intel® Core™ i5-10210U CPU &#64; 1.60GHz</p></td>
+<td><p>8 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel®</p></td>
+<td><p>NUC7i5BNH</p></td>
+<td><p>Intel® Core™ i5-7260U CPU &#64; 2,20GHz</p></td>
+<td><p>16 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>Intel®</p></td>
+<td><p>NUC10i5FNH</p></td>
+<td><p>Intel® Core™ i5-10210U CPU &#64; 1.60GHz</p></td>
+<td><p>8 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel®</p></td>
+<td><p>NUC10i7FNH</p></td>
+<td><p>Intel® Core™ i7-10710U CPU &#64; 1.10GHz</p></td>
+<td><p>32 GB</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li><p><strong>Operating system</strong>:</p>
+<ul class="simple">
+<li><p>The operational layer is currently only compiled for <em>Ubuntu 22.04</em>.</p></li>
+<li><p>The operational layer can run in a Docker® container, which is useful for testing and development. However, this is not recommended for operation as it has not yet been validated on inference.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="processes">
+<span id="operational-layer-processes"></span><h2>Processes<a class="headerlink" href="#processes" title="Permalink to this heading"></a></h2>
+<section id="variablemanager">
+<h3>VariableManager<a class="headerlink" href="#variablemanager" title="Permalink to this heading"></a></h3>
+<p>All processes in the <em>operational layer</em> inherit the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VariableManager</span></code> class.</p>
+<p>During initialization, it loads a <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">VariableMap::variableMap</span></code> of type <code class="docutils literal notranslate"><span class="pre">std::map&lt;std::string,</span> <span class="pre">VariablePtr&gt;</span> <span class="pre">VariableMap</span></code></p>
+<p>The pseudocode below illustrates its program cycle.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Pseudocode <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VariableManager</span></code> program cycle</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// start a clk cycle (f = 20 Hz =&gt; T = 50 ms)</span>
+<span class="w">      </span><span class="n">clk</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="w">      </span><span class="c1">// Read all Redis variables</span>
+<span class="w">      </span><span class="n">readRedisVariables</span><span class="p">();</span>
+<span class="w">      </span><span class="c1">// Execute process specific code</span>
+<span class="w">      </span><span class="n">serverTick</span><span class="p">();</span>
+<span class="w">      </span><span class="c1">// Write Redis variables (only those who were altered during the cycle)</span>
+<span class="w">      </span><span class="n">writeRedisVariables</span><span class="p">();</span>
+<span class="w">      </span><span class="c1">// Communicate process health</span>
+<span class="w">      </span><span class="n">toggleHeartBeatPulse</span><span class="p">();</span>
+<span class="w">      </span><span class="n">publishProcessingTime</span><span class="p">(</span><span class="n">clk</span><span class="p">.</span><span class="n">poll</span><span class="p">());</span>
+<span class="w">      </span><span class="c1">// Stop the clk cycle (sleep for the remaining time)</span>
+<span class="w">      </span><span class="n">clk</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+<span class="w">   </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>The <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">Clk::clk</span></code> member of the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VariableManager</span></code> class supports process execution at a fixed frequency, which is by default configured to <code class="docutils literal notranslate"><span class="pre">20</span> <span class="pre">Hz</span></code>. When the program cycle executes more quickly, there is waited the additional time at the <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">Clk::stop()</span></code> statement; otherwise, the process is immediately continued.</p></li>
+<li><p>The <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">readRedisVariables()</span></code> and <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">writeRedisVariables()</span></code> methods perform a block read and block write of the Redis variables described in the redis configuration file. For the <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">writeRedisVariables()</span></code> method only the variables that are changed during the program cycle are written. Whether these variables are changed or not is maintained in the <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">VariableMap::variableMap</span></code>.</p></li>
+<li><p>The <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">serverTick()</span></code> is a pure abstract function implemented in the child classes.</p></li>
+<li><p>The <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">toggleHeartBeatPulse()</span></code> toggles a heartbeat boolean at a period <code class="docutils literal notranslate"><span class="pre">500ms</span></code>. The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SystemManager</span></code> uses the heartbeat to monitor the health of the different real-time processes. The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SystemManager</span></code> recovers the process when it detects no heartbeat for <code class="docutils literal notranslate"><span class="pre">5s</span></code>. The PLC in the <em>mechatronic layer</em> also monitors the heartbeat of the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Navigation</span></code> process. The robot goes to error mode if it detects no heartbeat within <code class="docutils literal notranslate"><span class="pre">2s</span></code>.</p></li>
+<li><p>The <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">publishProcessingTime()</span></code> publishes the processing time to monitor if the process maintains its target frequency.</p></li>
+</ol>
+</section>
+<section id="systemmanager">
+<span id="system-manager"></span><h3>SystemManager<a class="headerlink" href="#systemmanager" title="Permalink to this heading"></a></h3>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SystemManager</span></code> process manages the other <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Jobs</span></code>, which are the processes in the operational layer and add-ons.
+The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Jobs</span></code> can be started, interrupted, reconfigured, and updated.
+The system manager monitors the health of the <em>operational layer</em> processes by their heartbeats.</p>
+</section>
+<section id="navigation">
+<h3>Navigation<a class="headerlink" href="#navigation" title="Permalink to this heading"></a></h3>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Navigation</span></code> process implements the navigation Finite State Machine (FSM) in <em>Figure 1</em>.
+This FSM supports navigation modes that depend on the vehicle configuration and are described in the <a class="reference internal" href="basic-concepts.html#basic-concepts-platform"><span class="std std-ref">platform configuration</span></a>.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/fig_fsm_navigation_controller.png"><img alt="_images/fig_fsm_navigation_controller.png" src="_images/fig_fsm_navigation_controller.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1.</strong> The Finite State Machine (FSM) for navigation control</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In the <code class="docutils literal notranslate"><span class="pre">LINE_FOLLOW</span></code> state, the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Navigation</span></code> uses the pure pursuit algorithm as the most basic controller, but the framework also enables the implementation of other controllers.
+The available controllers are elaborated in <a class="reference internal" href="#operational-layer-navigation-algorithms"><span class="std std-ref">Navigation algorithms</span></a>.</p>
+<p>The FSM execution depends on the selected <code class="docutils literal notranslate"><span class="pre">navigation</span> <span class="pre">mode</span></code> in the <a class="reference internal" href="addons.html#addon-system"><span class="std std-ref">system add-on web app (App:Settings)</span></a>.</p>
+</section>
+<section id="operation">
+<h3>Operation<a class="headerlink" href="#operation" title="Permalink to this heading"></a></h3>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Operation</span></code> process operates the implement, hitch, and sections during autonomous field operation using information from the implement configuration and current robot platform state.
+The implement configuration files describe the dimensions and transformation of the different sections relative to hitch pens and their allowed task types, enabling the continuous position and geometry calculation of the implement sections in GNSS coordinates.</p>
+</section>
+<section id="gps">
+<h3>Gps<a class="headerlink" href="#gps" title="Permalink to this heading"></a></h3>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gps</span></code> process is the device driver for the GNSS <a class="reference external" href="https://www.septentrio.com/en/products/gnss-receivers/gnss-receiver-modules/mosaic-h">Septentrio Mosaic-H</a> module.
+It continuously updates the robot state and the other GNSS-dependent variables and maintains the connection to the NTRIP server to receive the RTK connections.
+Also drivers for other GNSS devices can be implemented in the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gps</span></code> class.</p>
+</section>
+<section id="robotplc">
+<h3>RobotPlc<a class="headerlink" href="#robotplc" title="Permalink to this heading"></a></h3>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RobotPlc</span></code> process is the interface between the Redis variables in the <em>operational layer</em> and the robot PLC in the <em>mechatronic layer</em>.
+The <code class="docutils literal notranslate"><span class="pre">redis.json</span></code> configuration file describes the interface, also listing the Redis variables that must be read and written to the PLC. Communication was performed every process cycle by a read and write snap7 operation (Siemens S7-communication protocol).
+For more information on the configuration, we refer to <a class="reference internal" href="basic-concepts.html#basic-concepts"><span class="std std-ref">Basic concepts</span></a>.</p>
+</section>
+<section id="simulation">
+<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading"></a></h3>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Simulation</span></code> process enables software integration- and hardware-in-the-loop (HIL) testing.
+By setting the robot in <code class="docutils literal notranslate"><span class="pre">simulation</span> <span class="pre">mode</span></code>, the robot’s navigation and implement operations are performed in a virtual environment by simulating the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gps</span></code> process from the <em>operational layer</em> and the kinematic models from the <em>mechatronic layer</em>.
+HIL testing performs static implement operation and steering while the traction drives remain inhibited.</p>
+</section>
+</section>
+<section id="navigation-algorithms">
+<span id="operational-layer-navigation-algorithms"></span><h2>Navigation algorithms<a class="headerlink" href="#navigation-algorithms" title="Permalink to this heading"></a></h2>
+<section id="pure-pursuit-heading-control">
+<h3>Pure pursuit heading control<a class="headerlink" href="#pure-pursuit-heading-control" title="Permalink to this heading"></a></h3>
+<p><em>Figure 2</em> was used to derive the pure pursuit control algorithm.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/fig_pure_pursuit.png"><img alt="_images/fig_pure_pursuit.png" src="_images/fig_pure_pursuit.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 2.</strong> The pure pursuit algorithm</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The sine rule in triangle <span class="math notranslate nohighlight">\(ICR_G\)</span>, <span class="math notranslate nohighlight">\(P_{curr}\)</span>, <span class="math notranslate nohighlight">\(P_{look\,\,ahead}\)</span> was applied to find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;\hspace{20pt}\frac{l_\mathrm{d}}{\sin(2\alpha)} = \frac{R}{\sin(\frac{\pi}{2} - \alpha)}  \\
+&amp;\Leftrightarrow \frac{l_\mathrm{d}}{2\,\sin(\alpha)\,\cos(\alpha)} = \frac{R}{cos(\alpha)}  \\
+&amp;\Leftrightarrow \frac{l_\mathrm{d}}{\sin(\alpha)} = 2\,R  \\
+&amp;\Leftrightarrow c = \frac{1}{R} = \frac{2\,\sin(\alpha)}{l_\mathrm{d}}\end{split}\]</div>
+</section>
+<section id="pure-pursuit-heading-and-pi-lateral-control-4wd4ws-only">
+<h3>Pure pursuit heading and PI lateral control (4WD4WS only)<a class="headerlink" href="#pure-pursuit-heading-and-pi-lateral-control-4wd4ws-only" title="Permalink to this heading"></a></h3>
+<p>For 4WD4WS vehicle configuration robots, an additional lateral Proportional-Integral-Derivative (PID) controller was added, as illustrated in <em>Figure 3</em>.
+This lateral (crab steering) controller operated simultaneously with the pure pursuit heading controller.
+A latch determines if the robot system reached a steady state. If the robot entered the zone 0.2 m from the line, <code class="docutils literal notranslate"><span class="pre">steady-state</span> <span class="pre">mode</span></code> was activated.
+If it deviated more than 0.5 from the line, the robot was in <code class="docutils literal notranslate"><span class="pre">rough</span> <span class="pre">mode</span></code>.
+When the robot system was in <code class="docutils literal notranslate"><span class="pre">steady-state</span> <span class="pre">mode</span></code>, a PI controller eliminated steady-state errors.
+A P controller was used if the robot was in <code class="docutils literal notranslate"><span class="pre">rough</span> <span class="pre">mode</span></code>.</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/fig_navigation_4wdw4s_controller.png"><img alt="_images/fig_navigation_4wdw4s_controller.png" src="_images/fig_navigation_4wdw4s_controller.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 3.</strong> 4WD4WS navigation pure pursuit heading and PI lateral controller</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mechatronic-layer.html" class="btn btn-neutral float-left" title="Mechatronic layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="addons.html" class="btn btn-neutral float-right" title="Add-ons" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

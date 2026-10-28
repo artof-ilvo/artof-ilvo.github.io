@@ -4,11 +4,11 @@ ARTOF documentation project
 Getting started
 ---------------
 
-This GitHub project provides the documentation for the Agricultural Robot Taskmap Operaiton Framework (ARTOF) using Sphinx docs.
+This GitHub project provides the documentation for the Agricultural Robot Taskmap Operation Framework (ARTOF) using Sphinx docs.
 
 For more information of using Sphinx docs read `the Sphinx documentation <https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html>`_.
 
-A github action is configured in `documentation.yml <https://github.com/artof-ilvo/artof-ilvo.github.io/blob/main/.github/workflows/documentation.yml>`_ and automatically deploys these docs to https://artof-ilvo.github.io
+A github action is configured in `ci.yml <https://github.com/artof-ilvo/artof-ilvo.github.io/blob/main/.github/workflows/ci.yml>`_ and automatically deploys these docs to https://artof-ilvo.github.io
 
 To build this documentation locally:
 

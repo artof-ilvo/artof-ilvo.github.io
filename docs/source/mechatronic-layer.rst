@@ -60,10 +60,31 @@ Additional requirements to operate a robot platform:
    The operational layer does not include safety features and should only be used on products approved for autonomous operation in accordance with national legislation.
 
 
+.. _mechatronic_layer_states:
+
 Safety state diagram
 --------------------
 
 For more information on the safety state diagram, we refer to the paper *<Coming soon>*.
+
+The PLC reports its state to the operational layer through the ``plc.monitor.state`` variables (the navigation states, e.g. ``normal``, ``auto``, ``steer``, ``throttle``) and the ``plc.monitor.substate`` booleans ``programming``, ``implement_control``, ``inhibited``, ``aware`` and ``stay_clear``.
+
++-----------------------+---------------------------------------------------------------------------------+
+| Substate              | Meaning                                                                         |
++=======================+=================================================================================+
+| ``programming``       | The robot is being programmed or tested; set by the :cpp:class:`Simulation`     |
+|                       | process while simulation is active.                                             |
++-----------------------+---------------------------------------------------------------------------------+
+| ``implement_control`` | An implement that provides its own routine is working.                          |
++-----------------------+---------------------------------------------------------------------------------+
+| ``inhibited``         | Traction and steering of the robot are disabled.                                |
++-----------------------+---------------------------------------------------------------------------------+
+| ``aware``             | The :cpp:class:`Navigation` process keeps navigating, as in an auto state.      |
++-----------------------+---------------------------------------------------------------------------------+
+| ``stay_clear``        | The robot is starting autonomous operation: get away from the robot.            |
++-----------------------+---------------------------------------------------------------------------------+
+
+The active substate is published in :ref:`robot.status <basic_concepts_robot_status>` and shown in the status bar of the system add-on.
 
 Kinematic model
 ---------------
@@ -86,7 +107,7 @@ The *inverse kinematic model* does the opposite and starts from the required mot
 Kinematic means no external forces are incorporated in this model to come to this motion. A model where the external forces are incorporated is called a dynamic model.
 
 The kinematic model is integrated into the mechatronic layer, making the operational layer independent of the vehicle configuration.
-An essential part of the *mechatronic-operational layer interface* is the infterface with the actual and required velocity vector.
+An essential part of the *mechatronic-operational layer interface* is the interface with the actual and required velocity vector.
 
 + The interface with the actual velocity vector :math:`\boldsymbol{v_a}` is described in the Redis variables ``plc.monitor.navigation.velocity.longitudinal``,  ``plc.monitor.navigation.velocity.lateral``, ``plc.monitor.navigation.velocity.angular``.
 

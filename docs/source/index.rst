@@ -297,5 +297,6 @@ Contents
    mechatronic-layer
    operational-layer
    addons
+   tools
    installation
    license

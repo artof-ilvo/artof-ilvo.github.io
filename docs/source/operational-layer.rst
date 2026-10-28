@@ -13,9 +13,10 @@ You can find the source code of the operational layer in the `artof-core <https:
 Requirements
 ------------
 
-#. **RTK GNSS localisation (with heading)**  : The framework includes a driver for the `Septentrio Mosaic-H <https://www.septentrio.com/en/products/gnss-receivers/gnss-receiver-modules/mosaic-h>`_ module.
+#. **RTK GNSS localisation (with heading)**  : The framework includes drivers for
 
-   + *Example components*: `SimpleRTK3B Heading <https://www.ardusimple.com/product/simplertk3b-heading/>`_
+   + the `Septentrio Mosaic-H <https://www.septentrio.com/en/products/gnss-receivers/gnss-receiver-modules/mosaic-h>`_ module over USB (*example component*: `SimpleRTK3B Heading <https://www.ardusimple.com/product/simplertk3b-heading/>`_), and
+   + Stonex receivers over Ethernet.
 
 #. **Computer**: The computer runs the operational layer and the add-ons.
 
@@ -35,7 +36,7 @@ Requirements
 
 #. **Operating system**:
 
-   + The operational layer is currently only compiled for *Ubuntu 22.04*.
+   + The operational layer is packaged for *Ubuntu 24.04 (amd64)* and installed from the ARTOF APT repository (see :ref:`installation_system`).
 
    + The operational layer can run in a Docker® container, which is useful for testing and development. However, this is not recommended for operation as it has not yet been validated on inference.
 
@@ -43,6 +44,29 @@ Requirements
 
 Processes
 ---------
+
+The processes exchange all their data through Redis; none of them talk to each other directly.
+
++-------------------------+-------------------------------------------------------------------------------------------+
+| Executable              | Role                                                                                      |
++=========================+===========================================================================================+
+| ``ilvo-system-manager`` | Starts and monitors the other processes (heartbeat), manages the Docker add-ons and fills |
+|                         | an empty Redis from ``redis.init.json``. This is the process the ``ilvo-robotics``        |
+|                         | service runs.                                                                             |
++-------------------------+-------------------------------------------------------------------------------------------+
+| ``ilvo-gps``            | Reads the GNSS receiver and keeps the NTRIP connection for RTK corrections.               |
++-------------------------+-------------------------------------------------------------------------------------------+
+| ``ilvo-navigation``     | Follows the field traject and computes the velocity commands.                             |
++-------------------------+-------------------------------------------------------------------------------------------+
+| ``ilvo-operation``      | Controls the hitches and implements along the task map.                                   |
++-------------------------+-------------------------------------------------------------------------------------------+
+| ``ilvo-robot-plc``      | Exchanges the control and monitor variables with the robot PLC (S7 or UDP).               |
++-------------------------+-------------------------------------------------------------------------------------------+
+| ``ilvo-simulation``     | Simulates the robot when ``pc.simulation.active`` is set, so the stack runs without       |
+|                         | hardware.                                                                                 |
++-------------------------+-------------------------------------------------------------------------------------------+
+
+Each process writes a log file to ``$ILVO_PATH/logs``.
 
 VariableManager
 ^^^^^^^^^^^^^^^
@@ -118,7 +142,7 @@ The implement configuration files describe the dimensions and transformation of 
 Gps
 ^^^
 
-The :cpp:class:`Gps` process is the device driver for the GNSS `Septentrio Mosaic-H <https://www.septentrio.com/en/products/gnss-receivers/gnss-receiver-modules/mosaic-h>`_ module.
+The :cpp:class:`Gps` process is the device driver for the GNSS receiver: the `Septentrio Mosaic-H <https://www.septentrio.com/en/products/gnss-receivers/gnss-receiver-modules/mosaic-h>`_ module (``"device": "serial"``) or a Stonex receiver (``"device": "socket"``), as configured in the ``gps`` object of the ``settings.json`` file.
 It continuously updates the robot state and the other GNSS-dependent variables and maintains the connection to the NTRIP server to receive the RTK connections.
 Also drivers for other GNSS devices can be implemented in the :cpp:class:`Gps` class.
 
@@ -127,7 +151,7 @@ RobotPlc
 ^^^^^^^^
 
 The :cpp:class:`RobotPlc` process is the interface between the Redis variables in the *operational layer* and the robot PLC in the *mechatronic layer*.
-The ``redis.json`` configuration file describes the interface, also listing the Redis variables that must be read and written to the PLC. Communication was performed every process cycle by a read and write snap7 operation (Siemens S7-communication protocol).
+The ``config.json`` configuration file describes the interface, also listing the Redis variables that must be read and written to the PLC. Communication is performed every process cycle by a read and write operation with the selected protocol: ``s7`` (Siemens S7-communication protocol, Snap7) or ``udp``.
 For more information on the configuration, we refer to :ref:`basic_concepts`.
 
 Simulation
@@ -136,6 +160,7 @@ Simulation
 The :cpp:class:`Simulation` process enables software integration- and hardware-in-the-loop (HIL) testing.
 By setting the robot in ``simulation mode``, the robot's navigation and implement operations are performed in a virtual environment by simulating the :cpp:class:`Gps` process from the *operational layer* and the kinematic models from the *mechatronic layer*.
 HIL testing performs static implement operation and steering while the traction drives remain inhibited.
+In simulation mode the PLC substate ``programming`` is set (``plc.control.substate.programming``).
 
 .. _operational_layer_navigation_algorithms:
 

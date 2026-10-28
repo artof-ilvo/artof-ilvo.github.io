@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'ARTOF'
-copyright = '2024, ILVO'
+copyright = '2024-2026, ILVO'
 author = 'ILVO'
 
 release = '0.1'

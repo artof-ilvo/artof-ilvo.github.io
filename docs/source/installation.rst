@@ -1,129 +1,150 @@
 Installation
 ============
 
-Install Docker
---------------
+ARTOF can be installed in two ways:
 
-For both installations you need to have docker installed.
-Install `docker <https://docs.docker.com/engine/install/ubuntu/>`_ with `root-level privileges <https://docs.docker.com/engine/install/linux-postinstall/>`_.
-You may have to reboot after installation.
-
-A full :ref:`installation_docker` installation can be used for testing or developing the framework.
-A :ref:`installation_system` installation is preferred when integrating the framework on a robot platform.
-
-.. _installation_docker:
-
-Docker
-------
-
-1. Download the file below and unzip.
-
-+ On **linux** you can use ``wget`` command to download the file:
-
-.. code-block:: bash
-
-	wget https://minio.ilvo.be:9000/tv115-ilvo-robotics/artof-docker.zip
-
-
-+ On **windows** and **macOS** you can use ``curl`` command to download the file:
-
-.. code-block:: bash
-
-	curl -o artof-docker.zip https://minio.ilvo.be:9000/tv115-ilvo-robotics/artof-docker.zip
-
-2. Unzip the folder and navigate into the folder ``ilvo``.
-
-+ On **linux** and **macOS** you can use unzip:
-
-.. code-block:: bash
-
-	unzip artof-docker.zip
-	cd ilvo
-
-+ On **windows** you can right click on the zip file and unzip it.
-
-3. Open the ``data/redis.init.json`` file and change ``/d/artof-docker/docker/data`` to the absolute path of the datafolder in this directory. Note that for windows the ``D:`` drive has to be referred to as ``/d/``.
-
-4. Start the containers by executing the ``docker compose up`` command. You will see the output of the ``artof-core`` and ``redis-stack-server`` containers.
-The first time, it can take some time for the ``artof-core`` to pull and install the system and node-red add-on.
-The output of the ``artof-core`` will provide information of how the add-ons are launching.
-You can check the status of the different containers in docker Docker or using the Docker cli.
-
-+ *Note*: When updating to a new version, it is important to clear the redis cache. This can be done by removing the ``redis_data`` volume or perform the ``redis-cli FLUSHALL`` command.
-
-The Docker installation is tested on:
-
-+-----------------------+-----------+---------------------------+
-| Operating System      | Arch      | Docker Version            |
-+=======================+===========+===========================+
-| Ubuntu 22.04          | x86_64    | 26.0.0, build 2ae903e     |
-+-----------------------+-----------+---------------------------+
-| Windows 11            | x86_64    | 26.0.0, build 2ae903e     |
-+-----------------------+-----------+---------------------------+
-| Windows 10            | x86_64    | 26.0.0, build 2ae903e     |
-+-----------------------+-----------+---------------------------+
-| macOS Sonoma 14.2     | x86_64    | 26.0.0, build 2ae903e     |
-+-----------------------+-----------+---------------------------+
++ A :ref:`installation_system` installation from the signed ARTOF APT repository. This is the preferred installation when integrating the framework on a robot platform.
++ A :ref:`installation_docker` installation that runs the whole stack in containers, without installing anything on the host. This is useful for testing or developing the framework.
 
 .. _installation_system:
 
 System
 ------
 
-1. Download and run the script to install the ARTOF dependencies.
+Requirements
+^^^^^^^^^^^^
+
++ **Ubuntu 24.04 (arch: amd64)**, connected to the internet. The packages are built against the Ubuntu 24.04 libraries and do not install on other releases.
+
+Install a new robot
+^^^^^^^^^^^^^^^^^^^
+
+Set up a new robot once with the bootstrap script:
 
 .. code-block:: bash
 
-	wget https://minio.ilvo.be:9000/tv115-ilvo-robotics/install.sh
-	chmod +x install.sh
-	./install.sh
+	# stable channel
+	curl -fsSL https://minio.ilvo.be:9000/tv115-ilvo-robotics/bootstrap.sh | sudo sh
+	# dev channel (follow the development builds)
+	curl -fsSL https://minio.ilvo.be:9000/tv115-ilvo-robotics/bootstrap.sh | sudo sh -s -- dev
 
+The bootstrap installs Docker if needed, adds the signed ARTOF package repository and installs the ``artof-core`` package.
+The package installs
 
-2. The update script can be used for installing the ARTOF binaries for the first time, but also to update to a later or specific version.
++ the ``ilvo-robotics`` service, which runs the :ref:`system manager <system_manager>`,
++ a pinned Redis container (``redis-stack-server``),
++ the default configuration in ``/var/lib/ilvo`` (``ILVO_PATH``).
 
-For the installation perform the bash commands below and wait until ```Done!``` appears.
+The robot settings in ``/var/lib/ilvo`` are never overwritten: the defaults from ``/usr/share/artof-core/defaults`` are only copied when missing.
+
+Update a robot
+^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
-	wget https://minio.ilvo.be:9000/tv115-ilvo-robotics/update.sh
-	chmod +x update.sh
-	./update.sh
+	artof-update            # newest version
+	artof-update --list     # available versions
+	artof-update <version>  # install a specific version, also to roll back
 
-For updating to the latest version perform the bash commands below and wait until ```Done!``` appears.
+.. warning::
+
+   An update restarts the ``ilvo-robotics`` service and empties Redis, so the system manager reloads ``redis.init.json``.
+   Do not update during a field job.
+
+Running a robot
+^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
-	./update.sh
+	systemctl status ilvo-robotics             # is the stack running?
+	sudo systemctl restart ilvo-robotics       # restart all processes
+	sudo systemctl stop ilvo-robotics          # stop all processes
+	journalctl -u ilvo-robotics -f             # service output
+	ls /var/lib/ilvo/logs                      # one log file per process
+	dpkg-query -W artof-core                   # installed version
 
-The binary installation is currently only supported on **Ubuntu 22.04 (arch: x86_64)**.
+Uninstall
+^^^^^^^^^
 
-The binary installation is tested on:
+Each step goes further; stop after the one you need.
 
-+-----------------------+-----------+---------------------------+
-| Operating System      | Arch      | Docker Version            |
-+=======================+===========+===========================+
-| Ubuntu 22.04          | x86_64    | 26.0.0, build 2ae903e     |
-+-----------------------+-----------+---------------------------+
+1. Remove the software. This stops and disables the service, but keeps the settings in ``/var/lib/ilvo``, so a later ``sudo apt install artof-core`` continues where it left off.
 
-Check your installation (Binary and Docker)
--------------------------------------------
+.. code-block:: bash
 
-Now, you can browse for the first time to the *system add-on web page*.
+	sudo apt remove artof-core
 
-+ For the system installation, browse to `http://<ip-robot> <http://localhost>`_.
+2. Remove the Redis container and the add-on containers started by the system manager (not all of them may exist). Add ``docker image prune -a`` to also free the image disk space.
 
-+ For the docker installation, browse to `http://<ip-robot>:8080 <http://localhost:8080>`_.
+.. code-block:: bash
 
-Next, browse to the *Tab Map* and toggle the ```Sim``` button twice. You should see the robot appear as shown in *Figure 1*.
+	docker rm -f redis-stack-server system node-red
+
+3. Remove the robot data: settings, fields, implements and logs. This cannot be undone, so make a backup first.
+
+.. code-block:: bash
+
+	sudo tar czf ~/ilvo-backup.tgz /var/lib/ilvo
+	sudo rm -rf /var/lib/ilvo
+
+4. Remove the ARTOF package repository.
+
+.. code-block:: bash
+
+	sudo rm /etc/apt/sources.list.d/artof.sources /etc/apt/keyrings/artof.gpg
+	sudo apt update
+
+Docker, ``curl`` and ``gpg`` installed by the bootstrap are left in place because other software may use them.
+
+.. _installation_docker:
+
+Docker
+------
+
+Install `Docker <https://docs.docker.com/engine/install/ubuntu/>`_ with `root-level privileges <https://docs.docker.com/engine/install/linux-postinstall/>`_ first.
+You may have to reboot after installation.
+
+The ``ilvo`` folder of the `artof-core <https://github.com/artof-ilvo/artof-core>`_ project runs the whole stack in Docker:
+
+.. code-block:: bash
+
+	git clone https://github.com/artof-ilvo/artof-core.git
+	cd artof-core/ilvo
+	docker compose up -d
+
+The ``ilvo/data`` folder is mounted as ``ILVO_PATH``. It contains the same files as the package defaults, with these differences:
+
++ ``config.json``: Redis is reached at ``"ip": "redis"``, the compose service name, instead of ``127.0.0.1``.
++ ``redis.init.json``: the add-on containers mount the host data folder in ``HostConfig.Binds``, join the compose network through ``HostConfig.NetworkMode`` (``ilvo_artof_network``) and publish their ports through ``ExposedPorts`` and ``HostConfig.PortBindings``.
+
+The first time, it can take some time for ``artof-core`` to pull and install the system and node-red add-on.
+The output of the ``artof-core`` container shows how the add-ons are launching.
+
+.. note::
+   When updating to a new version, clear the Redis cache, so the new ``redis.init.json`` is loaded.
+   Remove the ``redis_data`` volume or run ``redis-cli FLUSHALL``.
+
+Check your installation
+-----------------------
+
+Browse to the *system add-on web app* at `http://<ip-robot> <http://localhost>`_ (port 80 by default, set by the ``PORT`` environment variable of the add-on).
+
+Next, browse to the *Map* tab and press the ``Sim`` button. You should see the robot appear as shown in *Figure 1*.
 
 .. figure:: images/fig_robotframework_first_view.png
 	:width: 90%
 	:align: center
 
-	**Figure 1.** Tab Map: First view of the robot in the system add-on
-
+	**Figure 1.** Map tab: First view of the robot in the system add-on
 
 Thereafter, check the *node-red add-on* installation at `http://<ip-robot>:1880 <http://localhost:1880>`_.
+
+Troubleshooting
+^^^^^^^^^^^^^^^
+
++ **The service does not start**: it waits up to 60 s for Redis. Check ``redis-cli ping`` (expects ``PONG``) and ``docker ps`` for the ``redis-stack-server`` container.
++ **Changes to redis.init.json are not applied**: the file is only read into an empty Redis. Stop the service, run ``redis-cli FLUSHALL`` and start it again.
++ **No PLC data**: check that the PLC answers on the IP in ``config.json`` and that the protocol settings match the PLC (see :ref:`basic_concepts_interfaces`).
 
 Additional hardware configuration
 ---------------------------------
@@ -131,15 +152,15 @@ Additional hardware configuration
 SimpleRTK3b GPS
 ^^^^^^^^^^^^^^^
 
-1. Connect to USB ethernet (dhcp) and write the ip `192.168.3.1 <http://192.168.3.1>`_ in your brower.
+1. Connect to USB ethernet (dhcp) and write the ip `192.168.3.1 <http://192.168.3.1>`_ in your browser.
 
-2. In tab ```Corrections``` ```Correntions Input```, set ```USB1``` to ```RTCMv3```
+2. In tab ``Corrections`` ``Corrections Input``, set ``USB1`` to ``RTCMv3``
 
-3. In tab ```NMEA/SBF Out``` add ```New NMEA stream``` set ```USB1``` to ```GGA+VTG+HDT+HRP``` and specify your interval.
+3. In tab ``NMEA/SBF Out`` add ``New NMEA stream`` set ``USB1`` to ``GGA+VTG+HDT+HRP`` and specify your interval.
 
-4. On your computer you need to add yourself to the dialout group ```sudo usermod -a -G dialout <your-username>``` and reboot.
+4. On your computer you need to add yourself to the dialout group ``sudo usermod -a -G dialout <your-username>`` and reboot.
 
-5. Configure automatic hyperlink creation for a ```/dev/ttACMx``` to ```/dev/septentrio0```. Therefore paste the following in the file ```/etc/udev/rules.d/99-septentrio.rules```:
+5. Configure automatic symlink creation for a ``/dev/ttyACMx`` to ``/dev/septentrio0``. Therefore paste the following in the file ``/etc/udev/rules.d/99-septentrio.rules``:
 
 .. code-block:: bash
 
@@ -151,6 +172,13 @@ SimpleRTK3b GPS
 	SUBSYSTEM=="tty", ACTION=="add", ENV{ID_VENDOR_ID}=="152a", ENV{ID_MODEL_ID}=="85c0", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="septentrio0"
 	SUBSYSTEM=="tty", ACTION=="add", ENV{ID_VENDOR_ID}=="152a", ENV{ID_MODEL_ID}=="85c0", ENV{ID_USB_INTERFACE_NUM}=="04", SYMLINK+="septentrio1"
 
+Set ``"device": "serial"`` and ``"usb_port": "/dev/septentrio0"`` in the ``gps`` object of the ``settings.json`` file.
+
+Stonex GPS
+^^^^^^^^^^
+
+A Stonex receiver is connected over Ethernet.
+Set ``"device": "socket"`` with the receiver ``ip`` and ``udp_port`` in the ``gps`` object of the ``settings.json`` file.
 
 Enable ssh
 ^^^^^^^^^^
@@ -175,11 +203,11 @@ Common issues
 Ethernet over USB of the SimpleRTK3b module on a NUC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Septentrio chip of the SimpleRTK3b GPS modules provides ethernet over USB. This can cause problems on boot time as this USB network device may be selected in favor of the PCI network device. This guide provides a step-by-step approach to create a `systemd` service file that ensures the specified PCI network device is automatically connected at boot time using `nmcli`. The provided instructions use `systemd`, a system and service manager for Linux operating systems, to execute the NetworkManager command line interface (```nmcli```) once the network is online.
+The Septentrio chip of the SimpleRTK3b GPS modules provides ethernet over USB. This can cause problems on boot time as this USB network device may be selected in favor of the PCI network device. This guide provides a step-by-step approach to create a `systemd` service file that ensures the specified PCI network device is automatically connected at boot time using `nmcli`. The provided instructions use `systemd`, a system and service manager for Linux operating systems, to execute the NetworkManager command line interface (``nmcli``) once the network is online.
 
-1. Open a Terminal: ```Cntrl-Alt-t```
+1. Open a Terminal: ``Ctrl-Alt-t``
 
-2. Create Service File: Use a text editor with root permissions to create a new systemd service file. You can use ```nano``` or ```vim``` or any other text editor.
+2. Create Service File: Use a text editor with root permissions to create a new systemd service file. You can use ``nano`` or ``vim`` or any other text editor.
 
 
 .. code-block:: bash
@@ -211,4 +239,3 @@ The Septentrio chip of the SimpleRTK3b GPS modules provides ethernet over USB. T
 
 	sudo systemctl enable connect-network.service
 	sudo systemctl start connect-network.service
-

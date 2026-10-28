@@ -1,10 +1,11 @@
 {
     "protocols": {
-        "snap7": {
+        "plc": {
+            "protocol": "s7",
             "ip": "192.168.1.2",
             "rack": 0,
-            "read_db": 201,
             "slot": 1,
+            "read_db": 201,
             "write_db": 200
         },
         "redis": {
@@ -47,7 +48,8 @@
             "path": "path",
             "field": "field",
             "implement": "implement",
-            "execution": "execution"
+            "execution": "execution",
+            "as_applied": "as_applied"
         }
     }
 }

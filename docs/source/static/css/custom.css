@@ -1,3 +1,132 @@
+/* ILVO house colours (from ilvo.vlaanderen.be) */
+:root {
+    --ilvo-primary: #5e7600;
+    --ilvo-primary-dark: #4f6400;
+    --ilvo-contrast: #6f8b00;
+    --ilvo-lime: #a3cc00;
+    --ilvo-text: #424235;
+    --ilvo-dark: #424235;
+    --ilvo-darker: #34342a;
+    --ilvo-secondary: #914e1d;
+    --ilvo-tertiary: #15465b;
+    --ilvo-bg-variant: #f6f6f3;
+    --ilvo-outline: #e5e5e5;
+}
+
+body {
+    color: var(--ilvo-text);
+}
+
+/* Page background */
+.wy-body-for-nav,
+.wy-nav-content-wrap {
+    background: var(--ilvo-bg-variant);
+}
+
+/* Links */
+a,
+a:visited {
+    color: var(--ilvo-primary);
+}
+a:hover {
+    color: var(--ilvo-primary-dark);
+}
+
+/* Sidebar */
+.wy-nav-side {
+    background: var(--ilvo-dark);
+}
+.wy-side-nav-search,
+.wy-nav-top {
+    background: var(--ilvo-primary);
+}
+.wy-side-nav-search > a,
+.wy-side-nav-search .wy-dropdown > a,
+.wy-nav-top a {
+    color: #fff;
+}
+.wy-side-nav-search > div.version {
+    color: rgba(255, 255, 255, .75);
+}
+.wy-side-nav-search input[type="text"] {
+    border-color: var(--ilvo-primary-dark);
+}
+.wy-menu-vertical header,
+.wy-menu-vertical p.caption {
+    color: var(--ilvo-lime);
+}
+.wy-menu-vertical a {
+    color: #e6e6dc;
+}
+.wy-menu-vertical a:hover {
+    background-color: var(--ilvo-darker);
+    color: #fff;
+}
+.wy-menu-vertical li.current > a,
+.wy-menu-vertical li.on a {
+    border-left: 4px solid var(--ilvo-lime);
+}
+.wy-menu-vertical li.current a {
+    color: var(--ilvo-text);
+}
+.wy-menu-vertical li.current a:hover {
+    background: #e6e6dc;
+}
+
+/* Admonitions */
+.rst-content .note .admonition-title,
+.rst-content .seealso .admonition-title {
+    background: var(--ilvo-tertiary);
+}
+.rst-content .note,
+.rst-content .seealso {
+    background: #e3ecef;
+}
+.rst-content .tip .admonition-title,
+.rst-content .hint .admonition-title {
+    background: var(--ilvo-primary);
+}
+.rst-content .tip,
+.rst-content .hint {
+    background: #eef2dc;
+}
+.rst-content .warning .admonition-title,
+.rst-content .caution .admonition-title,
+.rst-content .attention .admonition-title {
+    background: var(--ilvo-secondary);
+}
+.rst-content .warning,
+.rst-content .caution,
+.rst-content .attention {
+    background: #f6ebe2;
+}
+
+/* Inline code */
+.rst-content code.literal,
+.rst-content tt.literal {
+    color: var(--ilvo-secondary);
+    border-color: var(--ilvo-outline);
+}
+.rst-content code.xref,
+.rst-content a code.literal {
+    color: var(--ilvo-tertiary);
+}
+
+/* Buttons (previous / next) */
+.btn-neutral {
+    background-color: #fff !important;
+    color: var(--ilvo-text) !important;
+}
+.btn-neutral:hover {
+    background-color: var(--ilvo-bg-variant) !important;
+}
+
+/* Headings */
+.rst-content h1,
+.rst-content h2 {
+    color: var(--ilvo-primary-dark);
+}
+
 .highlight {
     background: #f0f0f0;
     overflow-y: auto;

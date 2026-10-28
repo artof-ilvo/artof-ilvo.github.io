@@ -30,6 +30,33 @@ A field includes:
 
    **Figure 1.** Task types
 
+Every feature (polygon or point) of a task carries its own attribute:
+
++ ``rate`` (float, default ``100``) for *continuous* and *cardan* tasks: the application rate of the sections that intersect the polygon.
++ ``routine`` (int, default ``1``) for *discrete* and *intermittent* tasks: the action number the implement executes at the point.
+
+The defaults are written when a task is saved, and the values can be edited per feature in the :ref:`system add-on web app <addon_system>`.
+
+On the robot, a field is stored as a folder ``$ILVO_PATH/field/<name>/`` with an ``info.json`` file describing its tasks, and the shapefiles of the geofence, the traject and each task.
+Field names may only contain letters, digits and underscores.
+Shapefiles can be prepared in a GIS program such as QGIS, e.g. with the :ref:`sampling route generator <tools_sampling_route>`.
+
+.. _basic_concepts_as_applied:
+
+As-applied map
+^^^^^^^^^^^^^^
+
+An as-applied map records what the implement sections actually did during a field operation.
+Recordings are made by the :ref:`task-map add-on <addon_taskmap>` as *sessions*, one folder per recording:
+
+.. code-block:: text
+
+   $ILVO_PATH/field/<field>/as_applied/<YYYYmmdd-HHMMSS>/
+       sections.gpkg   area swept by every implement section (implement, section, rate, time)
+       points.gpkg     robot.ref.state point with all Redis variables (+ time, lat, lon, ref.yaw)
+
+Both GeoPackages open directly in QGIS. Recording is controlled by the Redis variables ``pc.as_applied.record``, ``pc.as_applied.session`` and ``pc.as_applied.heartbeat``.
+
 
 .. _basic_concepts_platform:
 
@@ -48,9 +75,11 @@ The fields in the ``settings.json`` file are:
 
 2. ``robot``: The robot platform configuration
 
-   2.1. The dimensions of the robot platform (``width``, ``height``, ``wheel_diameter``)
+   2.1. The dimensions of the robot platform (``width``, ``length``, ``wheel_diameter``) in meters.
 
-   2.2. ``transform``: The translation (in meters) and rotation in Euler angles (degrees) of the different robot components to the antenna reference point on the robot. The robot reference point is measured from the ground on and is used by the navigation algorithms, to calculate the robots position in respect to the trajectory.
+   2.2. ``config``: The vehicle configuration (``ackermann``, ``4wd4ws``, ``diff`` or ``omni``).
+
+   2.3. ``transform``: The translation (in meters) and rotation in Euler angles (degrees) of the different robot components to the antenna reference point on the robot. The robot reference point is measured from the ground on and is used by the navigation algorithms, to calculate the robots position in respect to the trajectory.
 
       + For a 4WD4WS robot vehicle configuration, the robot reference coincides with its geometric center.
       + For an Ackerman robot, the robot reference coincides with the centre of mass. In the case this does not equal the robot center, this transformation is written under the ``transform_center`` field of the ``robot`` configuration object.
@@ -61,9 +90,13 @@ The fields in the ``settings.json`` file are:
 
    **Figure 2.** Robot component transformations, expressed relative to the antenna reference
 
-3. ``auto_velocity``: ``min`` and ``max`` velocity of the platform.
+3. ``auto_max_accel``: maximum ``linear`` (m/s²) and ``angular`` (rad/s²) acceleration in autonomous mode.
 
-4. ``nav_modes``: The allowed navigation modes. Depending on the robot platforms' vehicle configuration, different headland turns are possible. The navigation modes determine these headland turns and are shown in *Figure 3* with their corresponding ID.
+4. ``auto_velocity``: ``min`` and ``max`` velocity of the platform (m/s).
+
+5. ``nav_modes``: The allowed navigation modes. Depending on the robot platforms' vehicle configuration, different headland turns are possible. The navigation modes determine these headland turns and are shown in *Figure 3* with their corresponding ID.
+
+   The ids are fixed: ``1`` *90° spinning*, ``2`` *180° spinning*, ``3`` *pure pursuit*, ``4`` *rollback* and ``5`` *external*. Only list the modes your vehicle configuration supports.
 
    + *90° spinning*: When the robot reaches a corner, it rotates around its axis until its orientation matches the direction of the next trajectory line it needs to follow. This basic turning process applies to both regular corners and headland turns.
 
@@ -82,7 +115,7 @@ The fields in the ``settings.json`` file are:
    **Figure 3.** Navigation modes with their navigation id
 
 
-5. ``auto_modes``: The different modes for autonomous navigation.
+6. ``auto_modes``: The different modes for autonomous navigation.
 
    + *Full auto*: The robot operates fully autonomous, with autonomous velocity- and steering control.
 
@@ -90,51 +123,53 @@ The fields in the ``settings.json`` file are:
 
    + *Auto throttle*: The robot only performs autonomous velocity control, and no autonomous steering control. This mode provides "cruise control" functionality.
 
-6. ``hitches``: The specifications of the different hitches on the platform.
+   The names of the auto modes match the ``plc.monitor.state.<name>`` variables. They appear in the state selector of the web app and decide when as-applied recording starts automatically.
 
-   6.1. ``id``: hitch id
+7. ``hitches``: The specifications of the different hitches on the platform.
 
-   6.2. ``name``: name of the hitch
+   7.1. ``name``: name of the hitch, one of ``FF`` (front-front), ``FB`` (front-back), ``RF`` (rear-front), ``RB`` (rear-back), ``R`` (right) or ``L`` (left). The name must also exist in ``config.json`` as ``plc.control.hitch_<name>`` and ``plc.monitor.hitch_<name>`` (in lower case). Hitches no longer have an ``id``.
 
-   6.3. ``min``: min height of the hitch (cm)
+   7.2. ``min``: min height of the hitch (cm)
 
-   6.4. ``max``: max height of the hitch (cm)
+   7.3. ``max``: max height of the hitch (cm)
 
-   6.5. ``transform`` to the hitch hinge (see *Figure 2*)
+   7.4. ``transform`` to the hitch hinge (see *Figure 2*)
 
-   6.6. ``types``: compatible task types with the hitch
+   7.5. ``link_length``: length of the hitch link from the hinge to the hitch pen (m)
 
-7. ``gps``: The RTK GNSS configuration.
+   7.6. ``types``: compatible task types with the hitch
 
-   7.1. ``device``: The device field is set *serial* for USB devices and *socket* for network devices.
+8. ``gps``: The RTK GNSS configuration.
 
-   7.2. ``utm_zone``: The Universal Transverse Mercator (UTM) projection zone to complete the EPSG:326xx code whereby xx is the UTM zone.
+   8.1. ``device``: ``serial`` for a Septentrio receiver (e.g. SimpleRTK3b) on USB, or ``socket`` for a Stonex receiver on Ethernet.
 
-   7.3. ``usb_port`` or ``ìp`` and ``port``: These parameters are device interface dependent. For a USB device the device name needs to be provided, and for a socket device the network- ip and port.
+   8.2. ``utm_zone``: The Universal Transverse Mercator (UTM) projection zone to complete the EPSG:326xx code whereby xx is the UTM zone (31 for Belgium).
 
-   7.4. NTRIP configuration ``ntrip_server``, ``ntrip_mountpoint``, ``ntrip_uname``, ``ntrip_pwd``
+   8.3. ``usb_port`` for a ``serial`` device (e.g. ``/dev/septentrio0``), or ``ip`` and ``udp_port`` for a ``socket`` device.
 
-   7.5. ``antenna_rotation``: The antenna rotation describes an additional rotation of the antennas around the z-axis (in degrees).
+   8.4. NTRIP configuration ``ntrip_server``, ``ntrip_mountpoint``, ``ntrip_uname``, ``ntrip_pwd``
+
+   8.5. ``antenna_rotation``: The antenna rotation describes an additional rotation of the antennas around the z-axis (in degrees).
 
       + 0 or 180 if the antennas are in the longitudinal direction of the platform.
 
       + 90 or -90 if the antennas are in the lateral direction of the platform.
 
-   7.6. ``transform``: The transform field describes the transformation to the antenna reference (see *Figure 2*).
+   8.6. ``transform``: The transform field describes the transformation to the antenna reference (see *Figure 2*).
 
 
 Implements
 ----------
 
-The ``<implement-name>.json`` files describe the implement configuration and can be edited in the :ref:`system add-on web app <addon_system_admin_settings>` JSON editor.
+The ``<implement-name>.json`` files describe the implement configuration and can be edited in the :ref:`system add-on web app <addon_system_admin_implements>` form or JSON editor.
 
 The fields in the ``<implement-name>.json`` file are:
 
 1. ``name``: The name of the implement.
 
-2. ``on_taskmap``: This variable determines whether the task needs to be executed on the task map. If not, the sections can be operated by an add-on or program on another computer. If yes, the sections are operated according to the field configuration.
+2. ``on_taskmap``: This variable determines whether the task needs to be executed on the task map. If yes, each section takes the rate of the task map under its footprint. If not, the sections follow the manual section variables, so they can be operated by an add-on or program on another computer.
 
-3. ``types``: The implement supports several types of operations: *continuous*, *intermittent*, and *discrete*, as illustrated in *Figure 2*. Some implements can handle multiple types of operations simultaneously. For example, the *auto-label* implement shown in *Listing 2* is designed for data collection using two cameras. The sections are defined by the cameras' fields of view. A camera can be activated in two scenarios: when the sections overlap with a specified polygon (a continuous task) or when a crop plant enters the field of view (an intermittent task).
+3. ``types``: The implement supports several types of operations: *hitch*, *continuous*, *cardan*, *intermittent* and *discrete*, as illustrated in *Figure 1*. A hitch only accepts the implement when they share at least one type. Some implements can handle multiple types of operations simultaneously. For example, the *auto-label* implement shown in *Listing 2* is designed for data collection using two cameras. The sections are defined by the cameras' fields of view. A camera can be activated in two scenarios: when the sections overlap with a specified polygon (a continuous task) or when a crop plant enters the field of view (an intermittent task).
 
 .. literalinclude:: files/implements/auto-label.json
    :language: JSON
@@ -144,11 +179,13 @@ The fields in the ``<implement-name>.json`` file are:
 
    4.1. ``id``: The id of the section (string).
 
-   4.2. The dimensions ``width``, ``up``, ``down`` in meters.
+   4.2. The dimensions ``width``, ``up``, ``down`` in meters: the footprint is ``±width/2`` across and ``[-down, up]`` along the driving direction.
 
-   4.3. ``transform``: The transformation of the center of the section to the hitch pen, visualized *Figure 2*.
+   4.3. ``transform``: The transformation of the center of the section to the hitch pen, visualized *Figure 2* (+x right, +y forward, +z up).
 
-   4.4. A section can be repeated over a specified distance by using the ``repeats`` and ``offset`` fields. This functionality allows for the configuration of implements with repetitive sections, such as the spray boom described in Listing 3. The spray boom consists of 24 sections, but only the transformation for the first section needs to be defined. The ``repeats`` and ``offset`` fields define how these sections are repeated along the boom.
+   4.4. ``link_length`` (optional): a parallel link that hangs the section further back from the hitch pen (m).
+
+   4.5. A section can be repeated over a specified distance by using the ``repeats`` and ``offset`` fields. This functionality allows for the configuration of implements with repetitive sections, such as the spray boom described in Listing 3. The spray boom consists of 24 sections, but only the transformation for the first section needs to be defined. The ``repeats`` and ``offset`` fields define how these sections are repeated along the boom: copy ``i`` is shifted ``i·offset`` along x and gets the id ``<id><i>``.
 
 .. literalinclude:: files/implements/spray-boom.json
    :language: JSON
@@ -172,13 +209,26 @@ The fields in the ``config.json`` file are:
 
 1. The ``protocols`` object defines the protocol configuration.
 
-   1.1. The ``snap7`` object provides the *mechatronic/operational layer interface* parameters:
+   1.1. The ``plc`` object provides the *mechatronic/operational layer interface* parameters:
 
-      1.1.1. the ``ip`` address of the PLC
+      1.1.1. ``protocol``: ``s7`` (Siemens S7-communication, Snap7) or ``udp``
 
-      1.1.2. the ``read_db`` and ``write_db`` data block (DB), which correspond with the *higherLevelMonitor* and *higherLevelControl*
+      1.1.2. the ``ip`` address of the PLC
 
-      1.1.3. the ``rack`` and ``slot`` of these data blocks
+      1.1.3. for ``s7``: the ``read_db`` and ``write_db`` data block (DB), which correspond with the *higherLevelMonitor* and *higherLevelControl*, and the ``rack`` and ``slot`` of the PLC
+
+      1.1.4. for ``udp``: the ``read_port`` and ``write_port``
+
+   For a UDP PLC the object looks like:
+
+   .. code-block:: JSON
+
+      "plc": {
+          "protocol": "udp",
+          "ip": "192.168.2.243",
+          "read_port": 1200,
+          "write_port": 1201
+      }
 
    1.2 The ``redis`` object provides the *Redis ARTOF interface* parameters:
 
@@ -188,9 +238,9 @@ The fields in the ``config.json`` file are:
 
    2.1. ``plc`` variables: These variables are continuously synced between the *operational and mechatronic layer*.
 
-      2.1.1 the ``monitor`` variables are read *S7-communication protocol (Snap7)* by the :cpp:class:`RobotPLC`
+      2.1.1 the ``monitor`` variables are read from the PLC by the :cpp:class:`RobotPlc`
 
-      2.1.2 the ``control`` variables are written *S7-communication protocol (Snap7)* by the :cpp:class:`RobotPLC`
+      2.1.2 the ``control`` variables are written to the PLC by the :cpp:class:`RobotPlc`
 
    2.2. ``pc`` variables are solely used by the operational layer and require no synchronization with the mechatronic layer.
 
@@ -269,4 +319,16 @@ For easier human readability, the affine matrix is converted into a translation 
 + ``implement.states``: The implement states describe the states of the different implements and their sections.
 
    + Configuration of the ``<implement-name>.json`` file.
+
+.. _basic_concepts_robot_status:
+
+Robot status
+^^^^^^^^^^^^
+
+The ``robot.status`` JSON variable summarizes the robot for the web app: the errors, simulation state, GNSS fix, notification, heartbeat, power level (``plc.monitor.power_source.data.soc`` or ``.level``), and
+
++ ``current_state``: the active navigation state, i.e. the first ``plc.monitor.state.<auto mode>`` that is set (``normal``, ``auto``, ...).
++ ``current_substate``: the active PLC substate, the first set ``plc.monitor.substate.<name>`` of ``programming``, ``implement_control``, ``inhibited``, ``aware`` and ``stay_clear``. In simulation the substate is always ``programming``.
+
+The substates are reported by the :ref:`mechatronic layer <mechatronic_layer_states>`.
 

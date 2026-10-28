@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add-ons &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tools" href="tools.html" />
+    <link rel="prev" title="Operational layer" href="operational-layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Add-ons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-package">Python package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-add-on">System add-on</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#status-bar">Status bar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fields">Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#edit-field">Edit field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map">Map</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#editing-shapes-on-site">Editing shapes on site</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#applied">Applied</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#admin-area">Admin area</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#addon-system-admin-settings">Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implements">Implements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#processes">Processes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addon-system-admin-addons">Add-ons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#monitor">Monitor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#node-red-add-on">Node-red add-on</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#task-map-add-on">Task-map add-on</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Add-ons</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/addons.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="add-ons">
+<span id="addons"></span><h1>Add-ons<a class="headerlink" href="#add-ons" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Add-ons are Docker containers that run on the same system as the <em>operational layer</em>.
+The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SystemManager</span></code> process maintains the add-ons and can start, stop, and update the add-on at request.
+The add-ons in the system are configured in the <a class="reference internal" href="#addon-system-admin-addons"><span class="std std-ref">system add-on web app</span></a>, using the <a class="reference external" href="https://docs.docker.com/engine/api/v1.46/">Docker Engine API (1.46)</a> syntax.</p>
+<p>The system is shipped with the <a class="reference internal" href="#addon-system"><span class="std std-ref">system add-on</span></a> and the <a class="reference internal" href="#addon-node-red"><span class="std std-ref">node-red add-on</span></a>.
+The <a class="reference internal" href="#addon-taskmap"><span class="std std-ref">task-map add-on</span></a> can be added when needed.</p>
+</section>
+<section id="python-package">
+<h2>Python package<a class="headerlink" href="#python-package" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">artof_utils</span></code> Python package supports new Python add-ons. The package provides the interaction with the <em>operational layer</em> including:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><em>ARTOF Redis interface</em> interaction (<code class="docutils literal notranslate"><span class="pre">artof_utils.redis</span></code>)</p></li>
+<li><p>Field, traject, polygon and task manipulation (<code class="docutils literal notranslate"><span class="pre">artof_utils.helpers</span></code>)</p></li>
+<li><p>Platform and implement configuration access, validated with <a class="reference external" href="https://docs.pydantic.dev/">pydantic</a> schemas (<code class="docutils literal notranslate"><span class="pre">artof_utils.schemas</span></code>)</p></li>
+<li><p>As-applied session reading and writing (<code class="docutils literal notranslate"><span class="pre">artof_utils.as_applied</span></code>)</p></li>
+</ol>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>artof-utils
+</pre></div>
+</div>
+<p>The package reads the robot configuration from the folder in the <code class="docutils literal notranslate"><span class="pre">ILVO_PATH</span></code> environment variable (<code class="docutils literal notranslate"><span class="pre">/var/lib/ilvo</span></code> on a robot).
+You can find the source code of the Python package in the <a class="reference external" href="https://github.com/artof-ilvo/artof-utils">artof-utils</a> project.</p>
+</section>
+<section id="system-add-on">
+<span id="addon-system"></span><h2>System add-on<a class="headerlink" href="#system-add-on" title="Permalink to this heading"></a></h2>
+<p>The system add-on is implemented in Python-Django and provides the web application to operate and configure the robot.
+It runs on the robot itself (<code class="docutils literal notranslate"><span class="pre">--network=host</span></code>) and is available from any phone, tablet or laptop on the robot’s network.
+By default, the web application is hosted at port 80 (<code class="docutils literal notranslate"><span class="pre">PORT</span></code> environment variable).
+The source code is in the <a class="reference external" href="https://github.com/artof-ilvo/artof-system">artof-system</a> project.</p>
+<p>The menu bar holds the operator pages <em>Fields</em>, <em>Map</em>, <em>Applied</em> and <em>Settings</em>, and on the right the <em>Admin</em> area.
+The pages adapt to phone screens: the menu collapses and tables are shown as cards.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Many controls act directly on the real robot: the navigation state, hitch heights, navigation settings, map uploads and values written on the <em>Monitor</em> page.
+Make sure the area around the robot is safe before you change them.</p>
+</div>
+<section id="status-bar">
+<h3>Status bar<a class="headerlink" href="#status-bar" title="Permalink to this heading"></a></h3>
+<p>Below the menu, the status bar shows the robot’s state, updated live several times per second.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/fig_system_statusbar.jpeg"><img alt="_images/fig_system_statusbar.jpeg" src="_images/fig_system_statusbar.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1.</strong> Status bar</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>The <em>state selector</em> shows the navigation state (e.g. normal or auto, as defined in the <code class="docutils literal notranslate"><span class="pre">auto_modes</span></code> of the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file). Tap another state to switch the robot to it.</p></li>
+<li><p>The <em>substate chips</em> highlight the current PLC substate: Programming, Implement control, Inhibited, Aware or Stay clear (see <a class="reference internal" href="basic-concepts.html#basic-concepts-robot-status"><span class="std std-ref">Robot status</span></a>).</p></li>
+<li><p>The <em>cross-track error gauge</em> shows how far the robot is beside the traject.</p></li>
+<li><p>The <em>GPS chip</em> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+    <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+    <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+</svg> shows the GNSS fix (green: RTK fix, orange: float, red: no fix).</p></li>
+<li><p>The <em>battery chip</em> shows the remaining charge.</p></li>
+<li><p>The <em>live heartbeat</em> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+</svg> pulses as long as the connection with the robot is alive.</p></li>
+</ul>
+<p>Robot notifications appear in a notification box; closing it acknowledges the notification on the robot.</p>
+</section>
+<section id="fields">
+<h3>Fields<a class="headerlink" href="#fields" title="Permalink to this heading"></a></h3>
+<p>The <em>Fields</em> page is the first page you see when browsing the web application.
+It gives an overview of the available <a class="reference internal" href="basic-concepts.html#basic-concepts"><span class="std std-ref">fields</span></a>. The robot always works on exactly one selected field.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/fig_system_fields.jpeg"><img alt="_images/fig_system_fields.jpeg" src="_images/fig_system_fields.jpeg" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 2.</strong> Fields page</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Select a field by clicking its name or the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+    <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+    <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+  </svg> button.</p></li>
+<li><p>Create a field with <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">field</span></code>.</p></li>
+<li><p>Duplicate a field using the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+</svg> button.</p></li>
+<li><p>Edit a field by clicking on the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button.</p></li>
+<li><p>Download a field as a <code class="docutils literal notranslate"><span class="pre">.zip</span></code> file (shapefiles and settings) by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+</svg> button.</p></li>
+<li><p>Delete a field by clicking on the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+</svg> button. The selected field cannot be deleted.</p></li>
+</ul>
+</section>
+<section id="edit-field">
+<h3>Edit field<a class="headerlink" href="#edit-field" title="Permalink to this heading"></a></h3>
+<p>The field editor shows a side panel with the name, traject, geofence and tasks of the field, and a map with the shapes.</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/fig_system_field_edit.jpeg"><img alt="_images/fig_system_field_edit.jpeg" src="_images/fig_system_field_edit.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 3.</strong> Field editor</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple">
+<li><p>Change the name and press <code class="docutils literal notranslate"><span class="pre">Save</span></code>. Names may only contain letters, digits and underscores.</p></li>
+<li><p>Create the traject and the geofence. For each shape, choose its source and press <code class="docutils literal notranslate"><span class="pre">Save</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Original</span></code> keeps the shape that is already stored on the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">File</span></code> uploads a shapefile. Select all its parts together: <code class="docutils literal notranslate"><span class="pre">.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">.shx</span></code>, <code class="docutils literal notranslate"><span class="pre">.dbf</span></code> and preferably <code class="docutils literal notranslate"><span class="pre">.prj</span></code> and <code class="docutils literal notranslate"><span class="pre">.cpg</span></code>. The attributes and coordinate system of the file are kept.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Draw</span></code> draws the shape with the drawing tools on the map.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Drive</span></code> leaves the shape to be driven in later with the robot on the <em>Map</em> page.</p></li>
+</ul>
+</li>
+<li><p>Add one or more tasks with <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">task</span></code>. Choose the <em>hitch</em>, the <em>task type</em> and the <em>implement</em>, and provide the task shape.
+An implement can only be chosen when it shares a task type with the hitch.</p></li>
+<li><p>After a task is saved, its features are listed with their <code class="docutils literal notranslate"><span class="pre">rate</span></code> (continuous, cardan) or <code class="docutils literal notranslate"><span class="pre">routine</span></code> (discrete, intermittent). Edit the values and save the list.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">Done</span></code> returns to the <em>Fields</em> page.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Prepare large or precise shapes in QGIS and upload them as shapefiles, e.g. with the <a class="reference internal" href="tools.html#tools-sampling-route"><span class="std std-ref">sampling route generator</span></a>.</p>
+</div>
+</section>
+<section id="map">
+<h3>Map<a class="headerlink" href="#map" title="Permalink to this heading"></a></h3>
+<p>The <em>Map</em> page shows the selected field and the robot with its hitches and implement sections, live.</p>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="_images/fig_system_map.jpeg"><img alt="_images/fig_system_map.jpeg" src="_images/fig_system_map.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 4.</strong> Map page with the robot driving in auto mode, the swept sections and the as-applied panel</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>On the map you can see:</p>
+<ul class="simple">
+<li><p>the traject: lines with arrows in the driving direction;</p></li>
+<li><p>the geofence: the outline around the field;</p></li>
+<li><p>the tasks, in the colour of their task;</p></li>
+<li><p>the robot with its outline, hitches and sections. Active sections are highlighted;</p></li>
+<li><p>the visualizations of the navigation algorithm: the robot reference, the closest point on the trajectory, and the look-ahead point.</p></li>
+</ul>
+<p>The toolbar on the right contains:</p>
+<ul>
+<li><p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-crosshair" viewBox="0 0 16 16">
+    <path d="M8.5.5a.5.5 0 0 0-1 0v.518A7 7 0 0 0 1.018 7.5H.5a.5.5 0 0 0 0 1h.518A7 7 0 0 0 7.5 14.982v.518a.5.5 0 0 0 1 0v-.518A7 7 0 0 0 14.982 8.5h.518a.5.5 0 0 0 0-1h-.518A7 7 0 0 0 8.5 1.018zm-6.48 7A6 6 0 0 1 7.5 2.02v.48a.5.5 0 0 0 1 0v-.48a6 6 0 0 1 5.48 5.48h-.48a.5.5 0 0 0 0 1h.48a6 6 0 0 1-5.48 5.48v-.48a.5.5 0 0 0-1 0v.48A6 6 0 0 1 2.02 8.5h.48a.5.5 0 0 0 0-1zM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+</svg> <em>Follow the robot</em>: keeps the robot in the centre of the map.</p></li>
+<li><p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor" viewBox="0 0 16 16">
+  <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52z"/>
+</svg> <em>Rotate with heading</em>: turns the map so that the robot always drives upwards.</p></li>
+<li><p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> <em>Edit field</em>: opens the edit panel (see below).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Sim</span></code> activates <em>simulation mode</em>. When the <em>operational layer</em> communicates with the <em>mechatronic layer</em>, the robot goes in <em>Hardware In The Loop (HIL) testing</em>; if not, you perform an <em>integration test</em> in the <em>operational layer</em>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>With the <code class="docutils literal notranslate"><span class="pre">Speed</span></code> factor (<code class="docutils literal notranslate"><span class="pre">+</span></code> / <code class="docutils literal notranslate"><span class="pre">−</span></code>, 0 to 32×) you can multiply the simulation speed.</p></li>
+<li><p>The <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-command" viewBox="0 0 16 16">
+  <path d="M3.5 2A1.5 1.5 0 0 1 5 3.5V5H3.5a1.5 1.5 0 1 1 0-3M6 5V3.5A2.5 2.5 0 1 0 3.5 6H5v4H3.5A2.5 2.5 0 1 0 6 12.5V11h4v1.5a2.5 2.5 0 1 0 2.5-2.5H11V6h1.5A2.5 2.5 0 1 0 10 3.5V5zm4 1v4H6V6zm1-1V3.5A1.5 1.5 0 1 1 12.5 5zm0 6h1.5a1.5 1.5 0 1 1-1.5 1.5zm-6 0v1.5A1.5 1.5 0 1 1 3.5 11z"/>
+</svg> button lets you drive the simulated robot with the arrow keys, or place it with a click on the map.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The <em>record</em> button (red dot) starts or stops an <a class="reference internal" href="basic-concepts.html#basic-concepts-as-applied"><span class="std std-ref">as-applied recording</span></a>. It is disabled in auto mode, because recording then follows auto mode automatically.</p></li>
+</ul>
+<p>The <em>As-applied</em> panel shows a recording on top of the field: the latest (running) session, a specific session, or none. <code class="docutils literal notranslate"><span class="pre">Rec</span></code> appears while a recording runs (<code class="docutils literal notranslate"><span class="pre">Rec</span> <span class="pre">·</span> <span class="pre">auto</span></code> when it follows auto mode).</p>
+<section id="editing-shapes-on-site">
+<h4>Editing shapes on site<a class="headerlink" href="#editing-shapes-on-site" title="Permalink to this heading"></a></h4>
+<p>The <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> edit panel corrects shapes in the field, for example to extend rows or shift them onto the real crop rows.</p>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="_images/fig_system_map_edit.jpeg"><img alt="_images/fig_system_map_edit.jpeg" src="_images/fig_system_map_edit.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 5.</strong> Map edit panel with the traject selected</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple">
+<li><p>Choose the shape to edit: the traject, the geofence or one of the tasks.</p></li>
+<li><p>Apply one or more operations. Each result is first shown as a dashed preview; press <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+    <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+    <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+  </svg> to accept it.</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">Upload</span></code> to save the accepted changes to the field. Until then, nothing is stored.</p></li>
+</ol>
+<p>Traject operations work on the rows in the <code class="docutils literal notranslate"><span class="pre">Rows</span></code> box: a single row (<code class="docutils literal notranslate"><span class="pre">0</span></code>), a list (<code class="docutils literal notranslate"><span class="pre">0,1,3</span></code>) or a range (<code class="docutils literal notranslate"><span class="pre">0-3</span></code>).</p>
+<ul class="simple">
+<li><p><em>Extend rows</em>: make the selected rows longer (negative: shorter) at the begin, the end or both.</p></li>
+<li><p><em>Shift rows</em>: move the selected rows sideways.</p></li>
+<li><p><em>Add rows</em>: add parallel rows next to the first or last row.</p></li>
+<li><p><em>Remove rows</em>: delete the selected rows.</p></li>
+<li><p><em>Change direction</em>: <em>Reverse</em> drives the rows in the opposite direction, <em>Flip</em> changes the order in which the rows are driven.</p></li>
+<li><p><em>Drive in</em>: record a new row with the robot. Drive to the start and press <code class="docutils literal notranslate"><span class="pre">A</span></code>, press <code class="docutils literal notranslate"><span class="pre">/</span></code> at each waypoint and <code class="docutils literal notranslate"><span class="pre">B</span></code> at the end of the row.</p></li>
+</ul>
+<p>For a geofence or polygon task, <em>Buffer</em> grows (positive distance) or shrinks (negative distance) the polygon.</p>
+</section>
+</section>
+<section id="applied">
+<h3>Applied<a class="headerlink" href="#applied" title="Permalink to this heading"></a></h3>
+<p>The <em>Applied</em> page reviews <a class="reference internal" href="basic-concepts.html#basic-concepts-as-applied"><span class="std std-ref">as-applied recordings</span></a> after the work.</p>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="_images/fig_system_applied.jpeg"><img alt="_images/fig_system_applied.jpeg" src="_images/fig_system_applied.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 6.</strong> Applied page with a recording coloured by rate</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple">
+<li><p>Choose the field and the recording (session). The running session is marked <code class="docutils literal notranslate"><span class="pre">(recording)</span></code>.</p></li>
+<li><p>Choose the layer: <em>Sections</em> (the area covered by each section, with its rate) or <em>Points</em> (the robot position log with all Redis variables).</p></li>
+<li><p>Choose an attribute in <em>Colour by</em>, and optionally add filters on any attribute.</p></li>
+<li><p>Click a feature on the map to see all its attributes.</p></li>
+</ol>
+<p>The download button saves the recording as a GeoPackage (<code class="docutils literal notranslate"><span class="pre">.gpkg</span></code>) that opens directly in QGIS.</p>
+</section>
+<section id="settings">
+<h3>Settings<a class="headerlink" href="#settings" title="Permalink to this heading"></a></h3>
+<p>The <em>Settings</em> page holds the settings an operator adjusts while working. Changes are applied as soon as you release a slider or change a selection.</p>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="_images/fig_system_settings.jpeg"><img alt="_images/fig_system_settings.jpeg" src="_images/fig_system_settings.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 7.</strong> Settings page</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>For every hitch: the height setpoint (cm) and, if provided by the robot’s hardware, the <code class="docutils literal notranslate"><span class="pre">Float</span></code> mode.</p></li>
+<li><p>The navigation mode, as explained in <a class="reference internal" href="basic-concepts.html#basic-concepts-platform"><span class="std std-ref">Platform</span></a>.</p></li>
+<li><p>The operational and non-operational velocity. The robot uses the operational velocity when it is in a task polygon; otherwise, it uses the non-operational velocity.</p></li>
+<li><p>The navigation controller parameters (<em>Pure pursuit</em>, <em>Steady state</em> and <em>Rough</em>).</p></li>
+</ul>
+</section>
+<section id="admin-area">
+<h3>Admin area<a class="headerlink" href="#admin-area" title="Permalink to this heading"></a></h3>
+<p>The <em>Admin</em> area is meant for the robot administrator. Its menu has <em>Settings</em>, <em>Implements</em>, <em>Processes</em>, <em>Addons</em> and <em>Monitor</em>.</p>
+<p>The form editors (system settings, implements and add-ons) have a <em>Form | JSON</em> switch. Both modes edit the same data. Invalid content is refused with an error, and nothing is saved.</p>
+<section id="addon-system-admin-settings">
+<span id="id1"></span><h4>Settings<a class="headerlink" href="#addon-system-admin-settings" title="Permalink to this heading"></a></h4>
+<p>In the admin <em>Settings</em>, the <a class="reference internal" href="basic-concepts.html#basic-concepts"><span class="std std-ref">configuration files</span></a> can be edited:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">settings.json</span></code> (system settings) in a form editor with a live top and side preview of the robot and its hitches, or as JSON;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> and <code class="docutils literal notranslate"><span class="pre">types.json</span></code> in a JSON editor.</p></li>
+</ul>
+<p>Hitch names are checked against the hitches in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>.</p>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="_images/fig_system_admin_platform_form.jpeg"><img alt="_images/fig_system_admin_platform_form.jpeg" src="_images/fig_system_admin_platform_form.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 8.</strong> Form editor of <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> with the robot preview</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changes in the admin <em>Settings</em> require a restart of the robot (computer).</p>
+</div>
+</section>
+<section id="implements">
+<span id="addon-system-admin-implements"></span><h4>Implements<a class="headerlink" href="#implements" title="Permalink to this heading"></a></h4>
+<p>You can add (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+  </svg>), edit (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg>) or delete (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+</svg>) <a class="reference internal" href="basic-concepts.html#basic-concepts"><span class="std std-ref">implements</span></a>.
+The implement editor shows the general settings and the sections on the left, and a top and side preview of the implement on a chosen hitch on the right.</p>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="_images/fig_system_admin_implement_edit.jpeg"><img alt="_images/fig_system_admin_implement_edit.jpeg" src="_images/fig_system_admin_implement_edit.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 9.</strong> Implement editor with its preview</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you are modifying an enabled implement in the selected field, you first need to toggle another field for the changes to occur.</p>
+</div>
+</section>
+<section id="processes">
+<h4>Processes<a class="headerlink" href="#processes" title="Permalink to this heading"></a></h4>
+<p>The <em>Processes</em> page lists the processes of the operational layer with their start time and state.</p>
+<figure class="align-center" id="id13">
+<a class="reference internal image-reference" href="_images/fig_system_admin_processes.jpeg"><img alt="_images/fig_system_admin_processes.jpeg" src="_images/fig_system_admin_processes.jpeg" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 10.</strong> Processes page</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Start the process by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+  <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+</svg> button.</p></li>
+<li><p>Stop the process by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stop" viewBox="0 0 16 16">
+  <path d="M3.5 5A1.5 1.5 0 0 1 5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11zM5 4.5a.5.5 0 0 0-.5.5v6a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5V5a.5.5 0 0 0-.5-.5z"/>
+</svg> button. Stopping a core process can stop the robot.</p></li>
+<li><p>Show the process configuration (read only) by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button.</p></li>
+</ul>
+</section>
+<section id="addon-system-admin-addons">
+<span id="id2"></span><h4>Add-ons<a class="headerlink" href="#addon-system-admin-addons" title="Permalink to this heading"></a></h4>
+<p>The <em>Addons</em> page lists the add-ons in the system with their start time and status.</p>
+<figure class="align-center" id="id14">
+<a class="reference internal image-reference" href="_images/fig_system_admin_addons.jpeg"><img alt="_images/fig_system_admin_addons.jpeg" src="_images/fig_system_admin_addons.jpeg" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 11.</strong> Addons page</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Add a new add-on using the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+  </svg> button.</p></li>
+<li><p>Start the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+  <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+</svg> button (the image is pulled when needed).</p></li>
+<li><p>Stop the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stop" viewBox="0 0 16 16">
+  <path d="M3.5 5A1.5 1.5 0 0 1 5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11zM5 4.5a.5.5 0 0 0-.5.5v6a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5V5a.5.5 0 0 0-.5-.5z"/>
+</svg> button.</p></li>
+<li><p>Update the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+</svg> button. The latest image is pulled and the container is recreated.</p></li>
+<li><p>Edit the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/></svg> button.</p></li>
+<li><p>Delete the add-on by pressing the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+</svg> button.</p></li>
+</ul>
+<p>The add-on editor sets the name (also the container name, cannot be changed later), <em>Start with the robot</em>, the Docker image, the shared folders, the environment variables, the network and restart policy, and the registry credentials for private images.
+The side panel shows the add-on status and the equivalent <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command.</p>
+<figure class="align-center" id="id15">
+<a class="reference internal image-reference" href="_images/fig_system_admin_addon_edit.jpeg"><img alt="_images/fig_system_admin_addon_edit.jpeg" src="_images/fig_system_admin_addon_edit.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 12.</strong> Add-on editor for the task-map add-on</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The add-on configuration uses the <a class="reference external" href="https://docs.docker.com/engine/api/v1.46/">Docker Engine API (1.46)</a> syntax.
+A configuration that would crash the system manager (no image, an image Docker cannot find, a container-name conflict) is refused.
+The system manager only uses a changed configuration after it restarts: restart it, then press <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+</svg> on the <em>Addons</em> page.</p>
+</div>
+</section>
+<section id="monitor">
+<h4>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading"></a></h4>
+<p>The <em>Monitor</em> page shows all <a class="reference internal" href="basic-concepts.html#basic-concepts-interfaces"><span class="std std-ref">Redis variables</span></a> with their live value.</p>
+<figure class="align-center" id="id16">
+<a class="reference internal image-reference" href="_images/fig_system_admin_monitor.jpeg"><img alt="_images/fig_system_admin_monitor.jpeg" src="_images/fig_system_admin_monitor.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 13.</strong> Monitor page with pinned variables in the live graph</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Search a variable with the search bar.</p></li>
+<li><p><em>Pin</em> a variable to keep it at the top. The pinned set is remembered by the browser.</p></li>
+<li><p><em>Graph</em> adds a numeric or boolean variable to the live graph of the last 30 seconds.</p></li>
+<li><p>Write a value in the <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">value</span></code> field and press <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/>
+    <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z"/>
+</svg>.</p></li>
+<li><p><em>Pulse</em> sets the opposite value of a boolean for 0.5 s and then restores it, like pressing a button.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Altering <code class="docutils literal notranslate"><span class="pre">plc.monitor</span></code> variables does not have any effect, as they are immediately updated again by the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RobotPlc</span></code> process.
+Never write an empty string to a variable that the operational layer reads; use a placeholder such as <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="node-red-add-on">
+<span id="addon-node-red"></span><h2>Node-red add-on<a class="headerlink" href="#node-red-add-on" title="Permalink to this heading"></a></h2>
+<p>The node-red add-on provides flow programming, used for logging and implement interaction.
+It can be reached at the URL <a class="reference external" href="http:/">http:/</a>/&lt;ip-robot&gt;:1880/.
+The add-on has access to the <code class="docutils literal notranslate"><span class="pre">field</span></code> and <code class="docutils literal notranslate"><span class="pre">implement</span></code> folders and the <code class="docutils literal notranslate"><span class="pre">config.json</span></code>, <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> and <code class="docutils literal notranslate"><span class="pre">types.json</span></code> files of the robot.</p>
+<p>You can install the submodules for extracting the Redis variables and logging them to an InfluxDB instance by</p>
+<p><em>&lt;Coming soon&gt;</em></p>
+</section>
+<section id="task-map-add-on">
+<span id="addon-taskmap"></span><h2>Task-map add-on<a class="headerlink" href="#task-map-add-on" title="Permalink to this heading"></a></h2>
+<p>The task-map add-on records <a class="reference internal" href="basic-concepts.html#basic-concepts-as-applied"><span class="std std-ref">as-applied sessions</span></a>.
+While the Redis variable <code class="docutils literal notranslate"><span class="pre">pc.as_applied.record</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, it polls Redis and writes one session folder per recording.</p>
+<ul class="simple">
+<li><p>Recording is switched on when the robot enters auto mode (a navigation state in <code class="docutils literal notranslate"><span class="pre">auto_modes</span></code> of <code class="docutils literal notranslate"><span class="pre">settings.json</span></code>, or <code class="docutils literal notranslate"><span class="pre">pc.simulation.auto</span></code> in simulation) and off when it leaves it. Outside auto mode it can be toggled from the <em>Map</em> page.</p></li>
+<li><p>A new session starts each time recording is switched on or the active field (<code class="docutils literal notranslate"><span class="pre">pc.field.name</span></code>) changes. The running session id is published in <code class="docutils literal notranslate"><span class="pre">pc.as_applied.session</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pc.as_applied.heartbeat</span></code> (unix time, every second) tells the web pages the add-on is alive. Without it, the <em>Map</em> page shows <em>Task-map addon is not running</em>.</p></li>
+<li><p>Sections and points are written once they moved more than <code class="docutils literal notranslate"><span class="pre">TASKMAP_MIN_DISTANCE</span></code>; points are also logged every <code class="docutils literal notranslate"><span class="pre">TASKMAP_POINT_PERIOD</span></code> seconds while the robot stands still.</p></li>
+</ul>
+<p>The source code is in the <a class="reference external" href="https://github.com/artof-ilvo/artof-addon-taskmap">artof-addon-taskmap</a> project.
+Add it on the <em>Addons</em> page with the image <code class="docutils literal notranslate"><span class="pre">axelwillekens/artof-taskmap-addon</span></code>, the <code class="docutils literal notranslate"><span class="pre">host</span></code> network and the folder <code class="docutils literal notranslate"><span class="pre">/var/lib/ilvo</span></code> shared with the container, or run it manually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>-v<span class="w"> </span>/var/lib/ilvo:/var/lib/ilvo<span class="w"> </span>--name<span class="w"> </span>taskmap-addon<span class="w"> </span>axelwillekens/artof-taskmap-addon:dev
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Environment variable</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TASKMAP_POLL_PERIOD</span></code></p></td>
+<td><p>0.2</p></td>
+<td><p>Period (s) to poll Redis</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TASKMAP_FLUSH_PERIOD</span></code></p></td>
+<td><p>1.0</p></td>
+<td><p>Period (s) to write the GeoPackages</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TASKMAP_MIN_DISTANCE</span></code></p></td>
+<td><p>0.1</p></td>
+<td><p>Minimum distance (m) before a new feature is written</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TASKMAP_POINT_PERIOD</span></code></p></td>
+<td><p>5.0</p></td>
+<td><p>Period (s) to log a point while standing still</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">REDIS_HOST</span></code>,
+<code class="docutils literal notranslate"><span class="pre">REDIS_PORT</span></code></p></td>
+<td></td>
+<td><p>Redis server</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="operational-layer.html" class="btn btn-neutral float-left" title="Operational layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tools.html" class="btn btn-neutral float-right" title="Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024-2026, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

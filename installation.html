@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Licence" href="license.html" />
+    <link rel="prev" title="Tools" href="tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system">System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-a-new-robot">Install a new robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-a-robot">Update a robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-a-robot">Running a robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uninstall">Uninstall</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check-your-installation">Check your installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-hardware-configuration">Additional hardware configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simplertk3b-gps">SimpleRTK3b GPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stonex-gps">Stonex GPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-ssh">Enable ssh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-connection">Remote connection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#common-issues">Common issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ethernet-over-usb-of-the-simplertk3b-module-on-a-nuc">Ethernet over USB of the SimpleRTK3b module on a NUC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>ARTOF can be installed in two ways:</p>
+<ul class="simple">
+<li><p>A <a class="reference internal" href="#installation-system"><span class="std std-ref">System</span></a> installation from the signed ARTOF APT repository. This is the preferred installation when integrating the framework on a robot platform.</p></li>
+<li><p>A <a class="reference internal" href="#installation-docker"><span class="std std-ref">Docker</span></a> installation that runs the whole stack in containers, without installing anything on the host. This is useful for testing or developing the framework.</p></li>
+</ul>
+<section id="system">
+<span id="installation-system"></span><h2>System<a class="headerlink" href="#system" title="Permalink to this heading"></a></h2>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Ubuntu 24.04 (arch: amd64)</strong>, connected to the internet. The packages are built against the Ubuntu 24.04 libraries and do not install on other releases.</p></li>
+</ul>
+</section>
+<section id="install-a-new-robot">
+<h3>Install a new robot<a class="headerlink" href="#install-a-new-robot" title="Permalink to this heading"></a></h3>
+<p>Set up a new robot once with the bootstrap script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># stable channel</span>
+curl<span class="w"> </span>-fsSL<span class="w"> </span>https://minio.ilvo.be:9000/tv115-ilvo-robotics/bootstrap.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>sh
+<span class="c1"># dev channel (follow the development builds)</span>
+curl<span class="w"> </span>-fsSL<span class="w"> </span>https://minio.ilvo.be:9000/tv115-ilvo-robotics/bootstrap.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>sh<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>dev
+</pre></div>
+</div>
+<p>The bootstrap installs Docker if needed, adds the signed ARTOF package repository and installs the <code class="docutils literal notranslate"><span class="pre">artof-core</span></code> package.
+The package installs</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">ilvo-robotics</span></code> service, which runs the <a class="reference internal" href="operational-layer.html#system-manager"><span class="std std-ref">system manager</span></a>,</p></li>
+<li><p>a pinned Redis container (<code class="docutils literal notranslate"><span class="pre">redis-stack-server</span></code>),</p></li>
+<li><p>the default configuration in <code class="docutils literal notranslate"><span class="pre">/var/lib/ilvo</span></code> (<code class="docutils literal notranslate"><span class="pre">ILVO_PATH</span></code>).</p></li>
+</ul>
+<p>The robot settings in <code class="docutils literal notranslate"><span class="pre">/var/lib/ilvo</span></code> are never overwritten: the defaults from <code class="docutils literal notranslate"><span class="pre">/usr/share/artof-core/defaults</span></code> are only copied when missing.</p>
+</section>
+<section id="update-a-robot">
+<h3>Update a robot<a class="headerlink" href="#update-a-robot" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>artof-update<span class="w">            </span><span class="c1"># newest version</span>
+artof-update<span class="w"> </span>--list<span class="w">     </span><span class="c1"># available versions</span>
+artof-update<span class="w"> </span>&lt;version&gt;<span class="w">  </span><span class="c1"># install a specific version, also to roll back</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>An update restarts the <code class="docutils literal notranslate"><span class="pre">ilvo-robotics</span></code> service and empties Redis, so the system manager reloads <code class="docutils literal notranslate"><span class="pre">redis.init.json</span></code>.
+Do not update during a field job.</p>
+</div>
+</section>
+<section id="running-a-robot">
+<h3>Running a robot<a class="headerlink" href="#running-a-robot" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>status<span class="w"> </span>ilvo-robotics<span class="w">             </span><span class="c1"># is the stack running?</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>ilvo-robotics<span class="w">       </span><span class="c1"># restart all processes</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>ilvo-robotics<span class="w">          </span><span class="c1"># stop all processes</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>ilvo-robotics<span class="w"> </span>-f<span class="w">             </span><span class="c1"># service output</span>
+ls<span class="w"> </span>/var/lib/ilvo/logs<span class="w">                      </span><span class="c1"># one log file per process</span>
+dpkg-query<span class="w"> </span>-W<span class="w"> </span>artof-core<span class="w">                   </span><span class="c1"># installed version</span>
+</pre></div>
+</div>
+</section>
+<section id="uninstall">
+<h3>Uninstall<a class="headerlink" href="#uninstall" title="Permalink to this heading"></a></h3>
+<p>Each step goes further; stop after the one you need.</p>
+<ol class="arabic simple">
+<li><p>Remove the software. This stops and disables the service, but keeps the settings in <code class="docutils literal notranslate"><span class="pre">/var/lib/ilvo</span></code>, so a later <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">artof-core</span></code> continues where it left off.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>artof-core
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Remove the Redis container and the add-on containers started by the system manager (not all of them may exist). Add <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span> <span class="pre">prune</span> <span class="pre">-a</span></code> to also free the image disk space.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>redis-stack-server<span class="w"> </span>system<span class="w"> </span>node-red
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Remove the robot data: settings, fields, implements and logs. This cannot be undone, so make a backup first.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>~/ilvo-backup.tgz<span class="w"> </span>/var/lib/ilvo
+sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/ilvo
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Remove the ARTOF package repository.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>rm<span class="w"> </span>/etc/apt/sources.list.d/artof.sources<span class="w"> </span>/etc/apt/keyrings/artof.gpg
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+</pre></div>
+</div>
+<p>Docker, <code class="docutils literal notranslate"><span class="pre">curl</span></code> and <code class="docutils literal notranslate"><span class="pre">gpg</span></code> installed by the bootstrap are left in place because other software may use them.</p>
+</section>
+</section>
+<section id="docker">
+<span id="installation-docker"></span><h2>Docker<a class="headerlink" href="#docker" title="Permalink to this heading"></a></h2>
+<p>Install <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a> with <a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/">root-level privileges</a> first.
+You may have to reboot after installation.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ilvo</span></code> folder of the <a class="reference external" href="https://github.com/artof-ilvo/artof-core">artof-core</a> project runs the whole stack in Docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/artof-ilvo/artof-core.git
+<span class="nb">cd</span><span class="w"> </span>artof-core/ilvo
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ilvo/data</span></code> folder is mounted as <code class="docutils literal notranslate"><span class="pre">ILVO_PATH</span></code>. It contains the same files as the package defaults, with these differences:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code>: Redis is reached at <code class="docutils literal notranslate"><span class="pre">&quot;ip&quot;:</span> <span class="pre">&quot;redis&quot;</span></code>, the compose service name, instead of <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">redis.init.json</span></code>: the add-on containers mount the host data folder in <code class="docutils literal notranslate"><span class="pre">HostConfig.Binds</span></code>, join the compose network through <code class="docutils literal notranslate"><span class="pre">HostConfig.NetworkMode</span></code> (<code class="docutils literal notranslate"><span class="pre">ilvo_artof_network</span></code>) and publish their ports through <code class="docutils literal notranslate"><span class="pre">ExposedPorts</span></code> and <code class="docutils literal notranslate"><span class="pre">HostConfig.PortBindings</span></code>.</p></li>
+</ul>
+<p>The first time, it can take some time for <code class="docutils literal notranslate"><span class="pre">artof-core</span></code> to pull and install the system and node-red add-on.
+The output of the <code class="docutils literal notranslate"><span class="pre">artof-core</span></code> container shows how the add-ons are launching.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When updating to a new version, clear the Redis cache, so the new <code class="docutils literal notranslate"><span class="pre">redis.init.json</span></code> is loaded.
+Remove the <code class="docutils literal notranslate"><span class="pre">redis_data</span></code> volume or run <code class="docutils literal notranslate"><span class="pre">redis-cli</span> <span class="pre">FLUSHALL</span></code>.</p>
+</div>
+</section>
+<section id="check-your-installation">
+<h2>Check your installation<a class="headerlink" href="#check-your-installation" title="Permalink to this heading"></a></h2>
+<p>Browse to the <em>system add-on web app</em> at <a class="reference external" href="http://localhost">http://&lt;ip-robot&gt;</a> (port 80 by default, set by the <code class="docutils literal notranslate"><span class="pre">PORT</span></code> environment variable of the add-on).</p>
+<p>Next, browse to the <em>Map</em> tab and press the <code class="docutils literal notranslate"><span class="pre">Sim</span></code> button. You should see the robot appear as shown in <em>Figure 1</em>.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/fig_robotframework_first_view.png"><img alt="_images/fig_robotframework_first_view.png" src="_images/fig_robotframework_first_view.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1.</strong> Map tab: First view of the robot in the system add-on</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Thereafter, check the <em>node-red add-on</em> installation at <a class="reference external" href="http://localhost:1880">http://&lt;ip-robot&gt;:1880</a>.</p>
+<section id="troubleshooting">
+<h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>The service does not start</strong>: it waits up to 60 s for Redis. Check <code class="docutils literal notranslate"><span class="pre">redis-cli</span> <span class="pre">ping</span></code> (expects <code class="docutils literal notranslate"><span class="pre">PONG</span></code>) and <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> for the <code class="docutils literal notranslate"><span class="pre">redis-stack-server</span></code> container.</p></li>
+<li><p><strong>Changes to redis.init.json are not applied</strong>: the file is only read into an empty Redis. Stop the service, run <code class="docutils literal notranslate"><span class="pre">redis-cli</span> <span class="pre">FLUSHALL</span></code> and start it again.</p></li>
+<li><p><strong>No PLC data</strong>: check that the PLC answers on the IP in <code class="docutils literal notranslate"><span class="pre">config.json</span></code> and that the protocol settings match the PLC (see <a class="reference internal" href="basic-concepts.html#basic-concepts-interfaces"><span class="std std-ref">Interfaces</span></a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="additional-hardware-configuration">
+<h2>Additional hardware configuration<a class="headerlink" href="#additional-hardware-configuration" title="Permalink to this heading"></a></h2>
+<section id="simplertk3b-gps">
+<h3>SimpleRTK3b GPS<a class="headerlink" href="#simplertk3b-gps" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Connect to USB ethernet (dhcp) and write the ip <a class="reference external" href="http://192.168.3.1">192.168.3.1</a> in your browser.</p></li>
+<li><p>In tab <code class="docutils literal notranslate"><span class="pre">Corrections</span></code> <code class="docutils literal notranslate"><span class="pre">Corrections</span> <span class="pre">Input</span></code>, set <code class="docutils literal notranslate"><span class="pre">USB1</span></code> to <code class="docutils literal notranslate"><span class="pre">RTCMv3</span></code></p></li>
+<li><p>In tab <code class="docutils literal notranslate"><span class="pre">NMEA/SBF</span> <span class="pre">Out</span></code> add <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">NMEA</span> <span class="pre">stream</span></code> set <code class="docutils literal notranslate"><span class="pre">USB1</span></code> to <code class="docutils literal notranslate"><span class="pre">GGA+VTG+HDT+HRP</span></code> and specify your interval.</p></li>
+<li><p>On your computer you need to add yourself to the dialout group <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">usermod</span> <span class="pre">-a</span> <span class="pre">-G</span> <span class="pre">dialout</span> <span class="pre">&lt;your-username&gt;</span></code> and reboot.</p></li>
+<li><p>Configure automatic symlink creation for a <code class="docutils literal notranslate"><span class="pre">/dev/ttyACMx</span></code> to <code class="docutils literal notranslate"><span class="pre">/dev/septentrio0</span></code>. Therefore paste the following in the file <code class="docutils literal notranslate"><span class="pre">/etc/udev/rules.d/99-septentrio.rules</span></code>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/udev/rules.d/99-septentrio.rules
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># SEPTENTRIO (names are not loaded in lsusb, use ENV variables of udevadm)</span>
+<span class="nv">SUBSYSTEM</span><span class="o">==</span><span class="s2">"tty"</span>,<span class="w"> </span><span class="nv">ACTION</span><span class="o">==</span><span class="s2">"add"</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_VENDOR_ID<span class="o">}==</span><span class="s2">"152a"</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_MODEL_ID<span class="o">}==</span><span class="s2">"85c0"</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_USB_INTERFACE_NUM<span class="o">}==</span><span class="s2">"02"</span>,<span class="w"> </span><span class="nv">SYMLINK</span><span class="o">+=</span><span class="s2">"septentrio0"</span>
+<span class="nv">SUBSYSTEM</span><span class="o">==</span><span class="s2">"tty"</span>,<span class="w"> </span><span class="nv">ACTION</span><span class="o">==</span><span class="s2">"add"</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_VENDOR_ID<span class="o">}==</span><span class="s2">"152a"</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_MODEL_ID<span class="o">}==</span><span class="s2">"85c0"</span>,<span class="w"> </span>ENV<span class="o">{</span>ID_USB_INTERFACE_NUM<span class="o">}==</span><span class="s2">"04"</span>,<span class="w"> </span><span class="nv">SYMLINK</span><span class="o">+=</span><span class="s2">"septentrio1"</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal notranslate"><span class="pre">&quot;device&quot;:</span> <span class="pre">&quot;serial&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;usb_port&quot;:</span> <span class="pre">&quot;/dev/septentrio0&quot;</span></code> in the <code class="docutils literal notranslate"><span class="pre">gps</span></code> object of the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p>
+</section>
+<section id="stonex-gps">
+<h3>Stonex GPS<a class="headerlink" href="#stonex-gps" title="Permalink to this heading"></a></h3>
+<p>A Stonex receiver is connected over Ethernet.
+Set <code class="docutils literal notranslate"><span class="pre">&quot;device&quot;:</span> <span class="pre">&quot;socket&quot;</span></code> with the receiver <code class="docutils literal notranslate"><span class="pre">ip</span></code> and <code class="docutils literal notranslate"><span class="pre">udp_port</span></code> in the <code class="docutils literal notranslate"><span class="pre">gps</span></code> object of the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p>
+</section>
+<section id="enable-ssh">
+<h3>Enable ssh<a class="headerlink" href="#enable-ssh" title="Permalink to this heading"></a></h3>
+<p>To enable ssh execute the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">status</span> <span class="n">ssh</span>
+</pre></div>
+</div>
+</section>
+<section id="remote-connection">
+<h3>Remote connection<a class="headerlink" href="#remote-connection" title="Permalink to this heading"></a></h3>
+<p>To access the robot framework remotely, you can configure a VPN connection (e.g. <a class="reference external" href="https://tailscale.com/kb/1031/install-linux">tailscale</a>).</p>
+</section>
+</section>
+<section id="common-issues">
+<h2>Common issues<a class="headerlink" href="#common-issues" title="Permalink to this heading"></a></h2>
+<section id="ethernet-over-usb-of-the-simplertk3b-module-on-a-nuc">
+<h3>Ethernet over USB of the SimpleRTK3b module on a NUC<a class="headerlink" href="#ethernet-over-usb-of-the-simplertk3b-module-on-a-nuc" title="Permalink to this heading"></a></h3>
+<p>The Septentrio chip of the SimpleRTK3b GPS modules provides ethernet over USB. This can cause problems on boot time as this USB network device may be selected in favor of the PCI network device. This guide provides a step-by-step approach to create a <cite>systemd</cite> service file that ensures the specified PCI network device is automatically connected at boot time using <cite>nmcli</cite>. The provided instructions use <cite>systemd</cite>, a system and service manager for Linux operating systems, to execute the NetworkManager command line interface (<code class="docutils literal notranslate"><span class="pre">nmcli</span></code>) once the network is online.</p>
+<ol class="arabic simple">
+<li><p>Open a Terminal: <code class="docutils literal notranslate"><span class="pre">Ctrl-Alt-t</span></code></p></li>
+<li><p>Create Service File: Use a text editor with root permissions to create a new systemd service file. You can use <code class="docutils literal notranslate"><span class="pre">nano</span></code> or <code class="docutils literal notranslate"><span class="pre">vim</span></code> or any other text editor.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/systemd/system/connect-network.service
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add Service Configuration: Copy the following content into the newly created service file. Replace <cite>&lt;network device&gt;</cite> with the network device identifier you intend to connect.</p></li>
+</ol>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Connect to a specific network device at boot</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network-online.target</span>
+<span class="na">Wants</span><span class="o">=</span><span class="s">network-online.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">oneshot</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/nmcli dev connect &lt;network device&gt;</span>
+<span class="na">RemainAfterExit</span><span class="o">=</span><span class="s">yes</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Enable and start the service</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>connect-network.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>connect-network.service
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tools.html" class="btn btn-neutral float-left" title="Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="license.html" class="btn btn-neutral float-right" title="Licence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024-2026, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

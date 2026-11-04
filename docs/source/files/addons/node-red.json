@@ -1,0 +1,25 @@
+{
+  "Name": "node-red",
+  "AutoStart": true,
+  "DockerRegistry": {
+    "serveraddress": "https://registry.hub.docker.com/v2/"
+  },
+  "DockerConfig": {
+    "Image": "nodered/node-red",
+    "HostConfig": {
+      "Binds": [
+        "/var/lib/ilvo/node-red:/data",
+        "/var/lib/ilvo/field:/var/lib/ilvo/field",
+        "/var/lib/ilvo/implement:/var/lib/ilvo/implement",
+        "/var/lib/ilvo/config.json:/var/lib/ilvo/config.json",
+        "/var/lib/ilvo/settings.json:/var/lib/ilvo/settings.json",
+        "/var/lib/ilvo/types.json:/var/lib/ilvo/types.json"
+      ],
+      "NetworkMode": "host",
+      "RestartPolicy": {
+        "Name": "on-failure",
+        "MaximumRetryCount": 3
+      }
+    }
+  }
+}

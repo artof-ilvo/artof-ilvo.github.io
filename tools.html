@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools &mdash; ARTOF 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Add-ons" href="addons.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ARTOF
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-concepts.html">Basic concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechatronic-layer.html">Mechatronic layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operational-layer.html">Operational layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addons.html">Add-ons</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sampling-route-generator-qgis">Sampling route generator (QGIS)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-the-model-works">How the model works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input-and-output">Input and output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-the-result-into-the-robot">Loading the result into the robot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licence</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ARTOF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tools">
+<h1>Tools<a class="headerlink" href="#tools" title="Permalink to this heading"></a></h1>
+<section id="sampling-route-generator-qgis">
+<span id="tools-sampling-route"></span><h2>Sampling route generator (QGIS)<a class="headerlink" href="#sampling-route-generator-qgis" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Route_Robot</span></code> is a QGIS processing model (<code class="docutils literal notranslate"><span class="pre">Route_Robot.model.model3</span></code>) that prepares a sampling job for an ARTOF robot.
+From a parcel boundary and a layer of sampling points it computes</p>
+<ul class="simple">
+<li><p>the shortest round trip along the sampling points that stays inside the parcel (a Travelling Salesman Problem, TSP);</p></li>
+<li><p>a smooth path for the robot along that route, shifted sideways by the offset of the implement;</p></li>
+<li><p>the stop positions on that path, so that the implement is exactly above each sampling point when the robot stops;</p></li>
+<li><p>the starting point of the robot.</p></li>
+</ul>
+<p>The model is used for point-based (<em>discrete</em>) sampling implements, such as a top soil sampler, a soil profile sampler or a vertical penetrometer.</p>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Software</p></th>
+<th class="head"><p>Version</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QGIS</p></td>
+<td><p>3.22 or newer (tested on 3.44)</p></td>
+<td><p>Runs the model</p></td>
+</tr>
+<tr class="row-odd"><td><p>Plugin <em>Plover</em></p></td>
+<td><p>3.2.5 or newer</p></td>
+<td><p>Boundary-aware TSP route (<code class="docutils literal notranslate"><span class="pre">plover:tsproute</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Plugin <em>Spline</em></p></td>
+<td><p>0.2 or newer</p></td>
+<td><p>Lines to splines (<code class="docutils literal notranslate"><span class="pre">spline:lines2splines</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Install the plugins in <em>Plugins → Manage and Install Plugins…</em>. Then add the model in the <em>Processing Toolbox</em> with <em>Models → Add Model to Toolbox…</em>.</p>
+</section>
+<section id="how-the-model-works">
+<h3>How the model works<a class="headerlink" href="#how-the-model-works" title="Permalink to this heading"></a></h3>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/fig_route_model.jpeg"><img alt="_images/fig_route_model.jpeg" src="_images/fig_route_model.jpeg" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1.</strong> The <code class="docutils literal notranslate"><span class="pre">Route_Robot</span></code> model in the QGIS model designer</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple">
+<li><p><strong>Boundary-aware TSP route</strong> finds the shortest round trip from the starting position along every sampling point and back, without leaving the parcel (0.5 m margin). Holes in the parcel are no-go zones.</p></li>
+<li><p><strong>Lines to splines</strong> turns the angular route into a smooth curve the robot can follow.</p></li>
+<li><p><strong>Offset line</strong> shifts the smooth path sideways by the <em>offset</em>, the lateral distance between the robot reference point and the sampler. A positive offset shifts the path to the left of the driving direction, for an implement on the right-hand side.</p></li>
+<li><p><strong>Snap geometries</strong> moves every point onto the offset path: the stop positions.</p></li>
+<li><p><strong>Extract by expression</strong> splits off the starting position (<code class="docutils literal notranslate"><span class="pre">visit_order</span></code> 1) from the sampling points.</p></li>
+</ol>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/fig_route_offset.jpeg"><img alt="_images/fig_route_offset.jpeg" src="_images/fig_route_offset.jpeg" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 2.</strong> Detail at one sampling point: the robot follows the offset path and stops beside the sampling point, so the implement is above it</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="input-and-output">
+<h3>Input and output<a class="headerlink" href="#input-and-output" title="Permalink to this heading"></a></h3>
+<p>All layers must use a projected coordinate system in meters, the UTM zone of the robot (e.g. EPSG:32631 for UTM zone 31N in Belgium).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Input</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Parcel borders</p></td>
+<td><p>Polygon</p></td>
+<td><p>The border of the parcel</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sampling points + starting position</p></td>
+<td><p>Point</p></td>
+<td><p>All sampling points plus one extra point where the robot starts/ends</p></td>
+</tr>
+<tr class="row-even"><td><p>Number of starting position</p></td>
+<td><p>Number</p></td>
+<td><p>Index of the starting position in the point layer, counted from 0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Offset</p></td>
+<td><p>m</p></td>
+<td><p>Lateral offset of the implement, e.g. 0.5</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/fig_route_input.jpeg"><img alt="_images/fig_route_input.jpeg" src="_images/fig_route_input.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 3.</strong> Example input: parcel border, sampling points and the starting position</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Output</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Path_Smooth_Offset</span></code></p></td>
+<td><p>Line</p></td>
+<td><p>The smooth, offset round trip: the robot’s <strong>traject</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Sampling</span> <span class="pre">points</span> <span class="pre">(with</span> <span class="pre">offset)</span> <span class="pre">incl.</span> <span class="pre">visiting</span>
+<span class="pre">order</span></code></p></td>
+<td><p>Point</p></td>
+<td><p>The stop positions with <code class="docutils literal notranslate"><span class="pre">visit_order</span></code>, <code class="docutils literal notranslate"><span class="pre">source_fid</span></code> and
+<code class="docutils literal notranslate"><span class="pre">leg_length</span></code>: the robot’s <strong>discrete task</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Starting</span> <span class="pre">point_Robot</span></code></p></td>
+<td><p>Point</p></td>
+<td><p>The starting position on the path (optional)</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/fig_route_result.jpeg"><img alt="_images/fig_route_result.jpeg" src="_images/fig_route_result.jpeg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 4.</strong> Example result: the smoothed route, the offset path and the numbered stop positions</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="loading-the-result-into-the-robot">
+<h3>Loading the result into the robot<a class="headerlink" href="#loading-the-result-into-the-robot" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Save <code class="docutils literal notranslate"><span class="pre">Path_Smooth_Offset</span></code> and the sampling points as <em>ESRI Shapefile</em> in the UTM coordinate system of the robot, e.g. <code class="docutils literal notranslate"><span class="pre">traject.shp</span></code> and <code class="docutils literal notranslate"><span class="pre">samples.shp</span></code>.</p></li>
+<li><p>In the <a class="reference internal" href="addons.html#addon-system"><span class="std std-ref">system add-on web app</span></a>, create a new field.</p></li>
+<li><p>Upload <code class="docutils literal notranslate"><span class="pre">traject.shp</span></code> as the <em>traject</em> and the parcel border as the <em>geofence</em> (source <code class="docutils literal notranslate"><span class="pre">File</span></code>, select all parts of the shapefile).</p></li>
+<li><p>Add a task with the hitch of the sampler, the type <code class="docutils literal notranslate"><span class="pre">discrete</span></code> and the sampling implement, and upload <code class="docutils literal notranslate"><span class="pre">samples.shp</span></code>.</p></li>
+<li><p>Check on the map that the traject, the stops and the implement line up, and test the route in simulation before driving it with the robot.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="addons.html" class="btn btn-neutral float-left" title="Add-ons" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024-2026, ILVO.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

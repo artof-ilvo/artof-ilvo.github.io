@@ -47,7 +47,7 @@ As-applied map
 ^^^^^^^^^^^^^^
 
 An as-applied map records what the implement sections actually did during a field operation.
-Recordings are made by the :ref:`task-map add-on <addon_taskmap>` as *sessions*, one folder per recording:
+Recordings are made by the :ref:`as-applied add-on <addon_as_applied>` as *sessions*, one folder per recording:
 
 .. code-block:: text
 

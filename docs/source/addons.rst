@@ -11,7 +11,7 @@ The :cpp:class:`SystemManager` process maintains the add-ons and can start, stop
 The add-ons in the system are configured in the :ref:`system add-on web app <addon_system_admin_addons>`, using the `Docker Engine API (1.46) <https://docs.docker.com/engine/api/v1.46/>`_ syntax.
 
 The system is shipped with the :ref:`system add-on <addon_system>` and the :ref:`node-red add-on <addon_node_red>`.
-The :ref:`task-map add-on <addon_taskmap>` can be added when needed.
+The :ref:`as-applied add-on <addon_as_applied>` can be added when needed.
 
 Python package
 --------------
@@ -327,7 +327,7 @@ The side panel shows the add-on status and the equivalent ``docker run`` command
    :width: 90%
    :align: center
 
-   **Figure 12.** Add-on editor for the task-map add-on
+   **Figure 12.** Add-on editor, here for the as-applied add-on under its former name ``taskmap``
 
 .. note::
    The add-on configuration uses the `Docker Engine API (1.46) <https://docs.docker.com/engine/api/v1.46/>`_ syntax.
@@ -374,32 +374,34 @@ You can install the submodules for extracting the Redis variables and logging th
 
 *<Coming soon>*
 
-.. _addon_taskmap:
+.. _addon_as_applied:
 
-Task-map add-on
----------------
+As-applied add-on
+-----------------
 
-The task-map add-on records :ref:`as-applied sessions <basic_concepts_as_applied>`.
+The as-applied add-on records :ref:`as-applied sessions <basic_concepts_as_applied>`.
 While the Redis variable ``pc.as_applied.record`` is ``true``, it polls Redis and writes one session folder per recording.
 
 + Recording is switched on when the robot enters auto mode (a navigation state in ``auto_modes`` of ``settings.json``, or ``pc.simulation.auto`` in simulation) and off when it leaves it. Outside auto mode it can be toggled from the *Map* page.
 + A new session starts each time recording is switched on or the active field (``pc.field.name``) changes. The running session id is published in ``pc.as_applied.session``.
 + ``pc.as_applied.heartbeat`` (unix time, every second) tells the web pages the add-on is alive. Without it, the *Map* page shows *Task-map addon is not running*.
-+ Sections and points are written once they moved more than ``TASKMAP_MIN_DISTANCE``; points are also logged every ``TASKMAP_POINT_PERIOD`` seconds while the robot stands still.
++ Sections are written once they moved more than ``TASKMAP_MIN_DISTANCE``.
++ Points are equidistant: one every ``TASKMAP_POINT_DISTANCE`` meters along the driven path, interpolated between polls so the spacing does not depend on the speed or the poll rate. While the robot stands still, a point is logged every ``TASKMAP_POINT_PERIOD`` seconds.
 
-The source code is in the `artof-addon-taskmap <https://github.com/artof-ilvo/artof-addon-taskmap>`_ project.
-Add it on the *Addons* page with the image ``axelwillekens/artof-taskmap-addon``, the ``host`` network and the folder ``/var/lib/ilvo`` shared with the container.
-The configuration below does this, with the environment variables at their default values (see the table below):
+The source code is in the `artof-addon-as-applied <https://github.com/artof-ilvo/artof-addon-as-applied>`_ project (formerly *artof-addon-taskmap*).
+Add it on the *Addons* page with the image ``axelwillekens/artof-addon-as-applied``, the ``host`` network and the folder ``/var/lib/ilvo`` shared with the container.
+The configuration below does this, with the environment variables at their default values (see the table below).
+The environment variables keep the ``TASKMAP_`` prefix of the former name:
 
-.. literalinclude:: files/addons/taskmap.json
+.. literalinclude:: files/addons/as-applied.json
    :language: JSON
-   :caption: **Listing 3.** Example configuration of the task-map add-on
+   :caption: **Listing 3.** Example configuration of the as-applied add-on
 
 Or run it manually:
 
 .. code-block:: bash
 
-   docker run --rm --network=host -v /var/lib/ilvo:/var/lib/ilvo --name taskmap-addon axelwillekens/artof-taskmap-addon:dev
+   docker run --rm --network=host -v /var/lib/ilvo:/var/lib/ilvo --name artof-addon-as-applied axelwillekens/artof-addon-as-applied:dev
 
 +---------------------------+---------+-----------------------------------------------------+
 | Environment variable      | Default | Meaning                                             |
@@ -408,7 +410,9 @@ Or run it manually:
 +---------------------------+---------+-----------------------------------------------------+
 | ``TASKMAP_FLUSH_PERIOD``  | 1.0     | Period (s) to write the GeoPackages                 |
 +---------------------------+---------+-----------------------------------------------------+
-| ``TASKMAP_MIN_DISTANCE``  | 0.1     | Minimum distance (m) before a new feature is written|
+| ``TASKMAP_MIN_DISTANCE``  | 0.1     | Minimum distance (m) before a new section is written|
++---------------------------+---------+-----------------------------------------------------+
+| ``TASKMAP_POINT_DISTANCE``| 1.0     | Distance (m) between points along the driven path   |
 +---------------------------+---------+-----------------------------------------------------+
 | ``TASKMAP_POINT_PERIOD``  | 5.0     | Period (s) to log a point while standing still      |
 +---------------------------+---------+-----------------------------------------------------+

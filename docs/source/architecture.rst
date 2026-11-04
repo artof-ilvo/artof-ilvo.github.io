@@ -25,7 +25,7 @@ The framework architecture is shown in the figure below.
    + the *system add-on* that provides a web app for user interaction, and
    + the *node-red add-on* that provides flow programming functionality, used for logging and implement interaction.
 
-   Other add-ons, such as the *task-map add-on* (as-applied recording), can be added in the system add-on web app. See :ref:`addons`.
+   Other add-ons, such as the *as-applied add-on* (as-applied recording), can be added in the system add-on web app. See :ref:`addons`.
 
 Software projects
 -----------------
@@ -44,8 +44,8 @@ The framework is split over several projects in the `artof-ilvo <https://github.
      - Django web app of the system add-on
    * - `artof-utils <https://github.com/artof-ilvo/artof-utils>`_
      - Python package (``artof_utils`` on PyPI) for Python add-ons
-   * - `artof-addon-taskmap <https://github.com/artof-ilvo/artof-addon-taskmap>`_
-     - Task-map add-on: records as-applied sessions (see :ref:`addon_taskmap`)
+   * - `artof-addon-as-applied <https://github.com/artof-ilvo/artof-addon-as-applied>`_
+     - As-applied add-on: records as-applied sessions (see :ref:`addon_as_applied`)
 
 Communication
 -------------

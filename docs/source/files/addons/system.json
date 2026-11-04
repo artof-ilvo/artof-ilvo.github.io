@@ -1,0 +1,23 @@
+{
+  "Name": "system",
+  "AutoStart": true,
+  "DockerRegistry": {
+    "serveraddress": "https://registry.hub.docker.com/v2/"
+  },
+  "DockerConfig": {
+    "Image": "axelwillekens/artof-system",
+    "Env": [
+      "PORT=80"
+    ],
+    "HostConfig": {
+      "Binds": [
+        "/var/lib/ilvo:/var/lib/ilvo"
+      ],
+      "NetworkMode": "host",
+      "RestartPolicy": {
+        "Name": "on-failure",
+        "MaximumRetryCount": 3
+      }
+    }
+  }
+}

@@ -30,6 +30,31 @@ The ``artof_utils`` Python package supports new Python add-ons. The package prov
 The package reads the robot configuration from the folder in the ``ILVO_PATH`` environment variable (``/var/lib/ilvo`` on a robot).
 You can find the source code of the Python package in the `artof-utils <https://github.com/artof-ilvo/artof-utils>`_ project.
 
+.. _addons_config:
+
+Add-on configuration
+^^^^^^^^^^^^^^^^^^^^
+
+Each add-on is described by one JSON object. Every add-on section below has an example configuration to get started quickly:
+open the *Addons* page, press |icon_plus|, switch the editor to *JSON*, paste the example and save.
+
++ ``Name``: the add-on and container name. It cannot be changed later.
++ ``AutoStart``: start the add-on when the system manager starts (*Start with the robot*). Defaults to ``true``.
++ ``DockerRegistry``: the registry to pull the image from. Add ``username`` and ``password`` for a private image; leave them out for a public image.
++ ``DockerConfig``: the container configuration in the `Docker Engine API (1.46) <https://docs.docker.com/engine/api/v1.46/#tag/Container/operation/ContainerCreate>`__ syntax, e.g. ``Image``, ``Env`` (``"NAME=value"``) and ``HostConfig`` with ``Binds`` (``"host:container"``), ``NetworkMode`` and ``RestartPolicy``.
+
+The system manager adds its own state fields (``Running``, ``Pid``, ``StartTimeISO``, ...) to the configuration; you do not need to provide them.
+
+.. note::
+
+   The examples are written for a robot, where the add-ons use the ``host`` network.
+   In the :ref:`Docker setup <installation_docker>`, set ``HostConfig.NetworkMode`` to ``ilvo_artof_network``, add ``REDIS_HOST=redis`` to ``Env``,
+   and publish the ports the add-on serves through ``ExposedPorts`` and ``HostConfig.PortBindings`` (e.g. ``1880/tcp`` for node-red).
+
+.. warning::
+
+   Never put registry credentials in a configuration you share or commit; enter them on the robot only.
+
 .. _addon_system:
 
 System add-on
@@ -39,6 +64,12 @@ The system add-on is implemented in Python-Django and provides the web applicati
 It runs on the robot itself (``--network=host``) and is available from any phone, tablet or laptop on the robot's network.
 By default, the web application is hosted at port 80 (``PORT`` environment variable).
 The source code is in the `artof-system <https://github.com/artof-ilvo/artof-system>`_ project.
+
+The system add-on is installed with the robot. If it was removed, add it again with this :ref:`configuration <addons_config>`:
+
+.. literalinclude:: files/addons/system.json
+   :language: JSON
+   :caption: **Listing 1.** Example configuration of the system add-on
 
 The menu bar holds the operator pages *Fields*, *Map*, *Applied* and *Settings*, and on the right the *Admin* area.
 The pages adapt to phone screens: the menu collapses and tables are shown as cards.
@@ -333,6 +364,11 @@ Node-red add-on
 The node-red add-on provides flow programming, used for logging and implement interaction.
 It can be reached at the URL http://<ip-robot>:1880/.
 The add-on has access to the ``field`` and ``implement`` folders and the ``config.json``, ``settings.json`` and ``types.json`` files of the robot.
+The flows are stored in ``/var/lib/ilvo/node-red``.
+
+.. literalinclude:: files/addons/node-red.json
+   :language: JSON
+   :caption: **Listing 2.** Example configuration of the node-red add-on
 
 You can install the submodules for extracting the Redis variables and logging them to an InfluxDB instance by
 
@@ -352,7 +388,14 @@ While the Redis variable ``pc.as_applied.record`` is ``true``, it polls Redis an
 + Sections and points are written once they moved more than ``TASKMAP_MIN_DISTANCE``; points are also logged every ``TASKMAP_POINT_PERIOD`` seconds while the robot stands still.
 
 The source code is in the `artof-addon-taskmap <https://github.com/artof-ilvo/artof-addon-taskmap>`_ project.
-Add it on the *Addons* page with the image ``axelwillekens/artof-taskmap-addon``, the ``host`` network and the folder ``/var/lib/ilvo`` shared with the container, or run it manually:
+Add it on the *Addons* page with the image ``axelwillekens/artof-taskmap-addon``, the ``host`` network and the folder ``/var/lib/ilvo`` shared with the container.
+The configuration below does this, with the environment variables at their default values (see the table below):
+
+.. literalinclude:: files/addons/taskmap.json
+   :language: JSON
+   :caption: **Listing 3.** Example configuration of the task-map add-on
+
+Or run it manually:
 
 .. code-block:: bash
 

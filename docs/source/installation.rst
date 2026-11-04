@@ -104,30 +104,69 @@ Docker
 Install `Docker <https://docs.docker.com/engine/install/ubuntu/>`_ with `root-level privileges <https://docs.docker.com/engine/install/linux-postinstall/>`_ first.
 You may have to reboot after installation.
 
-The ``ilvo`` folder of the `artof-core <https://github.com/artof-ilvo/artof-core>`_ project runs the whole stack in Docker:
+The Docker setup is published on the ARTOF MinIO server. Download it and start the stack, no clone needed:
 
 .. code-block:: bash
 
-	git clone https://github.com/artof-ilvo/artof-core.git
-	cd artof-core/ilvo
+	# stable channel
+	curl -fsSL https://minio.ilvo.be:9000/tv115-ilvo-robotics/docker/artof-docker-stable.tar.gz | tar xz
+	cd artof-docker
 	docker compose up -d
 
-The ``ilvo/data`` folder is mounted as ``ILVO_PATH``. It contains the same files as the package defaults, with these differences:
+Other downloads follow the same pattern:
+
++-------------------------------------+-----------------------------+------------------------+
+| Download                            | Runs the image              | Published on           |
++=====================================+=============================+========================+
+| ``artof-docker-stable.tar.gz``      | ``artof-core:latest``       | every release          |
++-------------------------------------+-----------------------------+------------------------+
+| ``artof-docker-<tag>.tar.gz``       | ``artof-core:<tag>``        | every release, e.g.    |
+|                                     |                             | ``v1.2.0``             |
++-------------------------------------+-----------------------------+------------------------+
+| ``artof-docker-dev.tar.gz``         | ``artof-core:dev``          | every development build|
++-------------------------------------+-----------------------------+------------------------+
+
+The same setup is in the ``ilvo`` folder of the `artof-core <https://github.com/artof-ilvo/artof-core>`_ project, so from a clone you can run ``docker compose up -d`` in ``artof-core/ilvo`` instead.
+
+The ``data`` folder is mounted as ``ILVO_PATH``. It contains the same files as the package defaults, with these differences:
 
 + ``config.json``: Redis is reached at ``"ip": "redis"``, the compose service name, instead of ``127.0.0.1``.
-+ ``redis.init.json``: the add-on containers mount the host data folder in ``HostConfig.Binds``, join the compose network through ``HostConfig.NetworkMode`` (``ilvo_artof_network``) and publish their ports through ``ExposedPorts`` and ``HostConfig.PortBindings``.
++ ``redis.init.json``: the add-on containers join the compose network through ``HostConfig.NetworkMode`` (``ilvo_artof_network``) and publish their ports through ``ExposedPorts`` and ``HostConfig.PortBindings``. The system add-on web app is published on port ``8080``.
+
+The add-on binds in ``HostConfig.Binds`` use ``/var/lib/ilvo`` paths, as on a robot.
+The system manager creates the add-ons through the Docker socket, so in a container it replaces ``ILVO_PATH`` in the bind sources with the host folder mounted there (the ``data`` folder).
+Set ``ILVO_HOST_PATH`` on the ``artof`` service to give that host folder explicitly.
 
 The first time, it can take some time for ``artof-core`` to pull and install the system and node-red add-on.
-The output of the ``artof-core`` container shows how the add-ons are launching.
+The output of the ``artof-core`` container shows how the add-ons are launching:
+
+.. code-block:: bash
+
+	docker compose logs -f artof
+
+Update the stack to the newest image of its channel. Your configuration in ``data`` is kept; Redis is emptied so the new ``redis.init.json`` is loaded:
+
+.. code-block:: bash
+
+	docker compose pull
+	docker compose up -d
+	docker compose exec redis redis-cli FLUSHALL
+	docker compose restart artof
+
+Stop the stack. The add-on containers are not part of the compose project, so remove them separately:
+
+.. code-block:: bash
+
+	docker compose down          # add -v to also remove the Redis data
+	docker rm -f system node-red
 
 .. note::
-   When updating to a new version, clear the Redis cache, so the new ``redis.init.json`` is loaded.
-   Remove the ``redis_data`` volume or run ``redis-cli FLUSHALL``.
+   Downloading a newer archive into the same folder overwrites the configuration in ``data``. Extract it elsewhere and copy over the files you changed.
 
 Check your installation
 -----------------------
 
-Browse to the *system add-on web app* at `http://<ip-robot> <http://localhost>`_ (port 80 by default, set by the ``PORT`` environment variable of the add-on).
+Browse to the *system add-on web app* at `http://<ip-robot> <http://localhost>`_ (port 80 by default, set by the ``PORT`` environment variable of the add-on). In the Docker setup it is published on `http://localhost:8080 <http://localhost:8080>`_.
 
 Next, browse to the *Map* tab and press the ``Sim`` button. You should see the robot appear as shown in *Figure 1*.
 

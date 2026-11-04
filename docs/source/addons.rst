@@ -45,6 +45,12 @@ open the *Addons* page, press |icon_plus|, switch the editor to *JSON*, paste th
 
 The system manager adds its own state fields (``Running``, ``Pid``, ``StartTimeISO``, ...) to the configuration; you do not need to provide them.
 
+.. note::
+
+   The examples are written for a robot, where the add-ons use the ``host`` network.
+   In the :ref:`Docker setup <installation_docker>`, set ``HostConfig.NetworkMode`` to ``ilvo_artof_network``, add ``REDIS_HOST=redis`` to ``Env``,
+   and publish the ports the add-on serves through ``ExposedPorts`` and ``HostConfig.PortBindings`` (e.g. ``1880/tcp`` for node-red).
+
 .. warning::
 
    Never put registry credentials in a configuration you share or commit; enter them on the robot only.

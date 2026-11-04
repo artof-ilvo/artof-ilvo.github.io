@@ -1,15 +1,16 @@
 {
-  "Name": "taskmap-addon",
+  "Name": "artof-addon-as-applied",
   "AutoStart": true,
   "DockerRegistry": {
     "serveraddress": "https://registry.hub.docker.com/v2/"
   },
   "DockerConfig": {
-    "Image": "axelwillekens/artof-taskmap-addon:dev",
+    "Image": "axelwillekens/artof-addon-as-applied:dev",
     "Env": [
       "TASKMAP_POLL_PERIOD=0.2",
       "TASKMAP_FLUSH_PERIOD=1.0",
       "TASKMAP_MIN_DISTANCE=0.1",
+      "TASKMAP_POINT_DISTANCE=1.0",
       "TASKMAP_POINT_PERIOD=5.0"
     ],
     "HostConfig": {

@@ -38,12 +38,10 @@
                 "Running": true,
                 "SoftwareUpdate": true,
                 "DockerRegistry": {
-                    "username": "artof-ilvo",
-                    "password": "glpat-ZZs4PkN86nbopeXdeGpy",
-                    "serveraddress": "https://gitlab.ilvo.be:5050/v2/"
+                    "serveraddress": "https://registry.hub.docker.com/v2/"
                 },
                 "DockerConfig": {
-                    "Image": "gitlab.ilvo.be:5050/artof-ilvo/addons/system",
+                    "Image": "axelwillekens/artof-system",
                     "HostConfig": {
                         "Binds": [
                             "/var/lib/ilvo:/var/lib/ilvo"
